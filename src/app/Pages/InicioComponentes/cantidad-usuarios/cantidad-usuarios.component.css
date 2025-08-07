@@ -1,0 +1,54 @@
+#counter-section-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 60px;
+  background-color: #000;
+  padding: 50px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.counter-box {
+  width: 350px;
+  color: #ccc;
+}
+
+.counter-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #333;
+  background-color: white;
+}
+
+.counter {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  margin: 10px 0;
+}
+
+.counter-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Opcional: colores de fondo distintos */
+.counter-icon.yellow {
+  background-color: #ffcc00;
+}
+
+.counter-icon.purple {
+  background-color: #8000ff;
+}
+
+.counter-icon.green {
+  background-color: #00cc99;
+}
+
+

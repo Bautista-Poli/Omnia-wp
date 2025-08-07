@@ -1,0 +1,31 @@
+
+<app-header></app-header>
+<br>
+<br>
+<div class="projcard-container">
+    
+  <div class="projcard projcard">
+    <div class="projcard-innerbox">
+      <img class="projcard-img" [src]="class?.src" />
+      <div class="projcard-textbox">
+        <div class="projcard-title">{{class?.name}}</div>
+        <div class="projcard-bar"></div>
+        <div class="projcard-description">{{class?.description}}</div>
+        <div class="prodjcard-profesorbox">
+          <div class="projcard-tagbox" *ngFor="let profesorObj of profesores">
+            <div class="profesorTag" *ngIf="profesorObj">
+              <span class="projcard-tag" >{{profesorObj.nombre}}</span>
+              <img  [src]="profesorObj.src" class="profesorImg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<app-footer></app-footer>
+
+  

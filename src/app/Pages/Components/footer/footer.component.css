@@ -1,0 +1,26 @@
+#footer{
+    background-color: rgb(0, 0, 0);
+    display:grid;
+    grid-template-columns: auto auto auto;
+    margin-top:50px;
+    padding-bottom:70px;
+    color:white;
+}
+
+.footrPhoto{
+    width:40px;
+    height:40px;
+}
+
+.redSocial{
+    display:flex;
+    margin-left: 40px;
+}
+
+#tel{
+    margin-left: 10px;
+}
+
+#ig{
+    margin-left: 10px;
+}

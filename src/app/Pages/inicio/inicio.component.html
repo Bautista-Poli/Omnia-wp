@@ -1,0 +1,77 @@
+<div>
+    <app-header class="header"></app-header>
+    
+    <section id="banner">
+        <!--
+            <owl-carousel-o  class="carousel" [options]="customOptions">
+                <ng-template carouselSlide><img src="../../../assets/OMNIA-SLIDER2-1.png"></ng-template>  
+                <ng-template carouselSlide ><img src="../../../assets/OMNIA-SLIDER3-1.png"></ng-template>   
+                <ng-template carouselSlide><img src="../../../assets/OMNIA-SLIDER1-1.png"></ng-template>  
+            </owl-carousel-o>
+        -->
+        <photo-displayer></photo-displayer>
+    </section>
+    <section id="cantidad de socios">
+        <app-cantidad-usuarios></app-cantidad-usuarios>
+    </section>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <a href="https://web.whatsapp.com/send?phone=5491156294609" class="float" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+    </a>
+    <section id="servicios">
+        <h1>Elegi la clase que prefieras</h1>
+        <table >
+            <thead>
+                <tr>
+                    <th>Hora</th>
+                    <th *ngFor="let day of programa">{{day}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hora of horas">
+                    <td>{{ hora.slice(0,5) }}</td>
+                    
+                    <td *ngFor="let clase of descubrir(hora)"[class]="clase.name" [routerLink]="'/class/' + clase.name">{{ clase.name }}</td> 
+                    <!-- <td *ngFor="let clase of toObjectKeys(horas)"[class]="clase.name" owlRouterLink="/class/{{clase.name}}">{{ clase.name }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section id="nosotros">
+        <h1 id="titulo">Un lugar para vos,</h1>
+        <h3>un Gimnasio hecho a tu medida</h3>
+        <h1>Proba nuestra APP</h1>
+    </section>
+    <h1>Prueba nuestra aplicacion</h1>
+    <section>
+    <div class="app-promo-container">
+        <div class="iphonex">
+            <div class="front">
+                <div class="screen">
+                    <div class="screen__view">
+                        <div class="dribbbleLogo"><img src="../../../assets/Omnia1.png"></div>
+                        <div class="page">
+                            <img src="../../../assets/OmniaMobilePage.png" class="imageMobilePage">
+                        </div>
+                    </div>
+                    <div class="screen__front">
+                        <div class="screen__front-speaker"></div>
+                        <div class="screen__front-camera"></div>
+                    </div>
+                </div>
+                <div class="front__line"></div>
+                <div class="front__line front__line-second"></div>
+            </div>
+            <div class="phoneButtons phoneButtons-right"></div>
+            <div class="phoneButtons phoneButtons-left"></div>
+            <div class="phoneButtons phoneButtons-left2"></div>
+            <div class="phoneButtons phoneButtons-left3"></div>
+            <div class="back"></div>
+        </div>
+        <links-to-app></links-to-app>
+        
+    </div>
+    </section>
+    <div id="app-footer"><app-footer></app-footer></div>
+</div>
+

@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="reseñas">
+  <div class="snip1533" *ngFor="let review of reviews">
+    <blockquote>
+      <h3 class="name">{{ review.name }}</h3>
+      <p *ngFor="let paragraph of review.comment">{{ paragraph }}</p>
+    </blockquote>
+  </div>
+</div>
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,31 @@
+<div class="gym-class-management">
+    <button routerLink="/admin-clases" class="buttonOther">Agregar una nueva clase</button>
+    <button routerLink="/admin-profesor" class="buttonOther">Agregar una nuevo profesor</button>
+    <div id="titulo">
+        <h2>Gestion de horarios de clases</h2>
+        <mat-icon id="mat-icon">access_time</mat-icon>
+    </div>
+    <form>
+        <label for="username">Nombre</label>
+        <input type="text" id="name" name="name" [(ngModel)]="newClassName" required>
+        <select id="cars" name="cars" [(ngModel)]="newClassDate">
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miercoles">Miercoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sabado">Sabado</option>
+        </select>
+        <select id="hours" name="hours" [(ngModel)]="newClassTime">
+            <option *ngFor="let hour of hours" [value]="hour">{{ hour }}hs</option>
+        </select>
+        <button (click)="addClass()" class="buttonSend">Add Time</button>
+        <br>
+        <br>
+        <button (click)="removeClass()" class="buttonSend">Remove Time</button>
+    </form>
+    
+    
+    <br>
+    <button (click)="logOut()" class="buttonLogOut">Logout</button>
+</div>

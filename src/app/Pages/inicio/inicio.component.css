@@ -1,0 +1,190 @@
+@import 'iphone.css';
+@import 'iphone2.css';
+.header {
+    position: fixed;
+    z-index: 1000;
+    width:100%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    padding: 50px 20px;
+    
+}
+
+section h3 {
+    text-align: center;
+}
+section h1 {
+    text-align: center;
+    color:orange;
+}
+section p {
+    text-align: center;
+    color:orange;
+}
+
+.elementor-video{
+    margin-left:19%;
+    max-width: 100%;
+    width: 65%;
+}
+
+#banner {
+    background-size: cover;
+    text-align: center;
+    padding: 100px 0;
+}
+
+#banner h2 {
+    margin: 0;
+}
+
+#banner p {
+    font-size: 20px;
+}
+
+.carousel{
+    width:10000px;
+}
+#nosotros{
+    color:white;
+}
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: black;
+}
+
+th, td {
+    border: 2px solid orange;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+
+
+.Gap, .Indoor, .Boxeo, .Zumba, .CrossTraining, .Functional, .Yoga, .Stretching {
+  cursor: pointer;
+  background-color: #ff961e; /* Color de fondo predeterminado */
+}
+
+.Gap:hover, .Indoor:hover, .Boxeo:hover, .Zumba:hover, .CrossTraining:hover, .Functional:hover, .Yoga:hover, .Stretching:hover {
+  background-color: #ec8714; /* Color de fondo al pasar el mouse */
+}
+
+a{
+    padding:10px 25%;
+    color:white;
+    text-decoration: none;
+}
+
+#app-footer{
+    margin-top: 700px;
+}
+  
+  .title {
+    color: rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    transition: opacity 0.4s;
+  }
+  .title p {
+    font-size: 14vw;
+  }
+  .title .title__svg {
+    width: 17vw;
+    height: 34vw;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .title .title__svg video {
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+  }
+  .title .title__svg svg {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+  .title .title__svg svg text {
+    font-family: "Major Mono Display", monospace;
+    text-transform: uppercase;
+    transform-origin: center center;
+    font-size: 3em;
+  }
+  .title .title__svg svg rect {
+    fill: #fff;
+  }
+  .title .title__svg svg > rect {
+    -webkit-mask: url(#mask);
+    mask: url(#mask);
+    fill: #000;
+  }
+  
+#titulo{
+  font-size: 50px;
+}
+
+#servicios{
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+
+.app-promo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* espacio entre la tarjeta y el teléfono */
+  flex-wrap: wrap; /* para que en móvil se acomoden uno abajo del otro */
+  padding: 40px 20px;
+  margin-right: 30%;
+  margin-top: 10%;
+}
+
+
+/*Whatsapp logo */
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+  padding: 5px;
+}
+
+.my-float{
+	margin-top:16px;
+}

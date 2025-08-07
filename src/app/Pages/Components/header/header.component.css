@@ -1,0 +1,29 @@
+.logo {
+    width: 150px;
+    height: 75px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.middle-header {
+    background-color: #000;
+    color: #fff;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between; /* Esto distribuye los elementos horizontalmente */
+    align-items: center; /* Esto alinea los elementos verticalmente */
+}
+
+.fila2 {
+    margin-right: 30px; /* Espacio a la derecha del header */
+}
+
+.nav-items {
+    padding-left: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-items:hover {
+    color: rgb(255, 130, 28);
+}
