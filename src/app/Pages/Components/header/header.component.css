@@ -51,7 +51,10 @@
   .hamburguesa {
     display: block;
   }
-
+  .middle-header {
+    margin-top: -20%;
+  }
+  
   .fila2 {
     display: none;
     flex-direction: column;
