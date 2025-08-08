@@ -1,12 +1,20 @@
 <header>
-    <div class="middle-header">
-        <div class="logo">
-            <a routerLink="/inicio"><img src="../../../../assets/Omnia1.png" class="img-responsive" alt="logo"></a>
-        </div>
-        <div class="fila2">
-            <a class="nav-items" routerLink="/como-comenzar"> Como comenzar</a>
-            <a class="nav-items" routerLink="/reseñas">Reseñas </a>
-            <a class="nav-items" routerLink="/Login">Iniciar sesion</a>
-        </div>
+  <div class="middle-header">
+    <!-- Logo -->
+    <div class="logo">
+      <a routerLink="/inicio"><img src="../../../../assets/Omnia1.png" alt="logo"></a>
     </div>
+
+    <!-- Botón hamburguesa -->
+    <button class="hamburguesa" (click)="toggleMenu()">&#9776;</button>
+
+    <!-- Menú -->
+    <div class="fila2" [class.abierto]="menuAbierto">
+      <a class="nav-items" routerLink="/como-comenzar" (click)="cerrarMenu()">Cómo comenzar</a>
+      <a class="nav-items" routerLink="/reseñas" (click)="cerrarMenu()">Reseñas</a>
+      <a class="nav-items" routerLink="/Login" (click)="cerrarMenu()">Iniciar sesión</a>
+    </div>
+  </div>
 </header>
+
+

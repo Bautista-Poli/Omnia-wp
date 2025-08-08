@@ -188,3 +188,114 @@ a{
 .my-float{
 	margin-top:16px;
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
+@media screen and (max-width: 768px) {
+  /* HEADER y LOGO */
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    gap: 5px;
+  }
+
+  .fila2 {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-items {
+    padding: 5px 0;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+  }
+
+  /* WHATSAPP FLOTANTE */
+  .float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 24px;
+  }
+
+  /* BANNER / CARRUSEL */
+  #banner {
+    margin-top: 20%;
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  photo-displayer {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* TABLA SCROLLABLE */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  th, td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  /* IPHONE COMPONENTO */
+  .app-promo-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+  }
+
+  .iphonex {
+    transform: scale(0.8);
+    width: 90vw;
+    margin: 0 auto 20px;
+  }
+
+  .iphonex .screen .screen__view .dribbbleLogo {
+    width: 60vw;
+    height: 60vw;
+  }
+
+  .iphonex .screen .screen__view .page img.imageMobilePage {
+    width: 80%;
+    max-width: 280px;
+  }
+
+  /* TEXTOS */
+  section h1, section h3 {
+    font-size: 5.5vw;
+    text-align: center;
+  }
+
+  section p {
+    font-size: 4.5vw;
+    text-align: center;
+  }
+
+  /* FOOTER */
+  #app-footer {
+    margin-top: 100px;
+  }
+
+  /* PREVENIR SCROLL LATERAL */
+  body {
+    overflow-x: hidden;
+    padding-top: 100px;
+  }
+}

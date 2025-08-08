@@ -1,29 +1,80 @@
-.logo {
-    width: 150px;
-    height: 75px;
-    margin-left: 30px;
-    margin-bottom: 15px;
+/* === HEADER GENERAL === */
+.middle-header {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
 }
 
-.middle-header {
-    background-color: #000;
-    color: #fff;
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between; /* Esto distribuye los elementos horizontalmente */
-    align-items: center; /* Esto alinea los elementos verticalmente */
+.logo {
+  height: auto;
+}
+
+.logo img {
+  width: 200px;
+  height: auto;
 }
 
 .fila2 {
-    margin-right: 30px; /* Espacio a la derecha del header */
+  display: flex;
+  gap: 25px;
+  align-items: center;
 }
 
 .nav-items {
-    padding-left: 30px;
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
 }
 
 .nav-items:hover {
-    color: rgb(255, 130, 28);
+  color: rgb(255, 130, 28);
+}
+
+/* === HAMBURGUESA === */
+.hamburguesa {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* === RESPONSIVE === */
+@media screen and (max-width: 750px) {
+  .hamburguesa {
+    display: block;
+  }
+
+  .fila2 {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 15px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .fila2.abierto {
+    display: flex;
+  }
+
+  .nav-items {
+    padding: 10px 0;
+    font-size: 18px;
+  }
+
+  .logo img {
+    width: 130px;
+  }
 }
