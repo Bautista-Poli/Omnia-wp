@@ -1,22 +1,36 @@
 /* Tabla */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: black;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: black;
 }
 
 th, td {
-    border: 2px solid orange;
-    padding: 10px;
-    color: white;
-    text-align: center;
+  border: 2px solid orange;
+  padding: 10px;
+  color: white;
+  text-align: center;
 }
 
-.Gap, .Indoor, .Boxeo, .Zumba, .CrossTraining, .Functional, .Yoga, .Stretching {
-  cursor: pointer;
-  background-color: #ff961e; /* Color de fondo predeterminado */
+/* Cuando hay clase, pintamos la CELDA completa */
+td.has-class {
+  background-color: #ff961e;
+  color: black; /* mejor contraste sobre naranja */
 }
 
-.Gap:hover, .Indoor:hover, .Boxeo:hover, .Zumba:hover, .CrossTraining:hover, .Functional:hover, .Yoga:hover, .Stretching:hover {
-  background-color: #ec8714; /* Color de fondo al pasar el mouse */
+/* El link ocupa toda la celda, sin “pastilla” */
+.cell-link {
+  display: block;         /* ocupa 100% del td */
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;         /* usa el color del td */
+  font-weight: 600;
+  /* sin bordes, sin fondo extra */
+  border: 0;
+  background: transparent;
 }
+
+/* No necesitamos marcador para vacío */
+.cell-vacia { display: none; }
+

@@ -1,16 +1,33 @@
-<table >
-    <thead>
-        <tr>
-            <th>Hora</th>
-            <th *ngFor="let day of programa">{{day}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let hora of horas">
-            <td>{{ hora.slice(0,5) }}</td>
-            
-            <td *ngFor="let clase of descubrir(hora)"[class]="clase.name" [routerLink]="'/class/' + clase.name">{{ clase.name }}</td> 
-            <!-- <td *ngFor="let clase of toObjectKeys(horas)"[class]="clase.name" owlRouterLink="/class/{{clase.name}}">{{ clase.name }}</td> -->
-        </tr>
-    </tbody>
+<table>
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <th *ngFor="let day of programa">{{ day }}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of rows; trackBy: trackByHora">
+      <td>{{ row.hora.slice(0,5) }}</td>
+
+      <td
+        *ngFor="let clase of row.clases; trackBy: trackByIdx"
+        [class.has-class]="!!clase"
+      >
+        <ng-container *ngIf="clase; else emptyCell">
+          <a
+            class="cell-link"
+            [routerLink]="['/class', clase!.name]"
+            [attr.aria-label]="'Abrir ' + clase!.name"
+          >
+            {{ clase!.name }}
+          </a>
+        </ng-container>
+        <ng-template #emptyCell></ng-template>
+      </td>
+    </tr>
+  </tbody>
 </table>
+
+
+

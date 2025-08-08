@@ -20,7 +20,7 @@ export class HourService {
   ) {
     // Estructura base: para cada hora, 5 días con objetos distintos
     this.hours.forEach(h => {
-      const emptyClassesArray: Class[] = Array.from({ length: 5 }, () => ({} as Class));
+      const emptyClassesArray: (Class | null)[] = Array.from({ length: 5 }, () => null);
       this.schedule.push({ [h]: emptyClassesArray });
     });
   }

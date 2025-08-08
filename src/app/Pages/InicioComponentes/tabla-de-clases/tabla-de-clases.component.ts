@@ -3,23 +3,24 @@ import { Component, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { HourService } from '../../service/hour.service';
-import { Hours } from '../../interface/data.interface';
+export interface Class { name: string; id: number; }
+export type ClassCell = Class | null;
+export type Hours = { [hour: string]: ClassCell[] }; // null cuando no hay clase
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common'; 
 
 @Component({
   selector: 'tabla-de-clases',
   standalone: true,
-  imports: [RouterModule,    NgFor,
-    NgIf,],
+  imports: [RouterModule, NgFor, NgIf],
   templateUrl: './tabla-de-clases.component.html',
-  styleUrl: './tabla-de-clases.component.css'
+  styleUrls: ['./tabla-de-clases.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush // recomendable
 })
+
 export class TablaDeClasesComponent {
-  programa: Array<string> = ["Lunes","Martes","Miercoles","Jueves","Viernes"];
-  horas: Array<string> = [];
-  schedule: Hours[] = [];
-  objects: any[] = [];
+  programa = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  rows: Array<{ hora: string; clases: ClassCell[] }> = [];
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -28,36 +29,16 @@ export class TablaDeClasesComponent {
 
   async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      await this.initHours();
-    }
-  }
-
-  private async initHours() {
-    this.schedule = await this.hourService.getAllHours();
-    this.myFunction();
-  }
-
-  descubrir(hora: string): any[] {
-    this.objects = [];
-    if (this.schedule.length > 0) {
-      this.schedule.forEach(item => {
-        if (item[hora]) {
-          this.objects = item[hora];
-        }
+      const schedule = await this.hourService.getAllHours();
+      this.rows = schedule.map(item => {
+        const hora = Object.keys(item)[0]!;
+        const clases = item[hora] ?? Array.from({length: 5}, () => null);
+        return { hora, clases };
       });
     }
-    return this.objects;
   }
 
-  myFunction(): void {
-    this.horas = [];
-    this.schedule.forEach(item => {
-      const time = Object.keys(item)[0];
-      if (time) this.horas.push(time);
-    });
-  }
-
-  toObjectKeys(valor:any):string[] { return Object.keys(valor); }
-  toNumber(value:string):number { return Number(value); }
-  valor():number { return 8; }
+  trackByHora = (_: number, row: {hora:string}) => row.hora;
+  trackByIdx   = (i: number) => i;
 }
+

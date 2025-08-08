@@ -11,7 +11,7 @@ export interface ClassInfo {
     id: number;
 }
 export interface Hours {
-    [hour: string]: Class[];
+  [hour: string]: (Class | null)[];
 }
 
 export interface Schedule {
