@@ -314,5 +314,10 @@ html, body {
     padding-top: 100px;
   }
 
+  .app-promo-container{
+    display: none;
+  }
+  
+
   
 }

@@ -51,4 +51,8 @@
   background-color: #00cc99;
 }
 
-
+@media screen and (max-width: 768px) {
+  #counter-section-container{
+    margin-top: 70vw;
+  }
+}
