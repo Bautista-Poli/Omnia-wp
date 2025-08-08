@@ -1,0 +1,21 @@
+
+
+
+@media screen and (max-width: 768px) {
+    .carousel {
+    width: 70vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .carousel img {
+    width: 60%;
+    height: 24vh; /* Desproporcionado a propósito */
+    object-fit: cover;
+    display: block;
+  }
+  :host ::ng-deep .owl-nav {
+    display: none !important;
+    }
+
+}

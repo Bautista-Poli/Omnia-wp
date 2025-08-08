@@ -18,6 +18,7 @@ export class PhotoDisplayerComponent {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
+    autoWidth: false,
     navText: ['<-', '->'],
     responsive: {
       0: { items: 1 },

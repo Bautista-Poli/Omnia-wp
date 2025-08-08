@@ -58,9 +58,7 @@ section p {
     font-size: 20px;
 }
 
-.carousel{
-    width:10000px;
-}
+
 #nosotros{
     color:white;
 }
@@ -194,6 +192,23 @@ html, body {
   overflow-x: hidden;
 }
 
+.owl-carousel,
+.owl-stage-outer,
+.owl-stage,
+.owl-item {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.owl-carousel .owl-item img {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  object-fit: cover;
+}
 
 @media screen and (max-width: 768px) {
   /* HEADER y LOGO */
@@ -298,4 +313,6 @@ html, body {
     overflow-x: hidden;
     padding-top: 100px;
   }
+
+  
 }
