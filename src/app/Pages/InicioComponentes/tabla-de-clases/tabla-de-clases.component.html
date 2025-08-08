@@ -1,0 +1,16 @@
+<table >
+    <thead>
+        <tr>
+            <th>Hora</th>
+            <th *ngFor="let day of programa">{{day}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let hora of horas">
+            <td>{{ hora.slice(0,5) }}</td>
+            
+            <td *ngFor="let clase of descubrir(hora)"[class]="clase.name" [routerLink]="'/class/' + clase.name">{{ clase.name }}</td> 
+            <!-- <td *ngFor="let clase of toObjectKeys(horas)"[class]="clase.name" owlRouterLink="/class/{{clase.name}}">{{ clase.name }}</td> -->
+        </tr>
+    </tbody>
+</table>

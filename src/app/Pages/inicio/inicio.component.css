@@ -62,30 +62,6 @@ section p {
 #nosotros{
     color:white;
 }
-/* Tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: black;
-}
-
-th, td {
-    border: 2px solid orange;
-    padding: 10px;
-    color: white;
-    text-align: center;
-}
-
-
-
-.Gap, .Indoor, .Boxeo, .Zumba, .CrossTraining, .Functional, .Yoga, .Stretching {
-  cursor: pointer;
-  background-color: #ff961e; /* Color de fondo predeterminado */
-}
-
-.Gap:hover, .Indoor:hover, .Boxeo:hover, .Zumba:hover, .CrossTraining:hover, .Functional:hover, .Yoga:hover, .Stretching:hover {
-  background-color: #ec8714; /* Color de fondo al pasar el mouse */
-}
 
 a{
     padding:10px 25%;
