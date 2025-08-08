@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import {  Observable, map } from 'rxjs';
 import {Class} from '../interface/class.interface';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassService {
-  private list: Observable<Class[]> = this.http.get<Class[]>('http://localhost:3000/get-classesList');
+  private list: Observable<Class[]> = this.http.get<Class[]>(`${environment.apiUrl}/get-classesList`);
   private classes: Class[] = [];
   private isInitialized: boolean = false;
   
@@ -45,11 +47,3 @@ export class ClassService {
   }
 
 }
-
- 
-  /*
-  find(_item:number){
-      
-  }
-  */
-

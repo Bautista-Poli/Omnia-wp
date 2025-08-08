@@ -34,39 +34,6 @@ import { HourService } from '../service/hour.service';
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent {
-  
-  /*customOptions: OwlOptions = {
-  loop: true,
-  mouseDrag: true,
-  touchDrag: true,
-  pullDrag: false,
-  dots: false,
-  navSpeed: 700,
-  navText: ['<-', '->'],
-  responsive: {
-    0: {
-      items: 1
-    },
-    400: {
-      items: 2
-    },
-    740: {
-      items: 3
-    },
-    940: {
-      items: 1
-    }
-  },
-  nav: true,
-
-   
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
-    smartSpeed: 1000,
-
-  };
-  */
 
   programa: Array<string> = [
     "Lunes","Martes","Miercoles","Jueves","Viernes"
@@ -84,7 +51,6 @@ export class InicioComponent {
   async initHours() {
     this.schedule = await this.hourService.getAllHours();
     this.myFunction();
-    //console.log(this.horas[1]["09:00:00"][0])
   }
   
   descubrir(hora: string): any {
