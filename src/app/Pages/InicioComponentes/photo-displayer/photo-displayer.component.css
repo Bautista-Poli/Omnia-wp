@@ -1,3 +1,9 @@
+.carousel img {
+  width: 100%;
+  max-height: 600px; /* ajustá a lo que te guste */
+  object-fit: cover;
+  display: block;
+}
 
 @media screen and (max-width: 768px) {
     .carousel {
