@@ -312,6 +312,10 @@ html, body {
   .app-promo-container{
     display: none;
   }
+  .float.instagram {
+    background-color: #E1306C; 
+    margin-right: 15%;
+  }
   
 
   

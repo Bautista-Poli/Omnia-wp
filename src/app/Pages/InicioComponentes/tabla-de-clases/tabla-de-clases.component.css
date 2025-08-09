@@ -34,3 +34,14 @@ td.has-class {
 /* No necesitamos marcador para vacío */
 .cell-vacia { display: none; }
 
+@media screen and (max-width: 768px) {
+  table {
+    width: 40vh;
+  }
+  th, td {
+    border: 1px solid orange;
+    padding: 4px;
+    color: white;
+    text-align: center;
+  }
+}
