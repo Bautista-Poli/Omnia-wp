@@ -28,6 +28,7 @@ section {
 
 section h3 {
     text-align: center;
+    color:white;
 }
 section h1 {
     text-align: center;
@@ -149,7 +150,7 @@ a{
 	height:60px;
 	bottom:40px;
 	right:40px;
-	background-color:#25d366;
+	
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
@@ -163,6 +164,24 @@ a{
 	margin-top:16px;
 }
 
+.float.whatsapp {
+  background-color:#25d366;
+}
+.float.whatsapp:hover {
+  background-color:#27ad58;
+}
+
+
+.float.instagram {
+  background-color: #E1306C; 
+  margin-right: 6%;
+}
+
+.float.instagram:hover {
+  background-color: #b82858; 
+}
+
+/*-----------------------*/
 html, body {
   max-width: 100%;
   overflow-x: hidden;
