@@ -1,0 +1,32 @@
+<app-header class="header"></app-header>
+
+<div class="loc-wrap">
+  <div class="loc-info">
+    <h2>¿Dónde estamos?</h2>
+    <p>
+      Nos encontramos en <strong>Fitz Roy 2261</strong>, en pleno Palermo.
+      Enfrente está el <strong>Distrito Arcos Premium Outlet</strong>.
+      A 2 cuadras de estación Palermo (Tren San Martín) y cerca del Subte D.
+    </p>
+
+    <a href="https://goo.gl/maps/HxG5h4YwZkqZPG7U8" target="_blank" class="btn-maps">
+      <span class="loader" aria-hidden="true"></span>
+      <span>Cómo llegar</span>
+    </a>
+  </div>
+
+  <div class="map-card">
+    <iframe
+      [src]="embedUrl"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+
+
+
+
+
+

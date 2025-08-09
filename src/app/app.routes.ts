@@ -6,9 +6,9 @@ import { AdminComponent } from './Pages/admin/admin.component';
 import { AdminClaseComponent } from './Pages/admin/admin-clases/admin-clases.component'; 
 import { AdminProfesoresComponent } from './Pages/admin/admin-profesores/admin-profesores.component'; 
 import {ComoComenzarComponent} from './Pages/como-comenzar/como-comenzar.component';
-import {PlanesComponent} from './Pages/planes/planes.component';
 import { NovedadesComponent} from './Pages/Novedades/Novedades.component';
 import {ClassComponent} from './Pages/class/class.component';
+import { UbicacionComponent } from './Pages/ubicacion/ubicacion.component';
 
 export const routes: Routes = [
     { path: 'inicio',
@@ -17,8 +17,6 @@ export const routes: Routes = [
     component: ReseñasComponent
     },{ path: 'como-comenzar',
     component: ComoComenzarComponent
-    },{ path: 'planes',
-    component: PlanesComponent
     },{ path: 'novedades',
     component:  NovedadesComponent
     },{ path: 'class/:className',
@@ -29,6 +27,8 @@ export const routes: Routes = [
     component: AdminComponent
     },{ path: 'admin-clases',
     component: AdminClaseComponent
+    },{path: 'ubicacion',
+    component: UbicacionComponent
     },{path: 'admin-profesores',
     component: AdminProfesoresComponent
     },{
