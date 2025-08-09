@@ -18,7 +18,6 @@ td.has-class {
   color: black;
 }
 
-/* El link ocupa toda la celda, sin “pastilla” */
 .cell-link {
   display: block;         /* ocupa 100% del td */
   width: 100%;
@@ -31,7 +30,10 @@ td.has-class {
   background: transparent;
 }
 
-/* No necesitamos marcador para vacío */
+#emptyCell{
+  padding:100px
+}
+
 .cell-vacia { display: none; }
 
 @media screen and (max-width: 768px) {
@@ -44,4 +46,12 @@ td.has-class {
     color: white;
     text-align: center;
   }
+  td{
+    padding: 0px;
+  }
+  .hora{
+    padding:5px
+  }
+  
+
 }

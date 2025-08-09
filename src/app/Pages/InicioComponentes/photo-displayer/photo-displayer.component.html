@@ -1,8 +1,9 @@
 
-<owl-carousel-o  class="carousel" [options]="customOptions">
-    <ng-template carouselSlide><img src="../../../assets/OMNIA-SLIDER2-1.png"></ng-template>  
-    <ng-template carouselSlide ><img src="../../../assets/OMNIA-SLIDER3-1.png"></ng-template>   
-    <ng-template carouselSlide><img src="../../../assets/OMNIA-SLIDER1-1.png"></ng-template>  
+<owl-carousel-o *ngIf="images?.length" class="carousel"[options]="customOptions" (initialized)="ready = true">
+  <ng-template carouselSlide *ngFor="let img of images">
+    <img [src]="img" loading="lazy" width="1920" height="900" alt="Slide Omnia" />
+  </ng-template>
 </owl-carousel-o>
+
         
 
