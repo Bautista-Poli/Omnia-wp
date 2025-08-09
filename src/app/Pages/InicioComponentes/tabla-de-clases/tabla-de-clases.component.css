@@ -42,16 +42,27 @@ td.has-class {
   }
   th, td {
     border: 1px solid orange;
-    padding: 4px;
+    padding: 5px;
     color: white;
     text-align: center;
   }
+
+  th{
+    font-size: 80%;
+  }
+
   td{
     padding: 0px;
   }
   .hora{
     padding:5px
   }
+  .cell-link {
+    font-weight: 500;
+    font-size: 70%;
+
+  }
+
   
 
 }
