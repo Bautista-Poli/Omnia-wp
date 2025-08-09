@@ -94,5 +94,6 @@
 @media (max-width: 900px){
   .loc-wrap{ grid-template-columns: 1fr; }
   .map-card{ order: 2; }
+  .loc-info{ margin-bottom: 20%}
 }
 
