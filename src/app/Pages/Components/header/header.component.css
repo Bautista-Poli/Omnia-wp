@@ -80,4 +80,12 @@
   .logo img {
     width: 130px;
   }
+  
+  .middle-header{
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 10px;
+    gap: 5px;
+    margin-top: 1%;
+  }
 }
