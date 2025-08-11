@@ -37,7 +37,7 @@ export class ClassComponent implements OnInit {
   }
 
   async ngOnInit():Promise<void>{
-    this.className = this.activateRoute.snapshot.paramMap.get('id');
+    this.className = this.activateRoute.snapshot.paramMap.get('className');
     if(this.className != null){
       this.class = await this.classService.findClassByName(this.className);
     }

@@ -31,10 +31,42 @@ td.has-class {
 }
 
 #emptyCell{
-  padding:100px
+  padding:90px
 }
 
 .cell-vacia { display: none; }
+
+
+
+/*-------------------------*/
+/* FILTROS */
+/*-------------------------*/
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-left: 25%;
+  margin-bottom: 3%;
+}
+
+.filter-btn {
+  padding: .4rem .8rem;
+  border-radius: 99px;
+  border: 2px solid #000000;
+  background: #fff;
+  cursor: pointer;
+  font-size: .9rem;
+  background-color: #ff961e;
+  font-weight: 500;
+}
+
+.filter-btn.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(252, 253, 255, 0.15);
+  font-weight: 700;
+}
+
 
 @media screen and (max-width: 768px) {
   table {
@@ -48,7 +80,7 @@ td.has-class {
   }
 
   th{
-    font-size: 80%;
+    font-size: 70%;
   }
 
   td{
@@ -59,10 +91,23 @@ td.has-class {
   }
   .cell-link {
     font-weight: 500;
-    font-size: 70%;
-
+    font-size: 50%;
   }
 
+  .filters {
+    margin-left: 10%;
+    margin-bottom: 5%;
+  }
+  .filter-btn {
+    padding: .4rem .8rem;
+    border-radius: 99px;
+    border: 2px solid #000000;
+    background: #fff;
+    cursor: pointer;
+    font-size: .7rem;
+    background-color: #ff961e;
+    font-weight: 600;
+  }
   
 
 }

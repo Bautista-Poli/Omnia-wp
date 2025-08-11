@@ -54,15 +54,15 @@ export class TableService {
     // grilla vacía: 5 días, cada celda empieza como []
     this.grid.clear();
     for (const m of this.minutes) {
-      this.grid.set(m, Array.from({ length: 5 }, () => [] as ClassCell[]));
+      this.grid.set(m, Array.from({ length: 6 }, () => [] as ClassCell[]));
     }
 
     // poblar (dias 1..5). Ahora acumulamos dentro de la celda.
     for (const r of rows) {
-      if (r.dia_semana < 1 || r.dia_semana > 5) continue;
+      if (r.dia_semana < 1 || r.dia_semana > 6) continue;
       const m = this.minuteKey(r.horario);
       if (!this.grid.has(m)) {
-        this.grid.set(m, Array.from({ length: 5 }, () => [] as ClassCell[]));
+        this.grid.set(m, Array.from({ length: 6 }, () => [] as ClassCell[]));
         this.minutes.push(m);
         this.minutes.sort((a, b) => this.timeToSeconds(a + ':00') - this.timeToSeconds(b + ':00'));
       }

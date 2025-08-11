@@ -1,3 +1,21 @@
+<!-- Barra de filtros -->
+<div class="filters">
+  <button type="button"
+          class="filter-btn"
+          [class.active]="!selectedClass"
+          (click)="toggleFilter(null)">
+    Todos
+  </button>
+
+  <button type="button"
+          class="filter-btn"
+          *ngFor="let name of availableClasses"
+          [class.active]="selectedClass === name"
+          (click)="toggleFilter(name)">
+    {{ name }}
+  </button>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -7,11 +25,9 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let row of rows; trackBy: trackByHora">
-      <!-- mostrás HH:mm -->
+    <tr *ngFor="let row of displayedRows; trackBy: trackByHora">
       <td class="hora">{{ row.hora }}</td>
 
-      <!-- cell es ClassCell[] (puede venir vacío, 1 o varias clases) -->
       <td *ngFor="let cell of row.clases; trackBy: trackByIdx"
           [class.has-class]="cell.length > 0">
 
@@ -31,6 +47,7 @@
     </tr>
   </tbody>
 </table>
+
 
 
 

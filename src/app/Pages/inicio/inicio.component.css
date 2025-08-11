@@ -1,5 +1,3 @@
-@import 'iphone.css';
-@import 'iphone2.css';
 .header {
     position: fixed;
     z-index: 1000;
@@ -126,7 +124,7 @@ a{
 }
 
 #servicios{
-  margin-bottom: 100px;
+  margin-bottom: -40%;
   margin-top: 50px;
 }
 
@@ -174,7 +172,7 @@ a{
 
 .float.instagram {
   background-color: #E1306C; 
-  margin-right: 6%;
+  margin-right: 7%;
 }
 
 .float.instagram:hover {
@@ -268,22 +266,6 @@ html, body {
     margin: 0 auto;
   }
 
-  .iphonex {
-    transform: scale(0.8);
-    width: 90vw;
-    margin: 0 auto 20px;
-  }
-
-  .iphonex .screen .screen__view .dribbbleLogo {
-    width: 60vw;
-    height: 60vw;
-  }
-
-  .iphonex .screen .screen__view .page img.imageMobilePage {
-    width: 80%;
-    max-width: 280px;
-  }
-
   /* TEXTOS */
   section h1, section h3 {
     font-size: 5.5vw;
@@ -312,6 +294,10 @@ html, body {
   .float.instagram {
     background-color: #E1306C; 
     margin-right: 20%;
+  }
+  #servicios{
+    margin-bottom: -20%;
+    margin-top: 50px;
   }
   
 
