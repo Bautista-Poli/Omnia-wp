@@ -1,8 +1,8 @@
-
+//tabla-de-clases.ts
 import { Component, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
-import { HourService } from '../../service/hour.service';
+import { TableService } from '../../service/table.service';
 export interface Class { name: string; id: number; }
 export type ClassCell = Class | null;
 export type Hours = { [hour: string]: ClassCell[] }; // null cuando no hay clase
@@ -20,21 +20,17 @@ import { NgFor, NgIf } from '@angular/common';
 
 export class TablaDeClasesComponent {
   programa = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
-  rows: Array<{ hora: string; clases: ClassCell[] }> = [];
+  rows: Array<{ hora: string; clases: Array<{ name: string|null; id: number|null }> }> = [];
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private hourService: HourService
+    private hourService: TableService
   ) {}
 
   async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       const schedule = await this.hourService.getAllHours();
-      this.rows = schedule.map(item => {
-        const hora = Object.keys(item)[0]!;
-        const clases = item[hora] ?? Array.from({length: 5}, () => null);
-        return { hora, clases };
-      });
+      this.rows = Object.entries(schedule).map(([hora, clases]) => ({ hora, clases }));
     }
   }
 
