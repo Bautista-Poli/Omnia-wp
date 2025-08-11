@@ -1,66 +1,97 @@
+// table.service.ts
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { timeout, retry } from 'rxjs/operators';
-import { ClassInfo } from '../interface/data.interface';
 import { environment } from '../../../environments/environment';
-import { ClassCell } from './class.cell';
+import { ClassCell } from './hour.class';
+
+export interface ClassInfo {
+  id: number;
+  nombre_clase: string;
+  horario: string;    // "HH:mm:ss"
+  dia_semana: number; // 1..7
+}
 
 @Injectable({ providedIn: 'root' })
 export class TableService {
-  private readonly hours = [
-    '08:00:00', '09:00:00', '10:00:00',
-    '13:00:00', '18:00:00', '19:00:00', '19:00:01', '19:00:02', '20:00:00'
-  ];
-
   private readonly api = `${environment.apiUrl}/get-schedule`;
-  private schedule: Record<string, ClassCell[]> = {};
+
+  private minutes: string[] = [];
+  // AHORA: por minuto -> 5 días -> array de ClassCell (0..n por celda)
+  private grid = new Map<string, ClassCell[][]>();
   private hydrated = false;
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    // Inicializa todas las celdas vacías
-    this.hours.forEach(hora => {
-      this.schedule[hora] = Array.from({ length: 5 }, () => ClassCell.empty());
-    });
+  ) {}
+
+  private minuteKey(t: string): string { return t.slice(0, 5); }           // "HH:mm"
+  private timeToSeconds(t: string): number {
+    const [hh, mm, ss = '00'] = t.split(':'); return (+hh)*3600 + (+mm)*60 + (+ss);
   }
 
   private async fetchSchedule(): Promise<void> {
-    try {
-      if (isPlatformServer(this.platformId)) return;
+    if (isPlatformServer(this.platformId)) return;
 
-      const scheduleData = await firstValueFrom(
-        this.http.get<ClassInfo[]>(this.api).pipe(
-          timeout(25000),
-          retry(1)
-        )
-      );
+    const data = await firstValueFrom(
+      this.http.get<ClassInfo[]>(this.api).pipe(timeout(25000), retry(1))
+    );
+    const rows = (data ?? []).filter(r => r && typeof r.dia_semana === 'number');
 
-      if (scheduleData?.length) {
-        scheduleData.forEach(classItem => {
-          const hourKey = classItem.horario;
-          const dayOfWeek = (classItem.dia_semana ?? 1) - 1; // lunes=0
-          this.schedule[hourKey][dayOfWeek] = ClassCell.of(classItem.nombre_clase, classItem.id);
-        });
+    // ordenar por tiempo para que :00 quede primero
+    rows.sort((a, b) => this.timeToSeconds(a.horario) - this.timeToSeconds(b.horario));
+
+    // minutos únicos
+    const minuteSet = new Set<string>();
+    for (const r of rows) minuteSet.add(this.minuteKey(r.horario));
+    this.minutes = Array.from(minuteSet).sort(
+      (a, b) => this.timeToSeconds(a + ':00') - this.timeToSeconds(b + ':00')
+    );
+
+    // grilla vacía: 5 días, cada celda empieza como []
+    this.grid.clear();
+    for (const m of this.minutes) {
+      this.grid.set(m, Array.from({ length: 5 }, () => [] as ClassCell[]));
+    }
+
+    // poblar (dias 1..5). Ahora acumulamos dentro de la celda.
+    for (const r of rows) {
+      if (r.dia_semana < 1 || r.dia_semana > 5) continue;
+      const m = this.minuteKey(r.horario);
+      if (!this.grid.has(m)) {
+        this.grid.set(m, Array.from({ length: 5 }, () => [] as ClassCell[]));
+        this.minutes.push(m);
+        this.minutes.sort((a, b) => this.timeToSeconds(a + ':00') - this.timeToSeconds(b + ':00'));
       }
 
-      this.hydrated = true;
-    } catch (error) {
-      console.error('Error fetching schedule:', error);
+      const dayIdx = r.dia_semana - 1;
+
+      const rowArr = this.grid.get(m)!;
+      const already = rowArr[dayIdx].some(c => c.name?.toLowerCase() === r.nombre_clase.toLowerCase());
+      if (!already) {
+        rowArr[dayIdx].push(
+          ClassCell.of(r.nombre_clase, r.id, r.horario, r.dia_semana) // << ahora guardamos más info
+        );
+      }
+
     }
+
+    this.hydrated = true;
   }
 
-  async getAllHours(): Promise<Record<string, ClassCell[]>> {
-    if (!this.hydrated) {
-      await this.fetchSchedule();
-    }
-    return this.schedule;
+  // filas para la tabla: en cada celda hay 0..n ClassCell
+  async getRows(): Promise<Array<{ hora: string; clases: ClassCell[][] }>> {
+    if (!this.hydrated) await this.fetchSchedule();
+    return this.minutes.map(m => ({ hora: m, clases: this.grid.get(m)! }));
+  }
+
+  async refresh(): Promise<void> {
+    this.hydrated = false;
+    this.minutes = [];
+    this.grid.clear();
+    await this.fetchSchedule();
   }
 }
-
-
-
-

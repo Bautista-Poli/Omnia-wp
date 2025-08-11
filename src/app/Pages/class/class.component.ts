@@ -37,13 +37,14 @@ export class ClassComponent implements OnInit {
   }
 
   async ngOnInit():Promise<void>{
-    this.className = this.activateRoute.snapshot.paramMap.get('className');
+    this.className = this.activateRoute.snapshot.paramMap.get('id');
     if(this.className != null){
       this.class = await this.classService.findClassByName(this.className);
     }
     if(this.class != null){
       this.profesores = this.profesorService.findById(this.class.profesorid);
     }
+    console.log(this.className)
     
   }
 

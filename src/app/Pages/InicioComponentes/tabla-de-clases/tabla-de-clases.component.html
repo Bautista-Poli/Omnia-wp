@@ -1,4 +1,3 @@
-<!-- tabla-de-clases-html-->
 <table>
   <thead>
     <tr>
@@ -9,19 +8,31 @@
 
   <tbody>
     <tr *ngFor="let row of rows; trackBy: trackByHora">
-      <td class="hora">{{ row.hora.slice(0,5) }}</td>
-      <td *ngFor="let clase of row.clases; trackBy: trackByIdx" [class.has-class]="!!clase.name">
-        <ng-container *ngIf="clase.name; else emptyCell">
-          <a class="cell-link" [routerLink]="['/class', clase.name]" [attr.aria-label]="'Abrir ' + clase.name">
-            {{ clase.name }}
-          </a>
+      <!-- mostrás HH:mm -->
+      <td class="hora">{{ row.hora }}</td>
+
+      <!-- cell es ClassCell[] (puede venir vacío, 1 o varias clases) -->
+      <td *ngFor="let cell of row.clases; trackBy: trackByIdx"
+          [class.has-class]="cell.length > 0">
+
+        <ng-container *ngIf="cell.length > 0; else emptyCell">
+          <ng-container *ngFor="let c of cell; trackBy: trackByClass; let i = index">
+            <a class="cell-link"
+               [routerLink]="['/class', c.name!]"
+               [attr.aria-label]="'Abrir ' + c.name">
+              {{ c.name }}
+            </a>
+            <br *ngIf="i < cell.length - 1">
+          </ng-container>
         </ng-container>
+
         <ng-template #emptyCell></ng-template>
       </td>
-
     </tr>
   </tbody>
 </table>
+
+
 
 
 
