@@ -58,6 +58,7 @@ export class ClassComponent implements OnInit {
       const profesor = await this.profesorService.getProfesorById(id);
       this.nombreProfesor = profesor.nombre;
       this.src = profesor.src; 
+      console.log(profesor.src)
     } catch (error) {
       console.error('Error al obtener profesor:', error);
     }

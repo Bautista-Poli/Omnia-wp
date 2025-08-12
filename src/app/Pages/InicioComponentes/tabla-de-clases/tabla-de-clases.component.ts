@@ -16,10 +16,7 @@ export class TablaDeClasesComponent {
   programa = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sabado'];
   rows: Array<{ hora: string; clases: ClassCell[][] }> = [];
 
-  /** Lista de nombres de clases disponibles (BOXEO, FUNCTIONAL, etc.) */
   availableClasses: string[] = [];
-
-  /** Filtro activo; null = mostrar todas */
   selectedClass: string | null = null;
 
   constructor(

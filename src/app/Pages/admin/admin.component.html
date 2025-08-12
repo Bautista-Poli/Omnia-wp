@@ -6,19 +6,16 @@
         <mat-icon id="mat-icon">access_time</mat-icon>
     </div>
     <form>
-        <label for="username">Nombre</label>
-        <input type="text" id="name" name="name" [(ngModel)]="newClassName" required>
-        <select id="cars" name="cars" [(ngModel)]="newClassDate">
-            <option value="Lunes">Lunes</option>
-            <option value="Martes">Martes</option>
-            <option value="Miercoles">Miercoles</option>
-            <option value="Jueves">Jueves</option>
-            <option value="Viernes">Viernes</option>
-            <option value="Sabado">Sabado</option>
+        <label for="username">Elegir clase</label>
+        <select id="name" name="name" [(ngModel)]="newClassName">
+            <option *ngFor="let clase of clases" [value]="clase">{{ clase }}</option>
         </select>
-        <select id="hours" name="hours" [(ngModel)]="newClassTime">
-            <option *ngFor="let hour of hours" [value]="hour">{{ hour }}hs</option>
+        <label for="username">Elegir dia para la clase</label>
+        <select id="dia" name="dia" [(ngModel)]="newClassDate">
+            <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
         </select>
+        <label for="username">Elegir horario para la clase</label>
+        <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime" required>
         <button (click)="addClass()" class="buttonSend">Add Time</button>
         <br>
         <br>

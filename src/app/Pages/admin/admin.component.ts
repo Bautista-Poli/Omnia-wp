@@ -24,47 +24,64 @@ import { AuthService } from '../service/auth.service';
 })
 
 export class AdminComponent{
-  hours: string[] = [];
 
+  dias: string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"]
+  clases: string[] = ["Functional","Yoga"]
   username: string = "";
   password: string | null = "";
 
-  newClassSrc: string = "";
   newClassName: string = "";
-  newClassProfessor: string = "";
-  newClassProfessor2: string = "";
   newClassDate: string = "";
   newClassTime: string = "";
-  newClassId: number = 0;
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private hourService: HourService 
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    try {
+      this.clases = await this.hourService.getAllClassNames(); 
+    } catch (err) {
+      console.error('Error cargando nombres de clases:', err);
+      this.clases = [];
+    }
+  }
+
 
   async logOut() {
     await this.auth.logout().catch(() => {});
     this.router.navigate(['/login']);
   }
 
+  private dayToNumber(day: string): number {
+    const i = this.dias.indexOf(day);
+    return i +1;
+  }
   
-  addClass(){
-    console.log(this.newClassSrc);
-    console.log(this.newClassName);
-    console.log(this.newClassDate);
-    console.log(this.newClassTime);
-    console.log(this.newClassId);
+  async addClass(){
+    const dia = this.dayToNumber(this.newClassDate)
+    const existente = await this.hourService.checkSlot(this.newClassTime, dia);
 
-    
+    if (existente) {
+      alert(`Ya existe "${existente.nombre_clase}" el ${this.newClassDate} a las ${existente.horario}.`);
+      return; // no creamos nada
+    }
+    try {
+      await this.hourService.addSchedule(this.newClassName, this.newClassTime, dia)
+    } catch (err) {
+      console.error('Error agregando una clase', err);
+    }
+
   }
-  removeClass(){
-    
-  }
-  populateHours() {
-    this.hours.push("08:00");
-    this.hours.push("09:00");
-    this.hours.push("10:00");
-    this.hours.push("13:00");
-    this.hours.push("18:00");
-    this.hours.push("19:00");
-    this.hours.push("20:00");
+
+  async removeClass(){
+    try {
+      await this.hourService.deleteSchedule(this.newClassName, this.newClassTime, this.dayToNumber(this.newClassDate) )
+    } catch (err) {
+      console.error('Error eliminando una clase', err);
+    }
   }
   
 }
