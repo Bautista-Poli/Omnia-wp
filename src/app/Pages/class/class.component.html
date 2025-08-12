@@ -1,31 +1,43 @@
-
 <app-header></app-header>
-<br>
-<br>
-<div class="projcard-container">
-    
-  <div class="projcard projcard">
+
+<br><br>
+
+<div class="projcard-container" *ngIf="class as c; else cargando">
+  <div class="projcard">
     <div class="projcard-innerbox">
-      <img class="projcard-img" [src]="class?.src" />
+      <img class="projcard-img"
+           [src]="c.src || 'assets/placeholder-class.png'"
+           [alt]="c.name || 'Clase'"/>
+
       <div class="projcard-textbox">
-        <div class="projcard-title">{{class?.name}}</div>
+        <div class="projcard-title">{{ c.name }}</div>
         <div class="projcard-bar"></div>
-        <div class="projcard-description">{{class?.description}}</div>
+        <div class="projcard-description">{{ c.description }}</div>
+
+        <!-- Profesor -->
         <div class="prodjcard-profesorbox">
-          <div class="projcard-tagbox" *ngFor="let profesorObj of profesores">
-            <div class="profesorTag" *ngIf="profesorObj">
-              <span class="projcard-tag" >{{profesorObj.nombre}}</span>
-              <img  [src]="profesorObj.src" class="profesorImg">
-            </div>
+          <div class="profesorTag" *ngIf="nombreProfesor && src; else sinProfesor">
+            <span class="projcard-tag">{{ nombreProfesor }}</span>
+            <img [src]="src"
+                 class="profesorImg"
+                 [alt]="nombreProfesor"/>
           </div>
+          <ng-template #sinProfesor>
+            <span class="projcard-tag muted">Profesor no asignado</span>
+          </ng-template>
         </div>
       </div>
     </div>
+  </div>
 </div>
-<br>
-<br>
-<br>
-<br>
+
+<ng-template #cargando>
+  <div class="loading">Cargando clase…</div>
+</ng-template>
+
+<br><br><br><br>
 <app-footer></app-footer>
+
+
 
   

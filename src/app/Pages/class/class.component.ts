@@ -28,29 +28,43 @@ import { Profesor } from '../interface/profesor.interface';
   styleUrl: './class.component.css'
 })
 export class ClassComponent implements OnInit {
-  className: string | null;
-  class!: Class | null;
-  profesores!: Profesor[] | null;
+  className: string | null = null;
+  class: Class | null = null;
+  nombreProfesor: string | null = null;
+  src: string | null = null;
 
-  constructor(private activateRoute: ActivatedRoute, private classService: ClassService, private profesorService: ProfesorService) {
-    this.className = "";
-  }
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private classService: ClassService,
+    private profesorService: ProfesorService
+  ) {}
 
-  async ngOnInit():Promise<void>{
+  async ngOnInit(): Promise<void> {
     this.className = this.activateRoute.snapshot.paramMap.get('className');
-    if(this.className != null){
+
+    if (this.className) {
       this.class = await this.classService.findClassByName(this.className);
+
+      const profId = this.class?.profesorid ?? this.class?.profesorid;
+      if (profId != null) {
+        await this.obtenerProfesor(profId);
+      }
     }
-    if(this.class != null){
-      this.profesores = this.profesorService.findById(this.class.profesorid);
-    }
-    console.log(this.className)
-    
+    console.log(this.nombreProfesor, this.src)
   }
 
+  private async obtenerProfesor(id: number): Promise<void> {
+    try {
+      const profesor = await this.profesorService.getProfesorById(id);
+      this.nombreProfesor = profesor.nombre;
+      this.src = profesor.src; 
+    } catch (error) {
+      console.error('Error al obtener profesor:', error);
+    }
+  }
 
-  toObjectkey(value:any):string[]{
-    return Object.keys(value)
+  toObjectkey(value: any): string[] {
+    return Object.keys(value);
   }
 }
 

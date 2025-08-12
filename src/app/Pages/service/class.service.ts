@@ -1,37 +1,25 @@
 import { Injectable } from '@angular/core';
-import {  Observable, map } from 'rxjs';
-import {Class} from '../interface/class.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { Class } from '../interface/class.interface';
 import { environment } from '../../../environments/environment';
 
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ClassService {
-  private list: Observable<Class[]> = this.http.get<Class[]>(`${environment.apiUrl}/get-classesList`);
-  private classes: Class[] = [];
-  private isInitialized: boolean = false;
-  
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   async findClassByName(className: string): Promise<Class | null> {
-    await this.waitForInitialization(); // Wait for initialization if not yet initialized
+    const name = encodeURIComponent(className.trim());
+    const url = `${environment.apiUrl}/classes/${name}`;
 
-    const foundClass = this.classes.find(cls => cls.name === className);
-    return foundClass !== undefined ? foundClass : null;
+    try {
+      const cls = await firstValueFrom(this.http.get<Class>(url));
+      return cls; // { src, description, profesorId, profesor2Id }
+    } catch (err) {
+      if (err instanceof HttpErrorResponse && err.status === 404) {
+        return null; // no encontrada
+      }
+      throw err; // otros errores (500, red, etc.)
+    }
   }
-
-  private waitForInitialization(): Promise<void> {
-    return new Promise<void>((resolve) => {
-      const intervalId = setInterval(() => {
-        if (this.isInitialized) {
-          clearInterval(intervalId);
-          resolve();
-        }
-      }, 100); // Check every 100 milliseconds
-    });
-  }
-
 }
