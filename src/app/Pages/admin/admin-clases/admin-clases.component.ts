@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common'; 
 
 import { ClassService } from '../../service/class.service';
-import { RouterOutlet } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 
 @Component({
   selector: 'app-admin',
@@ -13,8 +12,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     FormsModule,
     NgFor,
-    RouterOutlet,
-    RouterModule
+    MenuAdminComponent
   ],
   templateUrl: './admin-clases.component.html',
   styleUrl: './admin-clases.component.css'

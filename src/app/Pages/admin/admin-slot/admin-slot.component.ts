@@ -3,24 +3,22 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { NgFor } from '@angular/common'; 
 
-import { HourService } from '../service/addHour.service';
-import { RouterOutlet } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { HourService } from '../../service/addHour.service';
 import {MatIconModule} from '@angular/material/icon';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../../service/auth.service';
+import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 
 @Component({
-  selector: 'app-admin',
+  selector: 'admin-slot',
   standalone: true,
   imports: [
     FormsModule,
     NgFor,
-    RouterOutlet,
-    RouterModule,
-    MatIconModule
+    MatIconModule,
+    MenuAdminComponent
   ],
-  templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  templateUrl: './admin-slot.component.html',
+  styleUrl: './admin-slot.component.css'
 })
 
 export class AdminComponent{

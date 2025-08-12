@@ -1,6 +1,7 @@
+
+<menu-admin></menu-admin>
 <div class="gym-class-management">
-    <button routerLink="/admin-clases" class="buttonOther">Agregar una nueva clase</button>
-    <button routerLink="/admin-profesor" class="buttonOther">Agregar una nuevo profesor</button>
+    
     <div id="titulo">
         <h2>Gestion de horarios de clases</h2>
         <mat-icon id="mat-icon">access_time</mat-icon>
@@ -18,6 +19,7 @@
         <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime" required>
         <label for="username">Especificar un segundo horario (solo para agregar)</label>
         <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime2" required>
+
         <p class="comment">*Recordar de especificar en formato HH:mm:ss </p>
         <p class="comment">*Siempre empezar por HH:00:00 </p>
         <button (click)="addClass()" class="buttonSend">Add Time</button>

@@ -1,0 +1,76 @@
+.gym-class-management {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.buttonLogOut {
+  background-color: #c90808;
+  border:none;
+}
+.buttonLogOut:hover {
+  background-color: #db0f0f;
+}
+.buttonSend {
+  background-color: #02468f;
+  border:none;
+}
+
+.buttonSend:hover {
+  background-color: #0056b3;
+}
+
+.buttonOther {
+background-color: #ffffff;
+color:black;
+
+}
+.comment{
+  font-size: 90%;
+}
+
+#titulo{
+  display:flex;
+}
+
+#mat-icon{
+  margin-top: 20px;
+  margin-left:5px;
+}

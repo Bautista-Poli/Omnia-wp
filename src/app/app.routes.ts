@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { InicioComponent } from './Pages/inicio/inicio.component';
 import {ReseñasComponent} from './Pages/reseñas/reseñas.component';
-import { AdminComponent } from './Pages/admin/admin.component'; 
+import { AdminComponent } from './Pages/admin/admin-slot/admin-slot.component'; 
 import { AdminClaseComponent } from './Pages/admin/admin-clases/admin-clases.component'; 
 import { AdminProfesoresComponent } from './Pages/admin/admin-profesores/admin-profesores.component'; 
 import {ComoComenzarComponent} from './Pages/como-comenzar/como-comenzar.component';
@@ -26,10 +26,10 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'inicio',
         pathMatch: 'full'
-    },{
+    }/*,{
         path: '**',
         redirectTo: 'inicio',
         pathMatch: 'full'
-    }
+    }*/
 ];
 

@@ -1,36 +1,30 @@
+
+<menu-admin></menu-admin>
 <div class="gym-class-management">
-    <button routerLink="/Admin" class="buttonOther">Agregar un nuevo horario</button>
-    <button routerLink="/admin-profesores" class="buttonOther">Agregar una nuevo profesor</button>
-    <h2>Gestion de clases</h2>
-    <form>   
-        <label for="username">Imagen:</label>
-        <input type="file" id="src" name="src" [(ngModel)]="newClassSrc" required> 
-        <label for="username">Nombre</label>
-        <input type="text" id="name" name="name" [(ngModel)]="newClassName" required>    
-        <select id="profesor" name="profesor" [(ngModel)]="newClassProfessor">
-            <option value="Christian">Christian</option>
-            <option value="Diana">Diana</option>
-            <option value="Gabi">Gabi</option>
-            <option value="Giovanna">Giovanna</option>
-            <option value="Lautaro">Lautaro</option>
-            <option value="Lobo">Lobo</option>
-            <option value="Lorenzo">Lorenzo</option>
-            <option value="Rocio">Rocio</option>
-            <option value="Seba">Seba</option>
-        </select>
-        <select id="profesor2" name="profesor2" [(ngModel)]="newClassProfessor2">
-            <option value=""></option>
-            <option value="Christian">Christian</option>
-            <option value="Diana">Diana</option>
-            <option value="Gabi">Gabi</option>
-            <option value="Giovanna">Giovanna</option>
-            <option value="Lautaro">Lautaro</option>
-            <option value="Lobo">Lobo</option>
-            <option value="Lorenzo">Lorenzo</option>
-            <option value="Rocio">Rocio</option>
-            <option value="Seba">Seba</option>
-        </select>
-        <button (click)="addProfesor()" class="buttonSend">Add Class</button>
+    
+    <div id="titulo">
+        <h2>Gestion de horarios de clases</h2>
+        <mat-icon id="mat-icon">access_time</mat-icon>
+    </div>
+    <form>
+        <label for="username">Agregar profesor</label>
+        <input type="text" id="hours" name="hours" [(ngModel)]="newProfesorName" required>
+        <label for="username">Agregar una imagen del mismo</label>
+        <input type="file" accept="image/*" (change)="onFile($event)">
+        
+        <button (click)="addProfesor()" class="buttonSend">Agregar Profesor</button>
+        <br>
+        <br>
     </form>
+    <form>
+        <label for="username">Elegir un profesor</label>
+        <select id="dia" name="dia" [(ngModel)]="eliminateProfesor">
+            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
+        </select>
+        <button (click)="removeProfesor()" class="buttonSend">Eliminar Profesor</button>
+    </form>
+    
+    
+    <br>
     <button (click)="logOut()" class="buttonLogOut">Logout</button>
 </div>
