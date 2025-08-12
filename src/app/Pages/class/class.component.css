@@ -135,3 +135,94 @@ body {
     background-color: #424242;
     transition: width 0.2s ease;
   }
+
+
+@media (max-width: 1024px) {
+  .projcard { height: 260px; }
+  .projcard-textbox::before,
+  .projcard-textbox::after { display: none; } /* limpia decoraciones que rompen layout */
+
+  /* Imagen ocupa menos ancho; texto se corre */
+  .projcard-img { width: 45%; }
+  .projcard:nth-child(2n) .projcard-img { right: 0; }
+
+  .projcard-textbox {
+    left: calc(45% + 24px);
+    width: calc(55% - 48px);
+    top: 6%;
+    bottom: 10%;
+  }
+  .projcard:nth-child(2n) .projcard-textbox {
+    right: calc(45% + 24px);
+    left: auto;
+  }
+
+  /* Texto más flexible */
+  .projcard-description {
+    height: auto;
+    max-height: 7.5rem;
+    overflow: hidden;
+  }
+}
+
+/* --- Breakpoint 2: móviles <= 748px --- */
+@media (max-width: 748px) {
+  .projcard { height: auto;width: 360px; margin-left: 20px; }
+  .projcard-innerbox { position: static; }
+
+  /* La imagen pasa arriba y ocupa todo el ancho */
+  .projcard-img {
+    position: relative;
+    height: 180px;
+    width: 100%;
+    left: 0; right: 0; top: 0;
+    object-fit: cover;
+    filter: grayscale(0);        /* se ve mejor en móvil */
+    transform: none !important;  /* evita zoom en hover en touch */
+  }
+  .projcard:nth-child(2n) .projcard-img { right: auto; }
+
+  /* El contenido pasa debajo de la imagen */
+  .projcard-textbox {
+    position: static;
+    padding: 12px 16px 16px;
+    width: 350px;
+    top: auto; bottom: auto; left: auto; right: auto;
+  }
+
+  .projcard-title { font-size: 20px; }
+  .projcard-subtitle { font-size: 14px; }
+  .projcard-bar { width: 50px; }
+
+  /* Descripción sin corte fijo */
+  .projcard-description {
+    height: auto;
+    overflow: visible;
+    font-size: 14px;
+  }
+
+  /* Caja del profesor en una fila, centrada */
+  .prodjcard-profesorbox {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  /* Imagen del profe más chica y circular */
+  .profesorImg{
+    width: 44px;
+    height: 64px;
+    border-radius: 20%;
+    margin-top: 0;
+  }
+
+  /* Evita “sombra fuerte” en scroll de móvil */
+  .projcard:hover { transform: none; box-shadow: 0 2px 12px -8px rgba(0,0,0,.2); }
+}
+
+/* Desactiva efectos hover en dispositivos touch (opcional) */
+@media (hover: none) {
+  .projcard:hover .projcard-img { transform: none; }
+}
