@@ -33,6 +33,7 @@ export class AdminComponent{
   newClassName: string = "";
   newClassDate: string = "";
   newClassTime: string = "";
+  newClassTime2: string = "";
 
   constructor(
     private router: Router,
@@ -59,26 +60,43 @@ export class AdminComponent{
     const i = this.dias.indexOf(day);
     return i +1;
   }
+
+
+  async addClassInSpecificTime(clase:string,hora:string,dia:number){
+    const existente = await this.hourService.checkSlot(hora, dia);
+    console.log(hora, dia,existente)
+    if (existente) {
+      alert(`Ya existe "${existente.nombre_clase}" el ${this.newClassDate} a las ${existente.horario}.`);
+      return; 
+    }
+    try {
+      await this.hourService.addSchedule(clase,hora,dia)
+    } catch (err) {
+      console.error('Error agregando una clase', err);
+    }
+  }
   
   async addClass(){
     const dia = this.dayToNumber(this.newClassDate)
-    const existente = await this.hourService.checkSlot(this.newClassTime, dia);
 
-    if (existente) {
-      alert(`Ya existe "${existente.nombre_clase}" el ${this.newClassDate} a las ${existente.horario}.`);
-      return; // no creamos nada
-    }
-    try {
-      await this.hourService.addSchedule(this.newClassName, this.newClassTime, dia)
-    } catch (err) {
-      console.error('Error agregando una clase', err);
+    this.addClassInSpecificTime(this.newClassName,this.newClassTime,dia)
+    if(this.newClassTime2 != ""){
+      console.log("Entro en el segundo")
+      this.addClassInSpecificTime(this.newClassName,this.newClassTime2,dia)
     }
 
   }
 
   async removeClass(){
+    const dia = this.dayToNumber(this.newClassDate)
+    const existente = await this.hourService.checkSlot(this.newClassTime, dia);
+
+    if (!existente) {
+      alert(`No existe la clase especificada en ese horario`);
+      return;
+    }
     try {
-      await this.hourService.deleteSchedule(this.newClassName, this.newClassTime, this.dayToNumber(this.newClassDate) )
+      await this.hourService.deleteSchedule(this.newClassName, this.newClassTime, dia )
     } catch (err) {
       console.error('Error eliminando una clase', err);
     }

@@ -16,7 +16,12 @@
         </select>
         <label for="username">Elegir horario para la clase</label>
         <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime" required>
+        <label for="username">Especificar un segundo horario (solo para agregar)</label>
+        <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime2" required>
+        <p class="comment">*Recordar de especificar en formato HH:mm:ss </p>
+        <p class="comment">*Siempre empezar por HH:00:00 </p>
         <button (click)="addClass()" class="buttonSend">Add Time</button>
+        
         <br>
         <br>
         <button (click)="removeClass()" class="buttonSend">Remove Time</button>

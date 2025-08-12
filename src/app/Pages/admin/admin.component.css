@@ -62,6 +62,9 @@ background-color: #ffffff;
 color:black;
 
 }
+.comment{
+  font-size: 90%;
+}
 
 #titulo{
   display:flex;
