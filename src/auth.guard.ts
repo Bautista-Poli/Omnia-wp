@@ -11,6 +11,6 @@ export const authGuard: CanActivateFn = () => {
 
   return http.get(`${environment.apiUrl}/me`, { withCredentials: true }).pipe(
     map(() => true),
-    catchError(() => of(router.createUrlTree(['/login'])))
+    catchError(() => of(router.createUrlTree(['/iniciar-sesion'])))
   );
 };

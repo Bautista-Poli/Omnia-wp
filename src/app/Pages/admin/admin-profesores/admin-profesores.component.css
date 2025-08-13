@@ -4,7 +4,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #ffc1a9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -26,7 +26,7 @@ select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffc1a9;
   border-radius: 5px;
 }
 
@@ -35,7 +35,7 @@ button {
   padding: 10px;
   border-radius: 5px;
   background-color: #007bff;
-  color: #fff;
+  color: #ffc1a9;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -58,7 +58,7 @@ button {
 }
 
 .buttonOther {
-background-color: #ffffff;
+background-color: #ffc1a9;
 color:black;
 
 }

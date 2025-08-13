@@ -19,9 +19,9 @@ export const routes: Routes = [
     },{ path: 'class/:className', component: ClassComponent
     },{ path: 'iniciar-sesion', component: IniciarSesionComponent 
     },{ path: 'admin', component: AdminComponent, canActivate: [authGuard] 
-    },{ path: 'admin-clases', component: AdminClaseComponent
+    },{ path: 'admin-clases', component: AdminClaseComponent, canActivate: [authGuard] 
     },{path: 'ubicacion', component: UbicacionComponent
-    },{path: 'admin-profesores', component: AdminProfesoresComponent
+    },{path: 'admin-profesores', component: AdminProfesoresComponent, canActivate: [authGuard] 
     },{
         path: '',
         redirectTo: 'inicio',

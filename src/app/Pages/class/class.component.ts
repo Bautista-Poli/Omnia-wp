@@ -32,6 +32,7 @@ export class ClassComponent implements OnInit {
   class: Class | null = null;
   nombreProfesor: string | null = null;
   src: string | null = null;
+  profId: number | null = null;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -41,13 +42,14 @@ export class ClassComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.className = this.activateRoute.snapshot.paramMap.get('className');
-
+    const profParam = this.activateRoute.snapshot.queryParamMap.get('profesorId');
+    this.profId = profParam !== null ? Number(profParam) : null;
+    console.log(this.profId)
     if (this.className) {
       this.class = await this.classService.findClassByName(this.className);
 
-      const profId = this.class?.profesorid ?? this.class?.profesorid;
-      if (profId != null) {
-        await this.obtenerProfesor(profId);
+      if (this.profId != null) {
+        await this.obtenerProfesor(this.profId);
       }
     }
     console.log(this.nombreProfesor, this.src)

@@ -9,7 +9,9 @@ export interface ClassInfo {
     horario: string;
     dia_semana: number;
     id: number;
+    profesorId?: number | null;  
 }
+
 export interface Hours {
   [hour: string]: (Class | null)[];
 }

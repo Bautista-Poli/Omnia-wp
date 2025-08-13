@@ -51,7 +51,7 @@ export class AdminComponent{
 
   async logOut() {
     await this.auth.logout().catch(() => {});
-    this.router.navigate(['/login']);
+    this.router.navigate(['/inicio']);
   }
 
   private dayToNumber(day: string): number {

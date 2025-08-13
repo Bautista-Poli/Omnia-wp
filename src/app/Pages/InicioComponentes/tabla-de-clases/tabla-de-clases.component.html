@@ -35,6 +35,7 @@
           <ng-container *ngFor="let c of cell; trackBy: trackByClass; let i = index">
             <a class="cell-link"
                [routerLink]="['/class', c.name!]"
+               [queryParams]="{ profesorId: c.profesorId }"
                [attr.aria-label]="'Abrir ' + c.name">
               {{ c.name }}
             </a>

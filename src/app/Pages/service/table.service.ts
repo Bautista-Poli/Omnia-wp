@@ -6,13 +6,9 @@ import { firstValueFrom } from 'rxjs';
 import { timeout, retry } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { ClassCell } from './hour.class';
+import { ClassInfo } from '../interface/data.interface';
 
-export interface ClassInfo {
-  id: number;
-  nombre_clase: string;
-  horario: string;    // "HH:mm:ss"
-  dia_semana: number; // 1..7
-}
+
 
 @Injectable({ providedIn: 'root' })
 export class TableService {
@@ -39,9 +35,10 @@ export class TableService {
     const data = await firstValueFrom(
       this.http.get<ClassInfo[]>(this.api).pipe(timeout(25000), retry(1))
     );
+
     const rows = (data ?? []).filter(r => r && typeof r.dia_semana === 'number');
 
-    // ordenar por tiempo para que :00 quede primero
+    // ordenar por hora
     rows.sort((a, b) => this.timeToSeconds(a.horario) - this.timeToSeconds(b.horario));
 
     // minutos únicos
@@ -51,15 +48,16 @@ export class TableService {
       (a, b) => this.timeToSeconds(a + ':00') - this.timeToSeconds(b + ':00')
     );
 
-    // grilla vacía: 5 días, cada celda empieza como []
+    // inicializar grilla
     this.grid.clear();
     for (const m of this.minutes) {
       this.grid.set(m, Array.from({ length: 6 }, () => [] as ClassCell[]));
     }
 
-    // poblar (dias 1..5). Ahora acumulamos dentro de la celda.
+    // poblar
     for (const r of rows) {
       if (r.dia_semana < 1 || r.dia_semana > 6) continue;
+
       const m = this.minuteKey(r.horario);
       if (!this.grid.has(m)) {
         this.grid.set(m, Array.from({ length: 6 }, () => [] as ClassCell[]));
@@ -69,18 +67,24 @@ export class TableService {
 
       const dayIdx = r.dia_semana - 1;
 
+      
+
       const rowArr = this.grid.get(m)!;
-      const already = rowArr[dayIdx].some(c => c.name?.toLowerCase() === r.nombre_clase.toLowerCase());
+      const already = rowArr[dayIdx].some(
+        c => (c.name ?? '').toLowerCase() === r.nombre_clase.toLowerCase()
+      );
+      const profId = (r.profesorId ?? (r as any).profesor_id ?? null) as number | null;
+
       if (!already) {
         rowArr[dayIdx].push(
-          ClassCell.of(r.nombre_clase, r.id, r.horario, r.dia_semana) // << ahora guardamos más info
+          ClassCell.of(r.nombre_clase, r.id, r.horario, r.dia_semana, profId) // 👈 PASA EL PROF ID
         );
       }
-
     }
 
     this.hydrated = true;
   }
+
 
   // filas para la tabla: en cada celda hay 0..n ClassCell
   async getRows(): Promise<Array<{ hora: string; clases: ClassCell[][] }>> {

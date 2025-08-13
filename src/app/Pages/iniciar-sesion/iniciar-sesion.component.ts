@@ -25,7 +25,7 @@ export class IniciarSesionComponent {
 
     this.loading = true;
     try {
-      await this.auth.login(this.username, this.password); // hace POST /login (withCredentials)
+      await this.auth.login(this.username, this.password); 
       this.router.navigate(['/admin']);                    // ruta protegida por guard
     } catch {
       alert('Usuario o contraseña inválidos');
