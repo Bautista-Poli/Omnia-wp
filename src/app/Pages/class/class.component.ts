@@ -9,7 +9,6 @@ import {MatCardModule} from '@angular/material/card';
 import { ClassService } from '../service/class.service';
 import { Class } from '../interface/class.interface';
 import { ProfesorService } from '../service/profesor.service';
-import { Profesor } from '../interface/profesor.interface';
 
 @Component({
   selector: 'app-class',
@@ -34,10 +33,11 @@ export class ClassComponent implements OnInit {
   src: string | null = null;
   profId: number | null = null;
 
+  
   constructor(
     private activateRoute: ActivatedRoute,
     private classService: ClassService,
-    private profesorService: ProfesorService
+    private profesorService: ProfesorService,
   ) {}
 
   async ngOnInit(): Promise<void> {

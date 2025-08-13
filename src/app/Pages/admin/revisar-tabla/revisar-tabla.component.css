@@ -1,0 +1,37 @@
+.tabla {
+  display: block;     /* ← clave */
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;  /* opcional */
+}
+
+.buttonLogOut {
+  background-color: #e74c3c;   /* rojo logout */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 70px;         /* separa del borde inferior */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;       /* mantiene el tamaño del contenido */
+}
+
+/* Efecto hover */
+.buttonLogOut:hover {
+  background-color: #c0392b;   /* rojo más oscuro */
+  transform: translateY(-2px);
+}
+
+/* Efecto click */
+.buttonLogOut:active {
+  background-color: #a93226;
+  transform: translateY(0);
+}
+
+/* Opcional: sombra sutil */
+.buttonLogOut {
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.15);
+}

@@ -7,6 +7,7 @@ import { HeaderComponent } from '../Components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../Components/footer/footer.component';
 import { TablaDeClasesComponent } from '../InicioComponentes/tabla-de-clases/tabla-de-clases.component';
+import { ReseñasComponent } from '../resenias/reseñas.component';
 
 @Component({
   selector: 'app-inicio',
@@ -18,7 +19,8 @@ import { TablaDeClasesComponent } from '../InicioComponentes/tabla-de-clases/tab
     LinksToAppComponent,
     TablaDeClasesComponent,
     PhotoDisplayerComponent,
-    CommonModule
+    CommonModule,
+    ReseñasComponent
   ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'

@@ -61,18 +61,12 @@ export class AdminClaseComponent {
     fd.append('photo', this.selectedFile);
 
     try {
-      const res = await this.classService.addClass(fd);
+      await this.classService.addClass(fd);
+      alert('Clase agregada correctamente ✅');
 
-      if (res.ok) {
-        alert('Clase agregada correctamente ✅');
-        // Opcional: limpiar inputs
-        this.newClassName = '';
-        this.newClassDescription = '';
-        this.selectedFile = undefined;
-      } else {
-        const errorData = await res.json();
-        alert(`Error: ${errorData.detail || 'No se pudo agregar la clase'}`);
-      }
+      this.newClassName = '';
+      this.newClassDescription = '';
+      this.selectedFile = undefined;
     } catch (err) {
       alert('Error al conectar con el servidor');
       console.error(err);
@@ -81,7 +75,7 @@ export class AdminClaseComponent {
       
     async logOut() {
       await this.auth.logout().catch(() => {});
-      this.router.navigate(['/iniciar-sesion']);
+      this.router.navigate(['/inicio']);
     }
   
   

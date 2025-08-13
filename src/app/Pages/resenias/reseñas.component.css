@@ -73,7 +73,7 @@
 
 .reseñas{
     margin-left: 60px;
-    margin-bottom: 160px;
+    margin-bottom: -65vh;
     margin-top: 70px;
 }
 
@@ -81,4 +81,12 @@
 body {
   background-color: #212121;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .reseñas{
+    margin-left: 15px;
+    margin-bottom: 30vh;
+    margin-top: 70px;
+  }
 }

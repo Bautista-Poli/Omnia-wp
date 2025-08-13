@@ -72,7 +72,7 @@ export class AdminProfesoresComponent {
     
   async logOut() {
     await this.auth.logout().catch(() => {});
-    this.router.navigate(['/iniciar-sesion']);
+    this.router.navigate(['/inicio']);
   }
 
 

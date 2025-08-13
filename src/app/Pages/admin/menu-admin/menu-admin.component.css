@@ -1,18 +1,17 @@
-/* Layout a 3 columnas; ajusta si tenés más */
+/* Layout a 5 columnas */
 .container{
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   align-items: center;
   gap: 8px;
-  /* alto del bloque nav: subilo si querés botones más altos */
-  height: 130px; /* p.ej. antes era 60 */
+  height: 130px;
 }
 
-/* Tus botones, ahora más grandes */
+/* Botones */
 .btn{
-  padding: 2em 4em;
-  font-size: 150%;
+  padding: 1em 2em;
+  font-size: 120%;
   color:#fff;
   background: transparent;
   border: 0;
@@ -23,14 +22,14 @@
   white-space: nowrap;
 }
 
-/* Marco naranja */
+/* Marco */
 .hover{
   --pad: 6px;
   position: absolute;
   top: var(--pad);
   bottom: var(--pad);
   left: var(--pad);
-  width: calc(75% / 3 - var(--pad) * 2);
+  width: calc(100% / 5 - var(--pad) * 2);
   border: 5px solid #e47f0b;
   background-color: #e47f0b;
   border-radius: 10px;
@@ -40,21 +39,26 @@
   z-index: 0;                
 }
 
-/* Mover el marco según el hovered */
-.container:has(.btn:nth-of-type(1):hover) .hover { transform: translateX(0%);  }
+/* Mover marco según hover */
+.container:has(.btn:nth-of-type(1):hover) .hover { transform: translateX(0%);   }
 .container:has(.btn:nth-of-type(2):hover) .hover { transform: translateX(100%); }
 .container:has(.btn:nth-of-type(3):hover) .hover { transform: translateX(200%); }
 .container:has(.btn:nth-of-type(4):hover) .hover { transform: translateX(300%); }
+.container:has(.btn:nth-of-type(5):hover) .hover { transform: translateX(400%); }
 
-/* (Opcional) Si querés que el marco también siga el foco con teclado */
-.container:has(.btn:nth-of-type(1):focus-visible) .hover { transform: translateX(0%);}
-.container:has(.btn:nth-of-type(2):focus-visible) .hover { transform: translateX(100%);}
-.container:has(.btn:nth-of-type(3):focus-visible) .hover { transform: translateX(200%);}
-.container:has(.btn:nth-of-type(4):focus-visible) .hover { transform: translateX(300%);}
+/* También con foco teclado */
+.container:has(.btn:nth-of-type(1):focus-visible) .hover { transform: translateX(0%);   }
+.container:has(.btn:nth-of-type(2):focus-visible) .hover { transform: translateX(100%); }
+.container:has(.btn:nth-of-type(3):focus-visible) .hover { transform: translateX(200%); }
+.container:has(.btn:nth-of-type(4):focus-visible) .hover { transform: translateX(300%); }
+.container:has(.btn:nth-of-type(5):focus-visible) .hover { transform: translateX(400%); }
 
-.container:has(.btn:hover) .btn:hover { color: #000; }
-.container:has(.btn:focus-visible) .btn:focus-visible { color: #000; }
-/* El SVG exterior puede seguir ahí como adorno. Que ocupe todo el ancho */
+/* Color de texto al pasar hover o foco */
+.container:has(.btn:hover) .btn:hover,
+.container:has(.btn:focus-visible) .btn:focus-visible { 
+  color: #000; 
+}
+
 .outline { position: absolute; inset: 0; pointer-events: none; }
 .rect { fill:transparent; }
 
