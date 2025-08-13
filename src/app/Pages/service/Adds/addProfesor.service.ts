@@ -1,7 +1,7 @@
 
 
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ProfesorService {
@@ -15,7 +15,7 @@ constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
         return Array.isArray(data) ? data as string[] : [];
     }
 
-    async addProfesor(fd: any): Promise<any> {
+    async addProfesor(fd: FormData): Promise<any> {
         await fetch(`${environment.apiUrl}/upload-profesor`, {
             method: 'POST',
             body: fd

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { NgFor } from '@angular/common'; 
 import { AuthService } from '../../service/auth.service';
-import { ClassService } from '../../service/addClass.service';
+import { ClassService } from '../../service/Adds/addClass.service';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ProfesorService } from '../../service/addProfesor.service';
+import { ProfesorService } from '../../service/Adds/addProfesor.service';
 
 @Component({
   selector: 'app-admin',
@@ -30,9 +30,9 @@ export class AdminClaseComponent {
         private router: Router,
         private auth: AuthService,
         private classService: ClassService,
-        private profesorService: ProfesorService
       ) {}
   
+      /*
   async ngOnInit(): Promise<void> {
     try {
       this.profesores = await this.profesorService.getAllProfesorsNames(); 
@@ -41,6 +41,7 @@ export class AdminClaseComponent {
       this.profesores = [];
     }
   }
+    */
     onFile(e: Event) {
       const input = e.target as HTMLInputElement;
       if (input.files && input.files.length) this.selectedFile = input.files[0];

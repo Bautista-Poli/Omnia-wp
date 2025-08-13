@@ -10,6 +10,7 @@ import {ClassComponent} from './Pages/class/class.component';
 import { UbicacionComponent } from './Pages/ubicacion/ubicacion.component';
 import { IniciarSesionComponent } from './Pages/iniciar-sesion/iniciar-sesion.component';
 import { authGuard } from '../auth.guard';
+import { AdminSetearProfesorComponent } from './Pages/admin/admin-setear-profesor/admin-setear-profesor.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent
@@ -21,7 +22,8 @@ export const routes: Routes = [
     },{ path: 'admin', component: AdminComponent, canActivate: [authGuard] 
     },{ path: 'admin-clases', component: AdminClaseComponent, canActivate: [authGuard] 
     },{path: 'ubicacion', component: UbicacionComponent
-    },{path: 'admin-profesores', component: AdminProfesoresComponent, canActivate: [authGuard] 
+    },{path: 'admin-profesores', component: AdminProfesoresComponent, canActivate: [authGuard]
+    },{path: 'admin-setear-profesor', component: AdminSetearProfesorComponent, canActivate: [authGuard]   
     },{
         path: '',
         redirectTo: 'inicio',

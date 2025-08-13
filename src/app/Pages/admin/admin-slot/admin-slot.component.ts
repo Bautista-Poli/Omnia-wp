@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { NgFor } from '@angular/common'; 
 
-import { HourService } from '../../service/addHour.service';
+import { HourService } from '../../service/Adds/addHour.service';
 import {MatIconModule} from '@angular/material/icon';
 import { AuthService } from '../../service/auth.service';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
@@ -24,7 +24,7 @@ import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 export class AdminComponent{
 
   dias: string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"]
-  clases: string[] = ["Functional","Yoga"]
+  clases: string[] = []
   username: string = "";
   password: string | null = "";
 

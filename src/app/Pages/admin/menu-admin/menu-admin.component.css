@@ -2,7 +2,7 @@
 .container{
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
   gap: 8px;
   /* alto del bloque nav: subilo si querés botones más altos */
@@ -11,8 +11,8 @@
 
 /* Tus botones, ahora más grandes */
 .btn{
-  padding: 0.5em 4em;
-  font-size: 200%;
+  padding: 2em 4em;
+  font-size: 150%;
   color:#fff;
   background: transparent;
   border: 0;
@@ -30,7 +30,7 @@
   top: var(--pad);
   bottom: var(--pad);
   left: var(--pad);
-  width: calc(100% / 3 - var(--pad) * 2);
+  width: calc(75% / 3 - var(--pad) * 2);
   border: 5px solid #e47f0b;
   background-color: #e47f0b;
   border-radius: 10px;
@@ -44,11 +44,13 @@
 .container:has(.btn:nth-of-type(1):hover) .hover { transform: translateX(0%);  }
 .container:has(.btn:nth-of-type(2):hover) .hover { transform: translateX(100%); }
 .container:has(.btn:nth-of-type(3):hover) .hover { transform: translateX(200%); }
+.container:has(.btn:nth-of-type(4):hover) .hover { transform: translateX(300%); }
 
 /* (Opcional) Si querés que el marco también siga el foco con teclado */
 .container:has(.btn:nth-of-type(1):focus-visible) .hover { transform: translateX(0%);}
 .container:has(.btn:nth-of-type(2):focus-visible) .hover { transform: translateX(100%);}
 .container:has(.btn:nth-of-type(3):focus-visible) .hover { transform: translateX(200%);}
+.container:has(.btn:nth-of-type(4):focus-visible) .hover { transform: translateX(300%);}
 
 .container:has(.btn:hover) .btn:hover { color: #000; }
 .container:has(.btn:focus-visible) .btn:focus-visible { color: #000; }

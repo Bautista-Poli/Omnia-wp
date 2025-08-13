@@ -5,7 +5,7 @@ import { NgFor } from '@angular/common';
 import { AuthService } from '../../service/auth.service';
 import {MatIconModule} from '@angular/material/icon';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
-import { ProfesorService } from '../../service/addProfesor.service';
+import { ProfesorService } from '../../service/Adds/addProfesor.service';
 
 @Component({
   selector: 'app-admin',
@@ -19,10 +19,11 @@ import { ProfesorService } from '../../service/addProfesor.service';
   templateUrl: './admin-profesores.component.html',
   styleUrl: './admin-profesores.component.css'
 })
+
 export class AdminProfesoresComponent {
   selectedFile?: File;
   newProfesorName: string = "";
-  profesores: string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"]
+  profesores: string[] = []
   eliminateProfesor: string = "";
   constructor(
       private router: Router,
@@ -46,17 +47,18 @@ export class AdminProfesoresComponent {
   }
 
   async addProfesor() {
-    /*
+    
     if (!this.newProfesorName || !this.selectedFile) return;
     const fd = new FormData();
     fd.append('name', this.newProfesorName);
     fd.append('photo', this.selectedFile);
 
-    await fetch('https://TU_BACKEND_RAILWAY/upload-profesor', {
-      method: 'POST',
-      body: fd
-    });
-    */
+    try {
+      await this.profesorService.addProfesor(fd)
+    } catch (err) {
+      console.error('Error eliminando una clase', err);
+    }
+    
       // luego refrescás la lista
   }
     
@@ -68,7 +70,15 @@ export class AdminProfesoresComponent {
 
   async removeProfesor(){
     try {
-      await this.profesorService.deleteProfesor(this.eliminateProfesor)
+      const resp = await this.profesorService.deleteProfesor(this.eliminateProfesor)
+      if (resp?.ok) {
+        alert('Se realizó exitosamente la eliminación');
+        // Actualizá la lista local (si la tenés en memoria)
+        this.profesores = this.profesores.filter(n => n !== this.eliminateProfesor);
+        this.eliminateProfesor = '';
+      } else {
+        alert('No se pudo eliminar (respuesta inesperada)');
+      }
     } catch (err) {
       console.error('Error eliminando una clase', err);
     }

@@ -1,0 +1,36 @@
+
+<menu-admin></menu-admin>
+<div class="gym-class-management">
+    
+    <div id="titulo">
+        <h2>Cambio de profesores en clase</h2>
+        <mat-icon id="mat-icon">calendar_today</mat-icon>
+    </div>
+    <form>
+        <label for="username">Elegir clase</label>
+        <select id="name" name="name" [(ngModel)]="className">
+            <option *ngFor="let clase of clases" [value]="clase">{{ clase }}</option>
+        </select>
+        <label for="username">Elegir dia para la clase</label>
+        <select id="dia" name="dia" [(ngModel)]="classDay">
+            <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
+        </select>
+        <label for="username">Elegir horario para la clase</label>
+        <input type="text" id="hours" name="hours" [(ngModel)]="classTime" required>
+        <label for="username">Elegir un profesor</label>
+        <select id="dia" name="dia" [(ngModel)]="profesorName">
+            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
+        </select>
+        <label for="username">Elegir un segundo profesor</label>
+        <select id="dia" name="dia" [(ngModel)]="secondProfesorName">
+            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
+        </select>
+
+        <p class="comment">*Recordar de especificar en formato HH:mm:ss </p>
+        <button (click)="assignProfesorToClass()" class="buttonSend">Setear profesor a clase</button>
+    </form>
+    
+    
+    <br>
+    <button (click)="logOut()" class="buttonLogOut">Logout</button>
+</div>
