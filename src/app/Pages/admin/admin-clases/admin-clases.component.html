@@ -1,24 +1,41 @@
 
 <menu-admin></menu-admin>
 <div class="gym-class-management">
-    
-    <div id="titulo">
-        <h2>Gestion de clases</h2>
-        <mat-icon id="mat-icon">list_alt</mat-icon>
-    </div>
-    <form>
-        <label for="username">Agregar clase</label>
-        <input class="input" type="text" id="hours" name="hours" [(ngModel)]="newClassName" required>
-        <label for="description">Agregar una descripción</label>
-        <textarea class="input" id="description" name="description" [(ngModel)]="newClassDescription" rows="4" required></textarea>
-        <label for="username">Agregar una imagen del mismo</label>
-        <input class="input" type="file" accept="image/*" (change)="onFile($event)">
-        <br>
-        <br>
-        <button (click)="addClass()" class="buttonSend">Agregar Profesor</button>
-        <br>
-    </form>
-    
-    <br>
-    <button (click)="logOut()" class="buttonLogOut">Logout</button>
+  <div id="titulo">
+    <h2>Gestion de clases</h2>
+    <mat-icon id="mat-icon">list_alt</mat-icon>
+  </div>
+
+  <!-- Alta de clase -->
+  <form (ngSubmit)="addClass()" novalidate>
+    <label for="name">Agregar clase</label>
+    <input class="input" type="text" id="name" name="name"
+           [(ngModel)]="newClassName" required />
+    <p id="aclaracion">*Poner la clase en mayusculas</p>
+    <label for="description">Agregar una descripción</label>
+    <textarea class="input" id="description" name="description"
+              [(ngModel)]="newClassDescription" rows="4" required></textarea>
+
+    <label for="photo">Agregar una imagen</label>
+    <input class="input" id="photo" type="file" accept="image/*"
+           (change)="onFile($event)" />
+
+    <br/><br/>
+    <button type="submit" class="buttonSend">Agregar Clase</button>
+    <br/>
+  </form>
+
+  <!-- Baja de clase -->
+  <form novalidate>
+    <label for="dia">Eliminar una clase</label>
+    <select id="dia" name="dia" [(ngModel)]="eliminateClass">
+      <option *ngFor="let class of classes" [value]="class">{{ class }}</option>
+    </select>
+    <br/><br/>
+    <button type="button" (click)="removeClass()" class="buttonSend">Eliminar Clase</button>
+  </form>
+
+  <br />
+  <button type="button" (click)="logOut()" class="buttonLogOut">Logout</button>
 </div>
+

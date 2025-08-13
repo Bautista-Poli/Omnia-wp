@@ -47,8 +47,10 @@ export class AdminProfesoresComponent {
   }
 
   async addProfesor() {
-    
-    if (!this.newProfesorName || !this.selectedFile) return;
+    if (!this.newProfesorName || !this.selectedFile) {
+      alert('Faltan datos');
+      return;
+    }
     const fd = new FormData();
     fd.append('name', this.newProfesorName);
     fd.append('photo', this.selectedFile);
@@ -58,8 +60,14 @@ export class AdminProfesoresComponent {
     } catch (err) {
       console.error('Error eliminando una clase', err);
     }
-    
-      // luego refrescás la lista
+    try {
+    await this.profesorService.addProfesor(fd)
+    alert('Clase agregada correctamente ✅');
+    } catch (err) {
+      alert('Error al conectar con el servidor');
+      console.error(err);
+    }
+
   }
     
   async logOut() {
@@ -70,15 +78,10 @@ export class AdminProfesoresComponent {
 
   async removeProfesor(){
     try {
-      const resp = await this.profesorService.deleteProfesor(this.eliminateProfesor)
-      if (resp?.ok) {
-        alert('Se realizó exitosamente la eliminación');
-        // Actualizá la lista local (si la tenés en memoria)
-        this.profesores = this.profesores.filter(n => n !== this.eliminateProfesor);
-        this.eliminateProfesor = '';
-      } else {
-        alert('No se pudo eliminar (respuesta inesperada)');
-      }
+      await this.profesorService.deleteProfesor(this.eliminateProfesor)
+      alert('Se realizó exitosamente la eliminación ✅');
+      this.profesores = this.profesores.filter(n => n !== this.eliminateProfesor);
+      this.eliminateProfesor = '';
     } catch (err) {
       console.error('Error eliminando una clase', err);
     }

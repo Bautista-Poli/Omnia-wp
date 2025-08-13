@@ -13,27 +13,36 @@ export class HourService {
     return Array.isArray(data) ? data as string[] : [];
   }
 
-  async addSchedule(nombre_clase: string, horario: string, dia_semana: number): Promise<any> {
+  async addSchedule(nombre_clase: string, horario: string, dia_semana: number,nombreProfesor: string = '',nombreProfesor2: string = ''): Promise<any> {
     console.log(nombre_clase, horario, dia_semana)
     const res = await fetch(`${environment.apiUrl}/schedule`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre_clase, horario, dia_semana })
+      body: JSON.stringify({
+        nombre_clase,
+        horario,
+        dia_semana,
+        nombreProfesor: nombreProfesor ?? '',
+        nombreProfesor2: nombreProfesor2 ?? ''
+      })
     });
+
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   }
 
   async deleteSchedule(nombre_clase: string, horario: string, dia_semana: number): Promise<any> {
-    console.log(nombre_clase, horario, dia_semana)
+
     const res = await fetch(`${environment.apiUrl}/schedule`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre_clase, horario, dia_semana })
     });
+
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   }
+  
   async checkSlot(horario: string, dia_semana: number): Promise<{ id:number; nombre_clase:string; horario:string; dia_semana:number } | null> {
     const url = `${environment.apiUrl}/schedule/slot?dia_semana=${dia_semana}&horario=${encodeURIComponent(horario)}`;
     const res = await fetch(url);

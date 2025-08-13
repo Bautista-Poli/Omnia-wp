@@ -17,16 +17,23 @@
         </select>
         <label for="username">Elegir horario para la clase</label>
         <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime" required>
-        <label for="username">Especificar un segundo horario (solo para agregar)</label>
+        <label for="username">Especificar un segundo horario (solo para agregar el mismo dia)</label>
         <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime2" required>
-
         <p class="comment">*Recordar de especificar en formato HH:mm:ss </p>
         <p class="comment">*Siempre empezar por HH:00:00 </p>
-        <button (click)="addClass()" class="buttonSend">Add Time</button>
+        <label for="username">Elegir un profesor</label>
+        <select id="dia" name="dia" [(ngModel)]="profesorName">
+            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
+        </select>
+        <label for="username">Elegir un segundo profesor</label>
+        <select id="dia" name="dia" [(ngModel)]="secondProfesorName">
+            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
+        </select>
+        <button (click)="addSlot()" class="buttonSend">Agregar slot</button>
         
         <br>
         <br>
-        <button (click)="removeClass()" class="buttonSend">Remove Time</button>
+        <button (click)="removeSlot()" class="buttonSend">Remover slot</button>
     </form>
     
     

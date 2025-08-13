@@ -25,44 +25,59 @@ export class AdminClaseComponent {
   newClassName: string = "";
   newClassDescription: string = "";
   eliminateClass: string = "";
-  profesores: string[] = []
+  classes: string[] = []
   constructor(
         private router: Router,
         private auth: AuthService,
         private classService: ClassService,
       ) {}
-  
-      /*
+
   async ngOnInit(): Promise<void> {
     try {
-      this.profesores = await this.profesorService.getAllProfesorsNames(); 
+      this.classes = await this.classService.getAllClasesNames(); 
     } catch (err) {
       console.error('Error cargando nombres de clases:', err);
-      this.profesores = [];
+      this.classes = [];
     }
   }
-    */
+  
+ 
     onFile(e: Event) {
       const input = e.target as HTMLInputElement;
-      if (input.files && input.files.length) this.selectedFile = input.files[0];
-    }
-  
-    async addClass() {
-      
-      if (!this.newClassName || !this.selectedFile) return;
-      const fd = new FormData();
-      fd.append('name', this.newClassName);
-      fd.append('photo', this.selectedFile);
-      
-      console.log(fd)
-      try {
-        await this.classService.addClass(fd)
-      } catch (err) {
-        console.error('Error eliminando una clase', err);
+      if (input.files?.length) {
+        this.selectedFile = input.files[0];
       }
-  
-        // luego refrescás la lista
     }
+
+  async addClass() {
+    if (!this.newClassName || !this.newClassDescription || !this.selectedFile) {
+      alert('Faltan datos');
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append('name', this.newClassName);
+    fd.append('description', this.newClassDescription);
+    fd.append('photo', this.selectedFile);
+
+    try {
+      const res = await this.classService.addClass(fd);
+
+      if (res.ok) {
+        alert('Clase agregada correctamente ✅');
+        // Opcional: limpiar inputs
+        this.newClassName = '';
+        this.newClassDescription = '';
+        this.selectedFile = undefined;
+      } else {
+        const errorData = await res.json();
+        alert(`Error: ${errorData.detail || 'No se pudo agregar la clase'}`);
+      }
+    } catch (err) {
+      alert('Error al conectar con el servidor');
+      console.error(err);
+    }
+  }
       
     async logOut() {
       await this.auth.logout().catch(() => {});
@@ -72,9 +87,16 @@ export class AdminClaseComponent {
   
     async removeClass(){
     
-    console.log(this.eliminateClass)
     try {
-      await this.classService.deleteClass(this.eliminateClass)
+      const resp = await this.classService.deleteClass(this.eliminateClass)
+      if (resp?.ok) {
+        alert('Se realizó exitosamente la eliminación');
+        // Actualizá la lista local (si la tenés en memoria)
+        this.classes = this.classes.filter(n => n !== this.eliminateClass);
+        this.eliminateClass = '';
+      } else {
+        alert('No se pudo eliminar (respuesta inesperada)');
+      }
     } catch (err) {
       console.error('Error eliminando una clase', err);
     }

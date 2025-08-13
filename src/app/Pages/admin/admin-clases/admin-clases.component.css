@@ -21,7 +21,9 @@ label {
   margin-bottom: 5px;
 }
 
-
+#aclaracion{
+  font-size: 70%;
+}
 
 .input{
   width: 90%;

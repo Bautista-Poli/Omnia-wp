@@ -6,7 +6,7 @@ export class ClassService {
 constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
     async getAllClasesNames(): Promise<string[]> {
-        const url = `${environment.apiUrl}/class/names`;
+        const url = `${environment.apiUrl}/classes/names`;
         const res = await fetch(url, { credentials: 'include' }); // quitalo si no usás cookies
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
@@ -18,6 +18,7 @@ constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
             method: 'POST',
             body: fd
         });
+        
     }
 
     async deleteClass(nombre:string): Promise<any> {
