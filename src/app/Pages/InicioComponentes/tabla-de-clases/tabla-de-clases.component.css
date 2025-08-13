@@ -83,18 +83,19 @@ td.has-class {
   }
 
   th{
-    font-size: 70%;
+    font-size: 68%;
   }
 
   td{
     padding: 0px;
   }
   .hora{
-    padding:5px
+    padding:5px;
+    font-size: 60%;
   }
   .cell-link {
     font-weight: 500;
-    font-size: 50%;
+    font-size: 47%;
   }
 
   .filters {
@@ -110,6 +111,19 @@ td.has-class {
     font-size: .7rem;
     background-color: #ff961e;
     font-weight: 600;
+  }
+
+  .cell-link {
+    display: block;         /* ocupa 100% del td */
+    width: 100%;
+    height: 100%;
+    margin: -20px;          /* expande sobre el padding del td */
+    padding: 20px;          /* recupera el “espacio visual” */
+    text-decoration: none;
+    color: inherit;         
+    font-weight: 600;
+    border: 0;
+    background: transparent;
   }
   
 
