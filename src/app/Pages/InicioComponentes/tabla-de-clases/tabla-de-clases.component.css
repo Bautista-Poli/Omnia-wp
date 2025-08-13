@@ -119,6 +119,8 @@ td.has-class {
     height: 100%;
     margin: -20px;          /* expande sobre el padding del td */
     padding: 20px;          /* recupera el “espacio visual” */
+    padding-top: 27px;
+    padding-bottom: 25px;
     text-decoration: none;
     color: inherit;         
     font-weight: 600;
