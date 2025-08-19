@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-cantidad-usuarios',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './cantidad-usuarios.component.html',
   styleUrl: './cantidad-usuarios.component.css'
 })

@@ -1,0 +1,28 @@
+<!-- Botón con bandera actual -->
+<button mat-icon-button [matMenuTriggerFor]="langMenu" class="FirstFlag">
+  <img
+    [src]="'assets/flags/' + currentLang() + '.svg'"
+    alt="flag"
+    width="30"
+    height="20"
+  />
+</button>
+
+<!-- Menú desplegable -->
+<mat-menu #langMenu="matMenu">
+  <button
+    class="FirstFlag"
+    mat-menu-item
+    *ngFor="let lang of langs"
+    (click)="setLang(lang)"
+  >
+    <img
+      [src]="'assets/flags/' + lang + '.svg'"
+      alt="{{ lang }}"
+      width="30"
+      height="20"
+      style="margin-right: 8px"
+    />
+    <span>{{ lang | uppercase }}</span>
+  </button>
+</mat-menu>

@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HeaderComponent } from '../Components/header/header.component';
 import { FooterComponent } from '../Components/footer/footer.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ubicacion',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [HeaderComponent,
+    TranslateModule,
+    FooterComponent],
   templateUrl: './ubicacion.component.html',
   styleUrls: ['./ubicacion.component.css']
 })

@@ -4,6 +4,8 @@
     grid-template-columns: auto auto auto;
     padding-bottom:70px;
     color:white;
+    position: relative;
+    z-index: 1000;
 }
 
 .footrPhoto{

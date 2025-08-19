@@ -9,6 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import { ClassService } from '../service/class.service';
 import { Class } from '../interface/class.interface';
 import { ProfesorService } from '../service/profesor.service';
+import { VideoReproductorComponent } from './video-reproductor/video-reproductor.component';
 
 @Component({
   selector: 'app-class',
@@ -21,14 +22,15 @@ import { ProfesorService } from '../service/profesor.service';
     CommonModule,
     MatCardModule,
     NgIf,
-    NgFor
+    NgFor,
+    VideoReproductorComponent
   ],
   templateUrl: './class.component.html',
   styleUrl: './class.component.css'
 })
 export class ClassComponent implements OnInit {
   className: string | null = null;
-  class: Class | null = null;
+  classData: Class | null = null;  
   nombreProfesor: string | null = null;
   src: string | null = null;
   profId: number | null = null;
@@ -44,15 +46,11 @@ export class ClassComponent implements OnInit {
     this.className = this.activateRoute.snapshot.paramMap.get('className');
     const profParam = this.activateRoute.snapshot.queryParamMap.get('profesorId');
     this.profId = profParam !== null ? Number(profParam) : null;
-    console.log(this.profId)
-    if (this.className) {
-      this.class = await this.classService.findClassByName(this.className);
 
-      if (this.profId != null) {
-        await this.obtenerProfesor(this.profId);
-      }
+    if (this.className) {
+      this.classData = await this.classService.findClassByName(this.className);
+      if (this.profId != null) await this.obtenerProfesor(this.profId);
     }
-    console.log(this.nombreProfesor, this.src)
   }
 
   private async obtenerProfesor(id: number): Promise<void> {
@@ -60,7 +58,6 @@ export class ClassComponent implements OnInit {
       const profesor = await this.profesorService.getProfesorById(id);
       this.nombreProfesor = profesor.nombre;
       this.src = profesor.src; 
-      console.log(profesor.src)
     } catch (error) {
       console.error('Error al obtener profesor:', error);
     }

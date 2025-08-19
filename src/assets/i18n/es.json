@@ -1,0 +1,97 @@
+{
+  "HEADER": {
+    "HOW_TO_START": "Cómo comenzar",
+    "WHERE_WE_ARE": "Dónde estamos",
+    "SCHEDULES": "Horarios",
+    "TOGGLE_LANG": "EN"
+  },
+  "HOME": {
+    "TITLE": "Bienvenido a Omnia"
+  },
+  "TITLE":{
+    "H1": "Un lugar para vos",
+    "H3": "Un gimnasio hecho a tu medida"
+  },
+  "REVIEWS": {
+    "ANY": {
+      "NAME": "Any",
+      "P1": "Excelente gimnasio. Es impecable la limpieza de las instalaciones",
+      "P2": "Máquinas en óptimo estado, todas funcionan",
+      "P3": "No como otros gimnasios que te ponen el cartel de “en reparación”"
+    },
+    "ADRIANA": {
+      "NAME": "Adriana",
+      "P1": "El mejor gimnasio. Ordenado, limpio, buena música, máquinas que funcionan, 2 salones amplios, baños y duchas cómodas",
+      "P2": "Los profes, las chicas de recepción y la gente siempre con buena onda",
+      "P3": "Ofrecen descuentos en comercios cercanos por ser socia"
+    },
+    "ALEJANDRO": {
+      "NAME": "Alejandro",
+      "P1": "Primero que nada la atención del staff 100/100, ¡sumamente amables!",
+      "P2": "Las instalaciones impecables, equipo muy bien mantenido y variado"
+    }
+  },
+  "COUNTER": {
+    "MEMBERS": {
+      "TITLE": "Socios",
+      "TEXT": "Ya son más de 1500 personas que confían en nosotros"
+    },
+    "TRAINERS": {
+      "TITLE": "Entrenadores",
+      "TEXT": "Contamos con un equipo de 8 entrenadores certificados"
+    },
+    "MACHINES": {
+      "TITLE": "Máquinas",
+      "TEXT": "Más de 20 máquinas de última generación para entrenamientos completos"
+    }
+  },
+  "WELCOME": {
+    "TITLE": "Te damos la bienvenida y agradecemos te sumes a formar parte de la #comunidadOMNIA.",
+    "P1": "Llénate de energía, vitalidad, entrenando en un ambiente diferente y alegre,",
+    "P2": "donde además de lograr sentirte mejor que nunca, y llegar a tus metas,",
+    "P3": "serás parte de un grupo humano que disfruta de la actividad física.",
+    "P4": "Hemos preparado unos consejos para que sepas cómo comenzar:"
+  },
+  "CARDS": {
+    "COMFORT": {
+      "TITLE": "Sentite cómodo",
+      "TEXT": "Elegí la ropa deportiva más cómoda y a entrenar!! Cardio, clases grupales, equipos de musculación, etc. Tenemos las mejores opciones para hacer de tu ejercicio una actividad aún más divertida y versátil."
+    },
+    "LOCKERS": {
+      "TITLE": "Vestuarios",
+      "TEXT": "Contás con lockers de USO DIARIO para guardar tus bolsos y pertenencias. Trae siempre un candado para tu seguridad. También podés consultar por ALQUILERES MENSUALES."
+    },
+    "FIRST_TIME": {
+      "TITLE": "Primera vez",
+      "SUBTITLE": "Siempre hay una primera vez",
+      "TEXT": "Ante cualquier inquietud no dudes en consultarle a los profes por tu plan de entrenamiento, cómo utilizar el equipamiento de forma segura o qué ejercicios realizar para llegar a tus metas."
+    },
+    "MEDICAL": {
+      "TITLE": "Apto médico",
+      "TEXT": "Es obligatorio, y te damos un mes para poder realizarlo. Puedes hacerlo a través de nuestro DOC, que se acerca al gym para realizar chequeos básicos."
+    },
+    "NUTRITION": {
+      "TITLE": "Alimentación",
+      "SUBTITLE": "Aliméntate bien",
+      "TEXT": "Contamos con servicio de Nutricionista y Antropometrista para asesorarte con un plan de alimentación acorde a tus objetivos y plan de entrenamiento."
+    },
+    "ENERGY": {
+      "TITLE": "Energía",
+      "TEXT": "Lo más importante son las ganas, el entusiasmo y la decisión de hacer ejercicio. Recordá: la perseverancia todo lo alcanza."
+    }
+  },
+  "LOCATION": {
+    "TITLE": "¿Dónde estamos?",
+    "DESCRIPTION": "Nos encontramos en <strong>Fitz Roy 2261</strong>, en pleno Palermo.<br>Enfrente está el <strong>Distrito Arcos Premium Outlet</strong>.<br>A 2 cuadras de estación Palermo (Tren San Martín) y cerca del Subte D.",
+    "BUTTON": "Cómo llegar"
+  },
+
+  
+  "opening_hours": {
+    "title": "Horario de atención:",
+    "weekday": "LUNES A VIERNES 07 a 22hs",
+    "weekend": "SÁBADOS 09 a 21hs."
+  },
+  "copyright": "© 2025 Omnia Gym. Todos los derechos reservados."
+
+}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../Components/header/header.component';
 import { FooterComponent } from '../Components/footer/footer.component';
-import { TablaDeClasesComponent } from '../InicioComponentes/tabla-de-clases/tabla-de-clases.component';
+import { TablaDeClasesComponent } from '../tabla-de-clases/tabla-de-clases.component';
 
 @Component({
   selector: 'app-mostrar-tabla',

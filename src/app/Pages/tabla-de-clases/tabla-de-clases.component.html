@@ -1,0 +1,62 @@
+<!-- Barra de filtros -->
+<div class="filters">
+  <button type="button"
+          class="filter-btn"
+          [class.active]="!selectedClass"
+          (click)="toggleFilter(null)">
+    Todos
+  </button>
+
+  <button type="button"
+          class="filter-btn"
+          *ngFor="let name of availableClasses"
+          [class.active]="selectedClass === name"
+          (click)="toggleFilter(name)">
+    {{ name }}
+  </button>
+
+</div>
+
+<table #tableEl class="schedule">
+  <colgroup>
+    <col class="col-hora">
+    <ng-container *ngFor="let _ of programa">
+      <col class="col-dia">
+    </ng-container>
+  </colgroup>
+
+
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <th *ngFor="let day of programa">{{ day }}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of expandedRows; trackBy: trackByRow">
+      <td class="hora">{{ row.hora }}</td>
+
+      <td *ngFor="let c of row.clases; trackBy: trackByIdx"
+          [class.has-class]="!!c">
+
+        <ng-container *ngIf="c as cls; else emptyCell">
+          <a class="cell-link"
+             [routerLink]="['/class', cls.name!]"
+             [queryParams]="{ profesorId: cls.profesorId }"
+             [attr.aria-label]="'Abrir ' + cls.name">
+            <span class="txt">{{ cls.name }}</span>
+          </a>
+        </ng-container>
+
+        <ng-template #emptyCell></ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+

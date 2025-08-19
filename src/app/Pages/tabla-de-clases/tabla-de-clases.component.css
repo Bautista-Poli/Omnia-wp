@@ -1,0 +1,141 @@
+
+
+/* Tabla */
+table.schedule{
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background:#000;
+}
+.col-hora{ width: var(--hora-col); }
+.col-dia{ width:auto; }
+
+/* Encabezados */
+thead th{
+  border: 2px solid orange;
+  color:#fff; text-align:center;
+  height: var(--head-h);
+  padding: 6px;
+}
+
+/* Celdas cuerpo */
+tbody td{
+  border: 2px solid orange;
+  color:#fff; text-align:center; vertical-align: middle;
+  height: var(--cell-h);      /* ⬅️ menor altura */
+  padding: 10px;
+}
+
+tbody td.hora, thead th:first-child{
+  background:#000; color:#fff; font-weight:700;
+}
+
+tbody td.has-class{ background:#ff961e; color:#000; }
+
+/* Link rellena la celda */
+.cell-link{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:100%;
+  padding: var(--cell-pad);
+  text-decoration:none; color:inherit; background:transparent; border:0;
+}
+
+/* Texto: 1–2 líneas, recortado */
+.cell-link .txt{
+  max-width:100%;
+  overflow:hidden; text-overflow:ellipsis; word-break:break-word;
+  display:-webkit-box; -webkit-box-orient:vertical;
+  -webkit-line-clamp: 2; line-clamp: 2;
+  line-height:1.15;
+}
+
+
+/*-------------------------*/
+/* FILTROS */
+/*-------------------------*/
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-left: 25%;
+  margin-bottom: 3%;
+}
+
+.filter-btn {
+  padding: .4rem .8rem;
+  border-radius: 99px;
+  border: 2px solid #000000;
+  background: #fff;
+  cursor: pointer;
+  font-size: .9rem;
+  background-color: #ff961e;
+  font-weight: 500;
+}
+
+.filter-btn.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(252, 253, 255, 0.15);
+  font-weight: 700;
+}
+
+
+@media screen and (max-width: 768px) {
+  table {
+    width: 40vh;
+  }
+  th, td {
+    border: 1px solid orange;
+    padding: 5px;
+    color: white;
+    text-align: center;
+  }
+
+  th{
+    font-size: 68%;
+  }
+
+  td{
+    padding: 0px;
+  }
+  .hora{
+    padding:5px;
+    font-size: 60%;
+  }
+  .cell-link {
+    font-weight: 500;
+    font-size: 50%;
+  }
+
+  .filters {
+    margin-left: 10%;
+    margin-bottom: 5%;
+  }
+  .filter-btn {
+    padding: .4rem .8rem;
+    border-radius: 99px;
+    border: 2px solid #000000;
+    background: #fff;
+    cursor: pointer;
+    font-size: .7rem;
+    background-color: #ff961e;
+    font-weight: 600;
+  }
+
+  .cell-link {
+    display: block;         /* ocupa 100% del td */
+    width: 100%;
+    height: 100%;
+    margin: -20px;          /* expande sobre el padding del td */
+    padding: 20px;          /* recupera el “espacio visual” */
+    padding-top: 27px;
+    padding-bottom: 25px;
+    text-decoration: none;
+    color: inherit;         
+    font-weight: 600;
+    border: 0;
+    background: transparent;
+  }
+  
+
+}
