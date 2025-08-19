@@ -1,0 +1,8 @@
+<div class="reseñas">
+  <div class="snip1533" *ngFor="let review of reviews">
+    <blockquote>
+      <h3 class="name">{{ review.nameKey | translate }}</h3>
+      <p *ngFor="let key of review.commentKeys">{{ key | translate }}</p>
+    </blockquote>
+  </div>
+</div>

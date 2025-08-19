@@ -3,83 +3,77 @@
 <!-- index.html -->
 <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
 <div class="body">
-    <div class="elementor-text-editor elementor-clearfix">
-        <h4 style="text-align: center;">
-            <span class="titulo">
-                Te damos la bienvenida y agradecemos te sumes a formar parte de la #comunidadOMNIA.
-            </span>
-        </h4>
-        <h4 class="txt" >
-            &nbsp;<br>Llénate de energía, vitalidad, entrenando en un ambiente diferente y alegre,&nbsp;
-        </h4>
-        <h4 class="txt" >
-            donde además de lograr sentirte mejor que nunca, y&nbsp;llegar a tus metas,
-        </h4>
-        <h4 class="txt" >
-            serás parte de un grupo humano que disfruta de la actividad física.
-        </h4>
-        <h4 class="txt" >
-            <br>
-            Hemos preparado unos consejos para que sepas cómo comenzar:
-        </h4>
+  <div class="elementor-text-editor elementor-clearfix">
+    <h4 style="text-align: center;">
+      <span class="titulo">{{ 'WELCOME.TITLE' | translate }}</span>
+    </h4>
+    <h4 class="txt">{{ 'WELCOME.P1' | translate }}</h4>
+    <h4 class="txt">{{ 'WELCOME.P2' | translate }}</h4>
+    <h4 class="txt">{{ 'WELCOME.P3' | translate }}</h4>
+    <h4 class="txt">{{ 'WELCOME.P4' | translate }}</h4>
+  </div>
+
+  <!--   CARDS   -->
+  <div class="cards">
+    <div class="flip">
+      <div class="front" style="background-image: url(https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/bienestar-deporte.jpg.webp?itok=KDP5H7i3)">
+        <h1 class="text-shadow">{{ 'CARDS.COMFORT.TITLE' | translate }}</h1>
+      </div>
+      <div class="back">
+        <h2>{{ 'CARDS.COMFORT.TITLE' | translate }}</h2>
+        <p>{{ 'CARDS.COMFORT.TEXT' | translate }}</p>
+      </div>
     </div>
-    <!--   CARDS   -->
-    <div class="cards">
-        <div class="flip">
-            <div class="front" style="background-image: url(https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/bienestar-deporte.jpg.webp?itok=KDP5H7i3)">
-            <h1 class="text-shadow">Sentite comodo</h1>
-            </div>
-            <div class="back">
-            <h2>Sentite comodo</h2>
-            <p>Elegí la ropa deportiva más cómoda y a entrenar!! Cardio, clases grupales, equipos  de musculación, etc. Tenemos las mejores opciones para hacer de tu ejercicio una actividad aún más divertida y versátil.</p>
-            </div>
-        </div>
-        <div class="flip">
-            <div class="front" style="background-image: url(https://wewo-ic.com/uploads/WEWO-Interior-Concepts/Projecten/Nova-College/Maatwerk-volkern-studenten-lockers-centraal-sluitsysteem-campus-Nova-College-Haarlem-lr-2.jpg)">
-            <h1 class="text-shadow">Vestuarios</h1>
-            </div>
-            <div class="back">
-            <h2>Vestuarios</h2>
-            <p>Contas con lockers de USO DIARIO para guardar tus bolsos y pertenencias. Trae con vos siempre un candado para tu seguridad. También podes consultar por ALQUILERES MENSUALES, de los mismos.</p>
-            </div>
-        </div>
-        <div class="flip">
-            <div class="front" style="background-image: url(https://fitgeneration.es/wp-content/uploads/2023/09/halterofilia-1.png)">
-            <h1 class="text-shadow">Primer Vez</h1>
-            </div>
-            <div class="back">
-            <h2>Siempre hay una primera vez</h2>
-            <p>Ante cualquier inquietud no dudes en consultarle a los profes por tu plan de entrenamiento, cómo utilizar un equipamiento de modo seguro o que ejercicios realizar para llegar a tus metas.</p>
-            </div>
-        </div>
-        <div class="flip">
-            <div class="front forest" style="background-image: url(https://www.miobrasocial.com.ar/wp-content/uploads/2023/09/apto-fisico-precios-estudios.jpg)" >
-            <h1 class="text-shadow"  >Apto medico</h1>
-            </div>
-            <div class="back">
-            <h2>Apto medico</h2>
-            <p>Es obligatorio, y te damos un mes para poder realizarlo.
-            Puedes hacerlo a traves de nuestro DOC, el cual se acerca al gym para realizar chequeos básicos.</p>
-            </div>
-        </div>
-        <div class="flip">
-            <div class="front" style="background-image: url(https://old.bodytechperu.com/uploads/post/c619914292454736be2bace4d07e114e/alimentacion-saludable-antes-y-despues-de-entrenar_ZYuK7QQ.jpg)">
-            <h1 class="text-shadow">Alimentacion</h1>
-            </div>
-            <div class="back">
-            <h2>Alimentate Bien</h2>
-            <p>Contamos con servicio de Nutricionista y Antropometrista para asesorarte con un plan de alimentación acorde a tus objetivos y plan de entrenamiento</p>
-            </div>
-        </div>
-        <div class="flip">
-            <div class="front" style="background-image: url(https://previews.123rf.com/images/inegvin/inegvin1904/inegvin190400010/125598342-full-of-energy-and-tired-businessman-stressed-overworked-and-vigorous-man-powerful-and-flat-person.jpg)">
-            <h1 class="text-shadow">Energía</h1>
-            </div>
-            <div class="back">
-            <h2>Energía</h2>
-            <p>Lo más importante son las ganas, el entusiasmo y la decisión de hacer ejercicio. Recordá, la perseverancia todo lo alcanza.  </p>
-            </div>
-        </div>
-   </div> 
+
+    <div class="flip">
+      <div class="front" style="background-image: url(https://wewo-ic.com/uploads/WEWO-Interior-Concepts/Projecten/Nova-College/Maatwerk-volkern-studenten-lockers-centraal-sluitsysteem-campus-Nova-College-Haarlem-lr-2.jpg)">
+        <h1 class="text-shadow">{{ 'CARDS.LOCKERS.TITLE' | translate }}</h1>
+      </div>
+      <div class="back">
+        <h2>{{ 'CARDS.LOCKERS.TITLE' | translate }}</h2>
+        <p>{{ 'CARDS.LOCKERS.TEXT' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="flip">
+      <div class="front" style="background-image: url(https://fitgeneration.es/wp-content/uploads/2023/09/halterofilia-1.png)">
+        <h1 class="text-shadow">{{ 'CARDS.FIRST_TIME.TITLE' | translate }}</h1>
+      </div>
+      <div class="back">
+        <h2>{{ 'CARDS.FIRST_TIME.SUBTITLE' | translate }}</h2>
+        <p>{{ 'CARDS.FIRST_TIME.TEXT' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="flip">
+      <div class="front forest" style="background-image: url(https://www.miobrasocial.com.ar/wp-content/uploads/2023/09/apto-fisico-precios-estudios.jpg)">
+        <h1 class="text-shadow">{{ 'CARDS.MEDICAL.TITLE' | translate }}</h1>
+      </div>
+      <div class="back">
+        <h2>{{ 'CARDS.MEDICAL.TITLE' | translate }}</h2>
+        <p>{{ 'CARDS.MEDICAL.TEXT' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="flip">
+      <div class="front" style="background-image: url(https://old.bodytechperu.com/uploads/post/c619914292454736be2bace4d07e114e/alimentacion-saludable-antes-y-despues-de-entrenar_ZYuK7QQ.jpg)">
+        <h1 class="text-shadow">{{ 'CARDS.NUTRITION.TITLE' | translate }}</h1>
+      </div>
+      <div class="back">
+        <h2>{{ 'CARDS.NUTRITION.SUBTITLE' | translate }}</h2>
+        <p>{{ 'CARDS.NUTRITION.TEXT' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="flip">
+      <div class="front" style="background-image: url(https://previews.123rf.com/images/inegvin/inegvin1904/inegvin190400010/125598342-full-of-energy-and-tired-businessman-stressed-overworked-and-vigorous-man-powerful-and-flat-person.jpg)">
+        <h1 class="text-shadow">{{ 'CARDS.ENERGY.TITLE' | translate }}</h1>
+      </div>
+      <div class="back">
+        <h2>{{ 'CARDS.ENERGY.TITLE' | translate }}</h2>
+        <p>{{ 'CARDS.ENERGY.TEXT' | translate }}</p>
+      </div>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>

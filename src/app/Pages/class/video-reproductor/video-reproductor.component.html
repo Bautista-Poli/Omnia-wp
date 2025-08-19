@@ -1,0 +1,18 @@
+<video
+  #vid
+  [attr.poster]="poster || null"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  controlslist="nodownload noplaybackrate noremoteplayback"
+  disablepictureinpicture
+  tabindex="-1"
+  class="hero-video"
+>
+  <source *ngIf="srcWebm" [attr.src]="srcWebm" type="video/webm" />
+  <source *ngIf="srcMp4"  [attr.src]="srcMp4"  type="video/mp4" />
+</video>
+
+<ng-content></ng-content>

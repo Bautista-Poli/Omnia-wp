@@ -1,15 +1,11 @@
 <hr>
 <div id="footer">
-    <!--
-        <div>
-            <a routerLink="/reclamos"> Para quejas o mejoras ingresá acá. </a>
-        </div>
-    -->
     <div>
-        <p class="text">Horario de atencion:</p>
-        <p class="text"> LUNES A VIERNES 07 a 22hs  SABADOS 09 a 21hs.</p>
+        <p class="text">{{ 'opening_hours.title' | translate }}</p>
+        <p class="text">{{ 'opening_hours.weekday' | translate }}</p>
+        <p class="text">{{ 'opening_hours.weekend' | translate }}</p>
     </div>
     <footer class="footer">
-      <p>&copy; 2025 Omnia Gym . Todos los derechos reservados.</p>
+      <p>{{ 'copyright' | translate }}</p>
     </footer>
 </div>

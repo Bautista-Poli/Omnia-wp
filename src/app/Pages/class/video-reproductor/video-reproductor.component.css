@@ -1,0 +1,14 @@
+
+:host { display:block; position:relative; }
+.hero-video{
+    position:fixed; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    background:#000;
+    pointer-events:none;     /* sin interacción */
+    user-select:none; -webkit-user-drag:none;
+}
+/* lo que metas como contenido queda por encima del video */
+:host ::ng-deep .on-video {
+    position:relative; z-index:1;
+}

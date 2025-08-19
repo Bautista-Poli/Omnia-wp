@@ -2,7 +2,7 @@
   <div class="middle-header">
     <!-- Logo -->
     <div class="logo">
-      <a routerLink="/inicio"><img src="../../../../assets/Omnia1.png" alt="logo"></a>
+      <a routerLink="/inicio"><img src="../../../../assets/Omnia1.png" alt="logo" /></a>
     </div>
 
     <!-- Botón hamburguesa -->
@@ -10,12 +10,19 @@
 
     <!-- Menú -->
     <div class="fila2" [class.abierto]="menuAbierto">
-      <a class="nav-items" routerLink="/como-comenzar" (click)="cerrarMenu()">Cómo comenzar</a>
-      <a class="nav-items" routerLink="/ubicacion" (click)="cerrarMenu()">Donde estamos</a>
-      <a class="nav-items" routerLink="/mostrar-tabla" (click)="cerrarMenu()">Horarios</a>
-      <!-- <a class="nav-items" routerLink="/Login" (click)="cerrarMenu()">Iniciar sesión</a> -->
+      <a class="nav-items" routerLink="/como-comenzar" (click)="cerrarMenu()">
+        {{ 'HEADER.HOW_TO_START' | translate }}
+      </a>
+      <a class="nav-items" routerLink="/ubicacion" (click)="cerrarMenu()">
+        {{ 'HEADER.WHERE_WE_ARE' | translate }}
+      </a>
+      <a class="nav-items" routerLink="/mostrar-tabla" (click)="cerrarMenu()">
+        {{ 'HEADER.SCHEDULES' | translate }}
+      </a>
+      <control-idioma></control-idioma>
     </div>
   </div>
 </header>
+
 
 

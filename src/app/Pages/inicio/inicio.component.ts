@@ -7,7 +7,8 @@ import { HeaderComponent } from '../Components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../Components/footer/footer.component';
 import { TablaDeClasesComponent } from '../InicioComponentes/tabla-de-clases/tabla-de-clases.component';
-import { ReseñasComponent } from '../resenias/reseñas.component';
+import { ReseñasComponent } from '../InicioComponentes/resenias/reseñas.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-inicio',
@@ -20,7 +21,8 @@ import { ReseñasComponent } from '../resenias/reseñas.component';
     TablaDeClasesComponent,
     PhotoDisplayerComponent,
     CommonModule,
-    ReseñasComponent
+    ReseñasComponent,
+    TranslateModule
   ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'

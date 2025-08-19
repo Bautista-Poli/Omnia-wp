@@ -1,0 +1,98 @@
+{
+  "HEADER": {
+    "HOW_TO_START": "How to start",
+    "WHERE_WE_ARE": "Where we are",
+    "SCHEDULES": "Schedules",
+    "TOGGLE_LANG": "ES"
+  },
+  "HOME": {
+    "TITLE": "Welcome to Omnia"
+  },
+  "TITLE":{
+    "H1": "A place for you",
+    "H3": "A gym designed for you"
+  },
+  "REVIEWS": {
+    "ANY": {
+      "NAME": "Any",
+      "P1": "Excellent gym. The facilities are spotless",
+      "P2": "Machines in optimal condition, everything works",
+      "P3": "Not like other gyms that put up an “under repair” sign"
+    },
+    "ADRIANA": {
+      "NAME": "Adriana",
+      "P1": "The best gym. Organized, clean, good music, working machines, 2 large studios, comfortable bathrooms and showers",
+      "P2": "Coaches, front desk and people are always friendly",
+      "P3": "They offer discounts at nearby stores for members"
+    },
+    "ALEJANDRO": {
+      "NAME": "Alejandro",
+      "P1": "First of all, staff attention 100/100 — super kind!",
+      "P2": "Impeccable facilities, well-maintained and varied equipment"
+    }
+  },
+  "COUNTER": {
+    "MEMBERS": {
+      "TITLE": "Members",
+      "TEXT": "Over 1500 people already trust us"
+    },
+    "TRAINERS": {
+      "TITLE": "Trainers",
+      "TEXT": "We have a team of 8 certified trainers"
+    },
+    "MACHINES": {
+      "TITLE": "Machines",
+      "TEXT": "More than 20 state-of-the-art machines for complete workouts"
+    }
+  },
+  "LOCATION": {
+    "TITLE": "Where are we?",
+    "DESCRIPTION": "We are located at <strong>Fitz Roy 2261</strong>, right in Palermo.<br>In front of us is the <strong>Distrito Arcos Premium Outlet</strong>.<br>Just 2 blocks from Palermo Station (San Martín train) and close to Subway Line D.",
+    "BUTTON": "How to get here"
+  },
+  "WELCOME": {
+    "TITLE": "We welcome you and thank you for joining the #OMNIAcommunity.",
+    "P1": "Fill yourself with energy and vitality by training in a different and cheerful environment,",
+    "P2": "where besides feeling better than ever and reaching your goals,",
+    "P3": "you will be part of a group of people who enjoy physical activity.",
+    "P4": "We’ve prepared some tips to help you get started:"
+  },
+  "CARDS": {
+    "COMFORT": {
+      "TITLE": "Feel comfortable",
+      "TEXT": "Choose the sportswear you feel most comfortable in and start training! Cardio, group classes, weight machines, etc. We have the best options to make your workout even more fun and versatile."
+    },
+    "LOCKERS": {
+      "TITLE": "Lockers",
+      "TEXT": "You have DAILY USE lockers to store your bags and belongings. Always bring a padlock for your security. You can also ask about MONTHLY RENTALS."
+    },
+    "FIRST_TIME": {
+      "TITLE": "First time",
+      "SUBTITLE": "There’s always a first time",
+      "TEXT": "If you have any questions, don’t hesitate to ask the coaches about your training plan, how to use equipment safely, or what exercises to do to achieve your goals."
+    },
+    "MEDICAL": {
+      "TITLE": "Medical clearance",
+      "TEXT": "It’s mandatory, and you have one month to get it done. You can do it through our DOC, who comes to the gym to perform basic check-ups."
+    },
+    "NUTRITION": {
+      "TITLE": "Nutrition",
+      "SUBTITLE": "Eat well",
+      "TEXT": "We offer Nutritionist and Anthropometrist services to guide you with a meal plan tailored to your goals and training program."
+    },
+    "ENERGY": {
+      "TITLE": "Energy",
+      "TEXT": "The most important thing is the desire, enthusiasm, and determination to exercise. Remember: perseverance achieves everything."
+    }
+  },
+
+
+  "opening_hours": {
+    "title": "Opening hours:",
+    "weekday": "MONDAY TO FRIDAY 7 AM to 10 PM",
+    "weekend": "SATURDAYS 9 AM to 9 PM"
+  },
+  "copyright": "© 2025 Omnia Gym. All rights reserved."
+
+
+}
