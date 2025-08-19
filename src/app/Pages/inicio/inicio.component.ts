@@ -6,9 +6,10 @@ import { PhotoDisplayerComponent } from '../InicioComponentes/photo-displayer/ph
 import { HeaderComponent } from '../Components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../Components/footer/footer.component';
-import { TablaDeClasesComponent } from '../InicioComponentes/tabla-de-clases/tabla-de-clases.component';
+import { TablaDeClasesComponent } from '../tabla-de-clases/tabla-de-clases.component';
 import { ReseñasComponent } from '../InicioComponentes/resenias/reseñas.component';
 import { TranslateModule} from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-inicio',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TablaDeClasesComponent } from '../../InicioComponentes/tabla-de-clases/tabla-de-clases.component';
+import { TablaDeClasesComponent } from '../../tabla-de-clases/tabla-de-clases.component';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 import { AuthService } from '../../service/auth.service';
 

@@ -14,9 +14,18 @@
           (click)="toggleFilter(name)">
     {{ name }}
   </button>
+
 </div>
 
-<table>
+<table #tableEl class="schedule">
+  <colgroup>
+    <col class="col-hora">
+    <ng-container *ngFor="let _ of programa">
+      <col class="col-dia">
+    </ng-container>
+  </colgroup>
+
+
   <thead>
     <tr>
       <th>Hora</th>
@@ -25,22 +34,19 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let row of displayedRows; trackBy: trackByHora">
+    <tr *ngFor="let row of expandedRows; trackBy: trackByRow">
       <td class="hora">{{ row.hora }}</td>
 
-      <td *ngFor="let cell of row.clases; trackBy: trackByIdx"
-          [class.has-class]="cell.length > 0">
+      <td *ngFor="let c of row.clases; trackBy: trackByIdx"
+          [class.has-class]="!!c">
 
-        <ng-container *ngIf="cell.length > 0; else emptyCell">
-          <ng-container *ngFor="let c of cell; trackBy: trackByClass; let i = index">
-            <a class="cell-link"
-               [routerLink]="['/class', c.name!]"
-               [queryParams]="{ profesorId: c.profesorId }"
-               [attr.aria-label]="'Abrir ' + c.name">
-              {{ c.name }}
-            </a>
-            <br *ngIf="i < cell.length - 1">
-          </ng-container>
+        <ng-container *ngIf="c as cls; else emptyCell">
+          <a class="cell-link"
+             [routerLink]="['/class', cls.name!]"
+             [queryParams]="{ profesorId: cls.profesorId }"
+             [attr.aria-label]="'Abrir ' + cls.name">
+            <span class="txt">{{ cls.name }}</span>
+          </a>
         </ng-container>
 
         <ng-template #emptyCell></ng-template>
