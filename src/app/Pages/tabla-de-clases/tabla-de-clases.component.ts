@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { TableService } from '../service/table.service';
 import { ClassCell } from '../service/hour.class';
-import { exportSchedulePdf } from '../service/pdf.utils';
 
 type ExpandedRow = { hora: string; clases: (ClassCell | null)[] };
 
@@ -108,6 +107,7 @@ export class TablaDeClasesComponent implements OnInit {
     if (!isPlatformBrowser(this.platformId) || this.creatingPdf) return;
     this.creatingPdf = true;
     try {
+      const { exportSchedulePdf } = await import('../../Pages/service/pdf.utils');
       await exportSchedulePdf(this.tableEl.nativeElement, {
         title: 'Horarios de clases',
         subtitle: this.selectedClass ? `Filtro: ${this.selectedClass}` : undefined,
