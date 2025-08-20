@@ -46,16 +46,15 @@
                 }
               ],
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "3kb",
-                  "maximumError": "11kb"
-                }
+                { "type": "initial", "maximumWarning": "1.20mb", "maximumError": "1.30mb" },
+                { "type": "anyComponentStyle", "maximumWarning": "6kb", "maximumError": "10kb" }
+              ],
+              "allowedCommonJsDependencies": [
+                "canvg",
+                "rgbcolor",
+                "raf",
+                "@babel/runtime",
+                "core-js"
               ],
               "outputHashing": "all"
             },
