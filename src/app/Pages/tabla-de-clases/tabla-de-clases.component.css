@@ -7,14 +7,13 @@ table.schedule{
   table-layout: fixed;
   background:#000;
 }
-.col-hora{ width: var(--hora-col); }
+
 .col-dia{ width:auto; }
 
 /* Encabezados */
 thead th{
   border: 2px solid orange;
   color:#fff; text-align:center;
-  height: var(--head-h);
   padding: 6px;
 }
 
@@ -22,7 +21,6 @@ thead th{
 tbody td{
   border: 2px solid orange;
   color:#fff; text-align:center; vertical-align: middle;
-  height: var(--cell-h);      /* ⬅️ menor altura */
   padding: 10px;
 }
 
@@ -36,7 +34,6 @@ tbody td.has-class{ background:#ff961e; color:#000; }
 .cell-link{
   display:flex; align-items:center; justify-content:center;
   width:100%; height:100%;
-  padding: var(--cell-pad);
   text-decoration:none; color:inherit; background:transparent; border:0;
 }
 
@@ -58,7 +55,6 @@ tbody td.has-class{ background:#ff961e; color:#000; }
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
-  margin-left: 25%;
   margin-bottom: 3%;
 }
 
@@ -83,16 +79,25 @@ tbody td.has-class{ background:#ff961e; color:#000; }
 @media screen and (max-width: 768px) {
   table {
     width: 40vh;
+    margin-left: -5%;
   }
+
   th, td {
     border: 1px solid orange;
-    padding: 5px;
+    padding: 1px;
     color: white;
     text-align: center;
   }
 
+  tbody td{
+    border: 2px solid orange;
+    color:#fff; text-align:center; vertical-align: middle;
+    width: 140%;
+    padding: 1px;
+  }
+
   th{
-    font-size: 68%;
+    font-size: 50%;
   }
 
   td{
@@ -127,7 +132,7 @@ tbody td.has-class{ background:#ff961e; color:#000; }
     width: 100%;
     height: 100%;
     margin: -20px;          /* expande sobre el padding del td */
-    padding: 20px;          /* recupera el “espacio visual” */
+    padding-left: 20px;          /* recupera el “espacio visual” */
     padding-top: 27px;
     padding-bottom: 25px;
     text-decoration: none;
