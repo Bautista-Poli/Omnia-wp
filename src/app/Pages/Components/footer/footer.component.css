@@ -1,5 +1,5 @@
 #footer{
-    background-color: rgb(0, 0, 0);
+    background-color: var(--c-bg);
     display:grid;
     grid-template-columns: auto auto auto;
     padding-bottom:70px;
@@ -16,8 +16,3 @@
     margin-left: 50px;
 }
 
-.footer {
-  background: #000;
-  text-align: center;
-  padding: 1rem;
-}

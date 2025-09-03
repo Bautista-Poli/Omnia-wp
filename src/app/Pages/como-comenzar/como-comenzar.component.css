@@ -18,11 +18,16 @@
   font-weight: 600;
   text-align: center;
 }
+
 .txt {
-  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #fff;             /* ojo: esta línea pisa cualquier color anterior */
   text-align: center;
   line-height: 1.5;
+  font-size: 150%;
 }
+
 
 /* Grid de cards */
 .cards {
@@ -32,6 +37,7 @@
   max-width: 1100px;
   margin: 24px auto;
   padding: 0 50px;
+  font-family: var(--font-body);
 }
 
 /* Flip horizontal */
@@ -74,11 +80,21 @@
   opacity: 1;
 }
 
+
 /* Tipografía dentro de la card */
 .flip h1 {
   font-size: 1.4rem;
+  font-weight: 900;
   margin: 0;
+  font-family: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  
+  text-shadow:
+    1px 0 0 #505050ce, -1px 0 0 #505050ce,
+    0 1px 0 #505050ce,  0 -1px 0 #505050ce,
+    1px 1px 0 #505050ce, -1px 1px 0 #505050ce,
+    1px -1px 0 #505050ce, -1px -1px 0 #505050ce;
 }
+
 .flip h2 {
   font-size: 1.2rem;
   margin: 0 0 .4rem;

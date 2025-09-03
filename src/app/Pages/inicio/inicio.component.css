@@ -1,238 +1,90 @@
-.header {
-    position: fixed;
-    z-index: 1000;
-    width:100%;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-section {
-    padding: 50px 20px;
-    
-}
-
-section h3 {
-    text-align: center;
-    color:white;
-}
-section h1 {
-    text-align: center;
-    color:orange;
-}
-section p {
-    text-align: center;
-    color:orange;
-}
-
-.elementor-video{
-    margin-left:19%;
-    max-width: 100%;
-    width: 65%;
-}
-
-#banner {
-    background-size: cover;
-    text-align: center;
-    padding: 100px 0;
-}
-
-#banner h2 {
-    margin: 0;
-}
-
-#banner p {
-    font-size: 20px;
-}
-
-
-#nosotros{
-    color:white;
-}
-
-a{
-    padding:10px 25%;
-    color:white;
-    text-decoration: none;
-}
-
-#app-footer{
-    margin-top: 700px;
-}
-  
-.title {
-  color: rgba(255, 255, 255, 0.07);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: absolute;
-  transition: opacity 0.4s;
-}
-.title p {
-  font-size: 14vw;
-}
-.title .title__svg {
-  width: 17vw;
-  height: 34vw;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.title .title__svg video {
-  width: 95%;
-  height: 95%;
-  object-fit: cover;
-}
-.title .title__svg svg {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-}
-.title .title__svg svg text {
-  font-family: "Major Mono Display", monospace;
-  text-transform: uppercase;
-  transform-origin: center center;
-  font-size: 3em;
-}
-.title .title__svg svg rect {
-  fill: #fff;
-}
-.title .title__svg svg > rect {
-  -webkit-mask: url(#mask);
-  mask: url(#mask);
-  fill: #000;
-}
-  
-#titulo{
-  font-size: 50px;
-}
-
-#servicios{
-  margin-bottom: -40%;
-  margin-top: 50px;
-}
-
-
-.app-promo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px; /* espacio entre la tarjeta y el teléfono */
-  flex-wrap: wrap; /* para que en móvil se acomoden uno abajo del otro */
-  padding: 40px 20px;
-  margin-right: 30%;
-  margin-top: 10%;
-}
-
-
-/*Whatsapp logo */
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
-  padding: 5px;
-}
-
-.my-float{
-	margin-top:16px;
-}
-
-.float.whatsapp {
-  background-color:#25d366;
-}
-.float.whatsapp:hover {
-  background-color:#27ad58;
-}
-
-
-.float.instagram {
-  background-color: #E1306C; 
-  margin-right: 7%;
-}
-
-.float.instagram:hover {
-  background-color: #b82858; 
-}
-
-/*-----------------------*/
+/* Mover a styles.css global si querés que afecte a toda la app
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  background-color: var(--c-bg);
+}
+*/
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 }
 
-.owl-carousel,
-.owl-stage-outer,
-.owl-stage,
-.owl-item {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
-  overflow: hidden;
+section {
+  padding: 50px 20px;
 }
 
-.owl-carousel .owl-item img {
-  max-width: 100% !important;
-  width: 100% !important;
-  height: auto !important;
-  display: block;
-  object-fit: cover;
+section h3 {
+  text-align: center;
+  color: var(--c-text);
 }
 
+section h1 {
+  text-align: center;
+  color: var(--c-accent);
+}
+
+/* Texto con la fuente Quatro */
+.text{
+  font-family: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--c-accent);
+}
+
+#titulo { font-size: 90px; }
+#subtitulo { font-size: 40px; }
+
+#banner {
+  background-size: cover;
+  text-align: center;
+  padding: 100px 0;
+}
+
+#nosotros {
+  color: var(--c-text);
+  background-color: var(--c-bg);
+}
+
+a {
+  padding: 10px 25%;
+  color: var(--c-link);
+  text-decoration: none;
+}
+
+#app-footer { margin-top: 20vw; }
+
+/* Botones flotantes */
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  color: var(--c-white);
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px var(--c-shadow);
+  z-index: 100;
+  padding: 5px;
+}
+.my-float { margin-top: 16px; }
+.float.whatsapp { background-color: var(--c-whatsapp); }
+.float.whatsapp:hover { background-color: var(--c-whatsapp-hover); }
+.float.instagram { background-color: var(--c-instagram); margin-right: 7%; }
+.float.instagram:hover { background-color: var(--c-instagram-hover); }
+
+/* Responsivo */
 @media screen and (max-width: 768px) {
-  /* HEADER y LOGO */
-  .header {
-    margin-top: -42%;
-  }
+  .header { margin-top: -42%; }
 
-  .fila2 {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-items {
-    padding: 5px 0;
-    font-size: 16px;
-    text-align: center;
-    display: block;
-  }
-
-  /* WHATSAPP FLOTANTE */
   .float {
-    width: 50px;
-    height: 50px;
-    bottom: 20px;
-    right: 20px;
+    width: 50px; height: 50px;
+    bottom: 20px; right: 20px;
     font-size: 24px;
   }
 
-  /* BANNER / CARRUSEL */
   #banner {
     margin-top: 40%;
     padding: 20px 10px;
@@ -245,61 +97,17 @@ html, body {
     max-width: 100%;
   }
 
-  /* TABLA SCROLLABLE */
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
-  }
+  /* Si no usás <p> dentro de section, podés quitar esto:
+  section p { font-size: 4.5vw; text-align: center; }
+  */
+    
+  #titulo { font-size: 7vh; }
+  #subtitulo { font-size: 4vh; }
 
-  th, td {
-    font-size: 14px;
-    padding: 6px;
-  }
+  section h1, section h3 { font-size: 5.5vw; text-align: center; }
 
-  /* IPHONE COMPONENTO */
-  .app-promo-container {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 0 auto;
-  }
+  #app-footer { margin-top: 100px; }
 
-  /* TEXTOS */
-  section h1, section h3 {
-    font-size: 5.5vw;
-    text-align: center;
-  }
-
-  section p {
-    font-size: 4.5vw;
-    text-align: center;
-  }
-
-  /* FOOTER */
-  #app-footer {
-    margin-top: 100px;
-  }
-
-  /* PREVENIR SCROLL LATERAL */
-  body {
-    overflow-x: hidden;
-    padding-top: 100px;
-  }
-
-  .app-promo-container{
-    display: none;
-  }
-  .float.instagram {
-    background-color: #E1306C; 
-    margin-right: 20%;
-  }
-  #servicios{
-    margin-bottom: -20%;
-    margin-top: 50px;
-  }
-  
-
-  
+  .float.instagram { margin-right: 20%; }
 }
+
