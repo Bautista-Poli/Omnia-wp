@@ -1,7 +1,7 @@
 /* === HEADER GENERAL === */
 .middle-header {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--c-bg);
+  color: var(--c-text);
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,7 @@
   position: relative;
   z-index: 1000;
 }
+
 
 .logo {
   height: auto;
@@ -26,14 +27,15 @@
 }
 
 .nav-items {
-  color: white;
+  color: var(--c-text);
   text-decoration: none;
-  font-size: 16px;
   transition: color 0.3s;
+  font-size: 18px;
+  font-family: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .nav-items:hover {
-  color: rgb(255, 130, 28);
+  color: var(--c-accent);
 }
 
 /* === HAMBURGUESA === */
@@ -41,7 +43,7 @@
   display: none;
   background: none;
   border: none;
-  color: white;
+  color: var(--c-text);
   font-size: 28px;
   cursor: pointer;
 }
@@ -62,9 +64,9 @@
     top: 100%;
     right: 0;
     width: 100%;
-    background-color: #000;
+    background-color: var(--c-bg);
     padding: 15px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 10px var(--c-shadow);
     transition: all 0.3s ease;
   }
 
@@ -89,3 +91,4 @@
     margin-top: 1%;
   }
 }
+

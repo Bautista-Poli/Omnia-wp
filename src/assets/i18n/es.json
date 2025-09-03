@@ -12,25 +12,19 @@
     "H1": "Un lugar para vos",
     "H3": "Un gimnasio hecho a tu medida"
   },
-  "REVIEWS": {
-    "ANY": {
-      "NAME": "Any",
-      "P1": "Excelente gimnasio. Es impecable la limpieza de las instalaciones",
-      "P2": "Máquinas en óptimo estado, todas funcionan",
-      "P3": "No como otros gimnasios que te ponen el cartel de “en reparación”"
-    },
-    "ADRIANA": {
-      "NAME": "Adriana",
-      "P1": "El mejor gimnasio. Ordenado, limpio, buena música, máquinas que funcionan, 2 salones amplios, baños y duchas cómodas",
-      "P2": "Los profes, las chicas de recepción y la gente siempre con buena onda",
-      "P3": "Ofrecen descuentos en comercios cercanos por ser socia"
-    },
-    "ALEJANDRO": {
-      "NAME": "Alejandro",
-      "P1": "Primero que nada la atención del staff 100/100, ¡sumamente amables!",
-      "P2": "Las instalaciones impecables, equipo muy bien mantenido y variado"
-    }
+  
+  "reviews": {
+    "pelicanSteve": "Pelican Steve",
+    "maxConversion": "Max Conversion",
+    "eleanorFaint": "Eleanor Faint",
+
+    "q1": { "l1": "You know sometimes when I'm talking...", "l2": "Probably so we can think twice." },
+    "q2": { "l1": "Thank you. before I begin...", "l2": "When a report looks this good, you know it'll get an A." },
+    "q3": { "l1": "My behaviour is addictive... \n   " },
+
+    "source": { "littleSnippets": "LittleSnippets.net" }
   },
+
   "COUNTER": {
     "MEMBERS": {
       "TITLE": "Socios",
@@ -46,11 +40,8 @@
     }
   },
   "WELCOME": {
-    "TITLE": "Te damos la bienvenida y agradecemos te sumes a formar parte de la #comunidadOMNIA.",
-    "P1": "Llénate de energía, vitalidad, entrenando en un ambiente diferente y alegre,",
-    "P2": "donde además de lograr sentirte mejor que nunca, y llegar a tus metas,",
-    "P3": "serás parte de un grupo humano que disfruta de la actividad física.",
-    "P4": "Hemos preparado unos consejos para que sepas cómo comenzar:"
+    "P1": "La clave del exito es la constancia,",
+    "P4": "Por eso hemos preparado unos consejos para que sepas cómo comenzar:"
   },
   "CARDS": {
     "COMFORT": {

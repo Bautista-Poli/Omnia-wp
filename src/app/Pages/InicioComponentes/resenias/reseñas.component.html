@@ -1,8 +1,36 @@
-<div class="reseñas">
-  <div class="snip1533" *ngFor="let review of reviews">
+<!-- reseñas.component.html (o donde lo uses) -->
+<div class="reseñas reviews-grid">
+  <figure class="snip1157" *ngFor="let r of reviews">
     <blockquote>
-      <h3 class="name">{{ review.nameKey | translate }}</h3>
-      <p *ngFor="let key of review.commentKeys">{{ key | translate }}</p>
+      <!-- Soporta tanto r.quoteKeys como tu estructura actual r.commentKeys -->
+      <ng-container *ngFor="let key of (r.quoteKeys || r.commentKeys)">
+        <span>{{ key | translate }}</span>
+      </ng-container>
+      <div class="arrow"></div>
+      <br>
+      <!-- si usas Font Awesome -->
+      <div class="fa fa-star checked"></div>
+      <div class="fa fa-star checked"></div>
+      <div class="fa fa-star checked"></div>
+      <div class="fa fa-star checked"></div>
+      <div class="fa fa-star checked"></div>
+
     </blockquote>
-  </div>
+
+    <img
+      [src]="r.imgUrl"
+      [alt]="(r.nameKey | translate) + ' photo'"
+      loading="lazy"
+      decoding="async"
+    />
+
+    <div class="author">
+      <h5>
+        {{ r.nameKey | translate }}
+        <span *ngIf="r.sourceKey">&nbsp;{{ r.sourceKey | translate }}</span>
+        
+      </h5>
+    </div>
+  </figure>
 </div>
+
