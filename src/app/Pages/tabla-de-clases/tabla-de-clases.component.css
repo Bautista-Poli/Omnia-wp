@@ -1,34 +1,62 @@
+/* Contenedor general, centra y limita ancho */
+.schedule-wrap{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
+/* Caja que une título + tabla con bordes redondeados */
+.schedule-box{
+  border: 2px solid var(--c-accent);
+  border-radius: 26px;
+  overflow: hidden;               /* redondea esquinas de la tabla */
+  background: var(--c-bg);
+}
 
-/* Tabla */
+/* Título grande estilo banner */
+.schedule-title{
+  background: var(--c-accent);
+  color: var(--c-bg);
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-align: center;
+  line-height: 1;
+  padding: .6em .8em;
+  font-size: clamp(2rem, 8vw, 5rem);   /* responsivo */
+}
+
+/* Tu tabla tal cual, solo sin borde exterior extra */
 table.schedule{
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  background:#000;
+  background: var(--c-bg);
 }
 
-.col-dia{ width:auto; }
-
-/* Encabezados */
+/* Encabezados y celdas (ya usando variables) */
 thead th{
-  border: 2px solid orange;
-  color:#fff; text-align:center;
+  border: 2px solid var(--c-accent);
+  color: var(--c-text);
+  text-align:center;
   padding: 6px;
 }
 
-/* Celdas cuerpo */
 tbody td{
-  border: 2px solid orange;
-  color:#fff; text-align:center; vertical-align: middle;
+  border: 2px solid var(--c-accent);
+  color: var(--c-text);
+  text-align:center; vertical-align: middle;
   padding: 10px;
 }
 
 tbody td.hora, thead th:first-child{
-  background:#000; color:#fff; font-weight:700;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-weight:700;
 }
 
-tbody td.has-class{ background:#ff961e; color:#000; }
+tbody td.has-class{ background: var(--c-accent); color: var(--c-bg); }
 
 /* Link rellena la celda */
 .cell-link{
@@ -37,110 +65,89 @@ tbody td.has-class{ background:#ff961e; color:#000; }
   text-decoration:none; color:inherit; background:transparent; border:0;
 }
 
-/* Texto: 1–2 líneas, recortado */
+/* Texto: 1–2 líneas */
 .cell-link .txt{
   max-width:100%;
   overflow:hidden; text-overflow:ellipsis; word-break:break-word;
   display:-webkit-box; -webkit-box-orient:vertical;
-  -webkit-line-clamp: 2; line-clamp: 2;
+  -webkit-line-clamp:2; line-clamp:2;
   line-height:1.15;
 }
 
+/*-------------------------*/
+/* FILTROS (abajo) */
+/*-------------------------*/
+
+.filters{
+  display:flex; flex-wrap:wrap; gap:.5rem;
+  justify-content:center;
+  margin-top: 1rem;         /* estaba margin-bottom en tu versión */
+}
+
+.filter-btn{
+  padding:.4rem .8rem;
+  border-radius:99px;
+  border:2px solid var(--c-bg);
+  background: var(--c-accent);
+  cursor:pointer;
+  font-size:.9rem;
+  font-weight:600;
+  color: var(--c-bg);
+}
+
+.filter-btn.active{
+  border-color: var(--c-white);
+  box-shadow: 0 0 0 2px rgba(255 255 255 / 0.15);
+  font-weight:700;
+}
 
 /*-------------------------*/
-/* FILTROS */
+/* Mobile */
 /*-------------------------*/
+@media (max-width: 768px){
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin-bottom: 3%;
-}
-
-.filter-btn {
-  padding: .4rem .8rem;
-  border-radius: 99px;
-  border: 2px solid #000000;
-  background: #fff;
-  cursor: pointer;
-  font-size: .9rem;
-  background-color: #ff961e;
-  font-weight: 500;
-}
-
-.filter-btn.active {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(252, 253, 255, 0.15);
-  font-weight: 700;
-}
-
-
-@media screen and (max-width: 768px) {
-  table {
-    width: 40vh;
-    margin-left: -5%;
+  .schedule-title{
+    letter-spacing: .06em;
+    padding: .5em .6em;
   }
 
-  th, td {
-    border: 1px solid orange;
+  table{ width: 40vh; margin-left: -5%; }
+
+  th, td{
+    border: 1px solid var(--c-accent);
     padding: 1px;
-    color: white;
+    color: var(--c-text);
     text-align: center;
   }
 
   tbody td{
-    border: 2px solid orange;
-    color:#fff; text-align:center; vertical-align: middle;
+    border: 2px solid var(--c-accent);
+    color: var(--c-text);
+    text-align:center; vertical-align: middle;
     width: 140%;
     padding: 1px;
   }
 
-  th{
-    font-size: 50%;
+  th{ font-size: 50%; }
+  td{ padding: 0; }
+
+  .hora{ padding:5px; font-size: 60%; }
+
+  .cell-link{ font-weight:500; font-size:50%; }
+
+  .filters{
+    justify-content:center;
+    margin: 12px 0 0;
   }
 
-  td{
-    padding: 0px;
-  }
-  .hora{
-    padding:5px;
-    font-size: 60%;
-  }
-  .cell-link {
-    font-weight: 500;
-    font-size: 50%;
+  .filter-btn{
+    font-size:.7rem;
   }
 
-  .filters {
-    margin-left: 10%;
-    margin-bottom: 5%;
+  .cell-link{
+    display:block; width:100%; height:100%;
+    margin:-20px; padding-left:20px; padding-top:27px; padding-bottom:25px;
+    text-decoration:none; color:inherit; font-weight:600; border:0; background:transparent;
   }
-  .filter-btn {
-    padding: .4rem .8rem;
-    border-radius: 99px;
-    border: 2px solid #000000;
-    background: #fff;
-    cursor: pointer;
-    font-size: .7rem;
-    background-color: #ff961e;
-    font-weight: 600;
-  }
-
-  .cell-link {
-    display: block;         /* ocupa 100% del td */
-    width: 100%;
-    height: 100%;
-    margin: -20px;          /* expande sobre el padding del td */
-    padding-left: 20px;          /* recupera el “espacio visual” */
-    padding-top: 27px;
-    padding-bottom: 25px;
-    text-decoration: none;
-    color: inherit;         
-    font-weight: 600;
-    border: 0;
-    background: transparent;
-  }
-  
-
 }
+
