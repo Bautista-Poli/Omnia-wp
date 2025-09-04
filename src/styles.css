@@ -34,6 +34,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --c-white: #ffffff;
   --c-black: #fa1212;
   --c-shadow: #999999;
+  --c-bright-text : #424242;
     /*fa631d*/
   /* Redes sociales */
   --c-whatsapp: #25d366;
