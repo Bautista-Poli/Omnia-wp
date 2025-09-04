@@ -1,6 +1,15 @@
-/* =========================
-   Paleta / Overrides (NARANJA)
-   ========================= */
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}
+
+.footer {
+  z-index: 1000;
+  width: 100%;
+}
+
 .projcard .projcard-bar { background-color: var(--c-accent); }
 
 /* Tags / descripción / profe */
@@ -64,7 +73,8 @@ body{
 }
 
 .projcard-container{
-  margin: 50px auto 10%;
+  margin: 50px auto 5%;
+  margin-top: 12%;
   width: 100%;
   max-width: 1000px;
   padding: 0 16px;
