@@ -12,6 +12,7 @@
 .counter-box {
   width: 350px;
   color: #ccc;
+  font-family: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .counter-icon {

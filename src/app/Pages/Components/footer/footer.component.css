@@ -2,7 +2,7 @@
     background-color: var(--c-bg);
     display:grid;
     grid-template-columns: auto auto auto;
-    padding-bottom:70px;
+    padding-bottom:50px;
     color:white;
     position: relative;
     z-index: 1000;

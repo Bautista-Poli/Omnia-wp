@@ -18,9 +18,9 @@
     "maxConversion": "Max Conversion",
     "eleanorFaint": "Eleanor Faint",
 
-    "q1": { "l1": "You know sometimes when I'm talking...", "l2": "Probably so we can think twice." },
-    "q2": { "l1": "Thank you. before I begin...", "l2": "When a report looks this good, you know it'll get an A." },
-    "q3": { "l1": "My behaviour is addictive... \n   " },
+    "q1": { "l1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", "l2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    "q2": { "l1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" },
+    "q3": { "l1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit \n   " },
 
     "source": { "littleSnippets": "LittleSnippets.net" }
   },

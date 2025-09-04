@@ -1,9 +1,21 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+
+/* === Fuente única para todo el módulo === */
+:root{
+  --font-ui: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.reseñas.reviews-grid,
+.reseñas.reviews-grid *{
+  font-family: var(--font-ui);
+}
+
+/* Mantener Font Awesome donde corresponde */
+.fa, .fa-star, .fa:before, .fa:after{
+  font-family: "FontAwesome" !important;
+}
 
 /* ====== Tarjeta ====== */
 figure.snip1157 {
-  font-family: "Raleway", Arial, sans-serif;
   position: relative;
   overflow: hidden;
   margin: 10px;
@@ -41,8 +53,8 @@ figure.snip1157 blockquote {
   line-height: 1.6em;
 
   /* --- tamaño fijo + recorte --- */
-  height: 140px;                 /* ajustá a gusto */
-  overflow: hidden;              /* oculta lo que sobra */
+  height: 140px;
+  overflow: hidden;
 }
 
 /* cada línea del texto en una fila */
@@ -52,16 +64,16 @@ figure.snip1157 .quote-text > span { display: block; }
 figure.snip1157 .quote-text{
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;         /* cantidad de líneas visibles */
-  line-clamp: 4;                 /* estándar */
-  overflow: hidden;
+  -webkit-line-clamp: 4;   /* cantidad de líneas visibles */
+  line-clamp: 4;           /* estándar */
   overflow: hidden;
 }
 
-/* comillas decorativas */
+/* comillas decorativas (usar la fuente normal, no FontAwesome) */
 figure.snip1157 blockquote:before,
 figure.snip1157 blockquote:after {
-  font-family: "FontAwesome";
+  /* font-family: "FontAwesome";  <-- quitado */
+  font-family: var(--font-ui);
   content: "\201C";
   position: absolute;
   font-size: 50px;
@@ -109,14 +121,20 @@ figure.snip1157 .author h5 span { font-weight: 400; text-transform: none; paddin
 }
 
 /* ====== Estrellas (Font Awesome) ====== */
-.stars .fa-star { font-size: 1.2rem; color: #eee; }  /* tamaño base */
-.stars .fa-star.checked { background-color: #ff8c00; }
-
+.stars .fa-star {
+  font-size: 1.2rem;
+  color: #ffd000;
+  font-family: "FontAwesome";   /* asegurar ícono */
+  margin-top: 10px;
+}
 
 /* (opcional) responsive: un poco más de alto en pantallas grandes */
 @media (min-width: 768px){
-  figure.snip1157 blockquote { height: 160px; }
-  figure.snip1157 .quote-text { -webkit-line-clamp: 5; 
-  line-clamp: 4;                 /* estándar */
-  overflow: hidden; }
+  figure.snip1157 blockquote { height: 200px; }
+  figure.snip1157 .quote-text {
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+  }
 }
+
