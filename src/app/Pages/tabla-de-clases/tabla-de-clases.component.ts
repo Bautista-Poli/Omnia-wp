@@ -107,16 +107,33 @@ export class TablaDeClasesComponent implements OnInit {
     if (!isPlatformBrowser(this.platformId) || this.creatingPdf) return;
     this.creatingPdf = true;
     try {
-      const { exportSchedulePdf } = await import('../../Pages/service/pdf.utils');
-      await exportSchedulePdf(this.tableEl.nativeElement, {
-        title: 'Horarios de clases',
-        subtitle: this.selectedClass ? `Filtro: ${this.selectedClass}` : undefined,
-        filename: 'horarios-gym.pdf',
-      });
+      // Ruta dentro de /assets (mismo origen, no hay CORS)
+      const url = 'assets/HorariosOmnia.pdf';
+      // Opción A: disparar descarga directa (rápida y simple)
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'horariosOmnia.pdf';  // nombre del archivo al guardar
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      
     } finally {
       this.creatingPdf = false;
     }
   }
 
+
 }
 
+// --- Opción B (alternativa, por si querés forzar "attachment"): ---
+      // const res = await fetch(url);
+      // const blob = await res.blob();
+      // const objectUrl = URL.createObjectURL(blob);
+      // const a = document.createElement('a');
+      // a.href = objectUrl;
+      // a.download = 'horariosOmnia.pdf';
+      // document.body.appendChild(a);
+      // a.click();
+      // document.body.removeChild(a);
+      // URL.revokeObjectURL(objectUrl);

@@ -1,22 +1,21 @@
 :host {
-  --bg: #222;
   --card-bg: #313131;
-  --text: #fff;
-  --muted: #999;
   --radius: 12px;
   --shadow: 0 10px 25px rgba(0,0,0,.12);
   --flip-dur: .6s;
 
-  display: block;
-  color: var(--text);
-  font-family: 'Roboto Mono', monospace;
+}
+
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 }
 
 /* Títulos y párrafos */
-.titulo {
-  color: #ff6600;
-  font-weight: 600;
-  text-align: center;
+.elementor-text-editor{
+  margin-top: 20vh;
 }
 
 .txt {
@@ -121,6 +120,9 @@
     }
     .flip p {
         font-size: .85rem;
+    }
+    .elementor-text-editor{
+      margin-top: 50vw;
     }
 }
 
