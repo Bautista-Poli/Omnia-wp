@@ -41,10 +41,6 @@ section h1 {
   padding: 100px 0;
 }
 
-#nosotros {
-  color: var(--c-text);
-  background-color: var(--c-bg);
-}
 
 a {
   padding: 10px 25%;

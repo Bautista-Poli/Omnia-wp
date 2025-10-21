@@ -39,7 +39,8 @@ table.schedule{
 /* Encabezados y celdas (ya usando variables) */
 thead th{
   border: 2px solid var(--c-accent);
-  color: var(--c-text);
+  background-color: white !important;
+  color: var(--c-bg);
   text-align:center;
   padding: 6px;
 }
@@ -73,6 +74,7 @@ tbody td.has-class{ background: var(--c-accent); color: var(--c-bg); }
   display:-webkit-box; -webkit-box-orient:vertical;
   -webkit-line-clamp:2; line-clamp:2;
   line-height:1.15;
+  font-weight: 700;
 }
 
 /*-------------------------*/
