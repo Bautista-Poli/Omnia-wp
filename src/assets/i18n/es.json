@@ -40,8 +40,9 @@
     }
   },
   "WELCOME": {
-    "P1": "La clave del exito es la constancia,",
-    "P4": "Por eso hemos preparado unos consejos para que sepas cómo comenzar:"
+    "P1_PART1": "LA CLAVE DEL ÉXITO ES LA ",
+    "P1_PART2": "CONSTANCIA",
+    "P1_PART3": "POR ESO HEMOS PREPARADO UNOS CONSEJOS PARA QUE SEPAS CÓMO COMENZAR:"
   },
   "CARDS": {
     "COMFORT": {

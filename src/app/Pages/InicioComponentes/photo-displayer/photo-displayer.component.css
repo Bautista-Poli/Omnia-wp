@@ -5,6 +5,22 @@
   display: block;
 }
 
+/* Flechas del carrusel */
+:host ::ng-deep .owl-theme .owl-nav [class*="owl-"] {
+    color: var(--c-text) ; 
+    
+    background: var(--c-accent) ; 
+    
+    font-size: 20px ;
+    padding: 8px 15px ;
+    line-height: 1 ;
+    transition: background-color 0.2s ease-in-out;
+}
+:host ::ng-deep .owl-theme .owl-nav [class*="owl-"]:hover {
+    background: #ff7033 !important; /* Un naranja un poco más claro, puedes ajustar */
+    color: var(--c-text) !important;
+}
+
 @media screen and (max-width: 768px) {
     .carousel {
     width: 100vw;

@@ -51,6 +51,10 @@ html, body {
   margin: 0;
   max-width: 100%;
   overflow-x: hidden;
-  background: var(--c-bg) !important;  /* ← el !important ayuda contra overrides */
+  background: url('./assets/compartidos/fondo.jpg') no-repeat center center fixed !important;
+  /* El color de fallback por si la imagen no carga */
+  background-color: var(--c-bg) !important; 
+  background-size: cover !important;
+  
   color: var(--c-text);
 }

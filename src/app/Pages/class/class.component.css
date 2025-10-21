@@ -5,10 +5,6 @@
   width: 100%;
 }
 
-.footer {
-  z-index: 1000;
-  width: 100%;
-}
 
 .projcard .projcard-bar { background-color: var(--c-accent); }
 
@@ -163,6 +159,24 @@ body{
   color: #888;
 }
 
+
+.footer {
+    /* Usamos !important por si el componente app-footer tiene un estilo de fondo por defecto */
+    z-index: 10000;
+    width: 100%;
+    background-color: var(--c-bg) !important;
+}
+/* Forzar el fondo opaco y z-index alto al componente app-footer */
+:host ::ng-deep app-footer {
+    /* 1. POSICIONAMIENTO: Obligatorio para que z-index tenga efecto */
+    position: relative !important; 
+    
+    /* 2. Z-INDEX: Un valor muy alto para que esté sobre el video */
+    z-index: 10000 !important; 
+    
+    /* 3. FONDO: Aplicar el color de fondo opaco */
+    background-color: var(--c-bg) !important;
+}
 /* =========================
    Responsivo
    ========================= */

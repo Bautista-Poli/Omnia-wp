@@ -1,5 +1,4 @@
 #footer{
-    background-color: var(--c-bg);
     display:grid;
     grid-template-columns: auto auto auto;
     padding-bottom:50px;

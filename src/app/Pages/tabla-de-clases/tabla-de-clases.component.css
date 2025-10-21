@@ -11,6 +11,7 @@
   border-radius: 26px;
   overflow: hidden;               /* redondea esquinas de la tabla */
   background: var(--c-bg);
+  margin-top: 10px;
 }
 
 /* Título grande estilo banner */
@@ -23,8 +24,8 @@
   letter-spacing: .08em;
   text-align: center;
   line-height: 1;
-  padding: .6em .8em;
-  font-size: clamp(2rem, 8vw, 5rem);   /* responsivo */
+  padding: .4em .6em;
+  font-size: clamp(2rem, 7vw, 4rem);   /* responsivo */
 }
 
 /* Tu tabla tal cual, solo sin borde exterior extra */

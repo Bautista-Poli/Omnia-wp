@@ -18,14 +18,47 @@
   margin-top: 20vh;
 }
 
-.txt {
+
+
+.txt-principal {
+  /* Tipografía y Peso: Fuente Quatro Black (900) */
   font-family: var(--font-body);
-  font-weight: 400;
-  color: #fff;             /* ojo: esta línea pisa cualquier color anterior */
+  font-weight: 900;
+  
+  /* Color de texto por defecto (blanco) */
+  color: var(--c-text);         
+  
+  /* Alineación y Tamaño */
   text-align: center;
-  line-height: 1.5;
-  font-size: 150%;
+  line-height: 1.2;
+  font-size: 7vh; /* Ajusta este valor (vh, vw o rem) para el tamaño principal */
+  margin: 20px 0;
+  
+  /* Asegura que el texto sea mayúsculas (si no lo pusiste en el JSON) */
+  text-transform: uppercase;
 }
+
+/* 2. Estilo para la palabra de acento: CONSTANCIA */
+.accent-word {
+    color: var(--c-accent); /* Color naranja: #FF5000 */
+}
+
+/* 3. Estilo para el subtítulo: POR ESO HEMOS PREPARADO... */
+.txt-subtitulo {
+    /* Tipografía y Peso: Fuente Quatro Regular (400) */
+    font-family: var(--font-body);
+    font-weight: 500; 
+    
+    /* Color de texto (blanco) */
+    color: var(--c-text);
+    
+    /* Alineación y Tamaño */
+    text-align: center;
+    line-height: 1.5;
+    font-size: 3vh; /* Tamaño más pequeño que el título */
+    margin-top: 5px;
+}
+
 
 
 /* Grid de cards */

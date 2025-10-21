@@ -18,9 +18,9 @@ export class PhotoDisplayerComponent implements OnInit, OnDestroy {
   // mapas por idioma
   private imagesByLang: Record<'es'|'en', string[]> = {
     es: [
-      'assets/OMNIA-SLIDER2-1.png',
-      'assets/OMNIA-SLIDER3-1.png',
-      'assets/OMNIA-SLIDER1-1.png',
+      'assets/Inicio/OMNIA-SLIDER2-1.png',
+      'assets/Inicio/OMNIA-SLIDER3-1.png',
+      'assets/Inicio/OMNIA-SLIDER1-1.png',
     ],
     en: [
       'assets/Clientes.jpg',
@@ -37,7 +37,7 @@ export class PhotoDisplayerComponent implements OnInit, OnDestroy {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
-    dots: true,
+    dots: false,
     nav: true,
     navSpeed: 700,
     autoWidth: false,
