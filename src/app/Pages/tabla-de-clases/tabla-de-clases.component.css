@@ -2,7 +2,6 @@
 .schedule-wrap{
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 1rem;
 }
 
 /* Caja que une título + tabla con bordes redondeados */
@@ -36,6 +35,8 @@ table.schedule{
   background: var(--c-bg);
 }
 
+
+
 /* Encabezados y celdas (ya usando variables) */
 thead th{
   border: 2px solid var(--c-accent);
@@ -53,28 +54,32 @@ tbody td{
 }
 
 tbody td.hora, thead th:first-child{
-  background: var(--c-bg);
-  color: var(--c-text);
+  background: transparent;
+  color: var(--c-accent);
   font-weight:700;
+  font-size: 150%;
 }
 
-tbody td.has-class{ background: var(--c-accent); color: var(--c-bg); }
+tbody td.has-class{ background: transparent; color:  var(--c-text) }
 
 /* Link rellena la celda */
 .cell-link{
   display:flex; align-items:center; justify-content:center;
   width:100%; height:100%;
   text-decoration:none; color:inherit; background:transparent; border:0;
+
+  color: transparent;
 }
 
 /* Texto: 1–2 líneas */
 .cell-link .txt{
-  max-width:100%;
+  max-width:120%;
   overflow:hidden; text-overflow:ellipsis; word-break:break-word;
   display:-webkit-box; -webkit-box-orient:vertical;
-  -webkit-line-clamp:2; line-clamp:2;
-  line-height:1.15;
+  line-height:1.25;
   font-weight: 700;
+  font-size: 110%;
+  color: white;
 }
 
 /*-------------------------*/
@@ -113,11 +118,12 @@ tbody td.has-class{ background: var(--c-accent); color: var(--c-bg); }
     letter-spacing: .06em;
     padding: .5em .6em;
   }
+  
 
-  table{ width: 40vh; margin-left: -5%; }
+  table{ width: 50vh; }
 
   th, td{
-    border: 1px solid var(--c-accent);
+    border: 0.5px solid var(--c-accent);
     padding: 1px;
     color: var(--c-text);
     text-align: center;
@@ -135,6 +141,9 @@ tbody td.has-class{ background: var(--c-accent); color: var(--c-bg); }
   td{ padding: 0; }
 
   .hora{ padding:5px; font-size: 60%; }
+  tbody td.hora, thead th:first-child{
+    font-size: 60%;
+  }
 
   .cell-link{ font-weight:500; font-size:50%; }
 

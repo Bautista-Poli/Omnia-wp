@@ -84,7 +84,10 @@
     "weekday": "LUNES A VIERNES 07 a 22hs",
     "weekend": "SÁBADOS 09 a 21hs."
   },
-  "copyright": "© 2025 Omnia Gym. Todos los derechos reservados.",
+  "COPYRIGHT":{
+    "TXT1": "© 2025 Omnia Gym.",
+    "TXT2": "Todos los derechos reservados."
+  },
   "DEVELOPER":{
     "TXT": "Desarrollado por:",
     "NAME": "Alvarez Poli Bautista"
