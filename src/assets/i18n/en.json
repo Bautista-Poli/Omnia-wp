@@ -89,7 +89,11 @@
     "weekday": "MONDAY TO FRIDAY 7 AM to 10 PM",
     "weekend": "SATURDAYS 9 AM to 9 PM"
   },
-  "copyright": "© 2025 Omnia Gym. All rights reserved."
+  "copyright": "© 2025 Omnia Gym. All rights reserved.",
+  "DEVELOPER":{
+    "TXT": "Developed by:",
+    "NAME": "Alvarez Poli Bautista"
+  }
 
 
 }
