@@ -31,30 +31,25 @@ type ReviewVM = {
 export class ReseñasComponent {
   reviews: ReviewVM[] = [
     {
-      nameKey: 'reviews.pelicanSteve',
-      sourceKey: 'reviews.source.littleSnippets',
+      nameKey: 'Adriana Hormeche',
       quoteKeys: [
-        'reviews.q1.l1',
-        'reviews.q1.l2'
+        'reviews.q1'
       ],
-      imgUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg'
+      imgUrl: '../../assets/Inicio/usuario1.png'
     },
     {
-      nameKey: 'reviews.maxConversion',
-      sourceKey: 'reviews.source.littleSnippets',
+      nameKey: 'Any Clari',
       quoteKeys: [
-        'reviews.q2.l1',
-        'reviews.q2.l2'
+        'reviews.q2'
       ],
-      imgUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg'
+      imgUrl: '../../assets/Inicio/usuario2.png'
     },
     {
-      nameKey: 'reviews.eleanorFaint',
-      sourceKey: 'reviews.source.littleSnippets',
+      nameKey: 'Alejandro León',
       quoteKeys: [
-        'reviews.q3.l1'
+        'reviews.q3'
       ],
-      imgUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample3.jpg'
+      imgUrl: '../../assets/Inicio/usuario3.png'
     }
   ];
 }

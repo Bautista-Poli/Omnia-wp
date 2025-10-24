@@ -14,15 +14,14 @@
   },
   
   "reviews": {
-    "pelicanSteve": "Pelican Steve",
-    "maxConversion": "Max Conversion",
-    "eleanorFaint": "Eleanor Faint",
-
-    "q1": { "l1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua", "l2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
-    "q2": { "l1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" },
-    "q3": { "l1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit \n   " },
+    "q1": "El mejor gimnasio. Ordenado, limpio, buena música, máquinas que funcionan, 2 salones amplios, baños y duchas cómodas Los profes, las chicas de recepción  y la gente siempre con buena onda.Tenes ofrecen descuentos en comercios cercanos por ser socia." ,
+    "q2": "Excelente gimnasio. La limpieza de las instalaciones. Máquinas en óptimo estado  todas funcionando, no como otros gimnasio q te ponen el cartel de en reparación. Los profesores están siempre acompañándote. Le indicas que es lo q querés lograr y te diseñan las rutinas, guiandote cada momento durante tu proceso. Buenas vibras y muy buen clima !!. Lo recomiendo" ,
+    "q3": "El mejor gimnasio, apenas vi el lugar quede encantado del orden, la limpieza, los espacios, la iluminación, pero lo realmente a destacar es el personal, desde la recepcion que son un amor, hasta los excelentes entrenadores, siempre atento a explicar la rutina, a corregir la tecnica. Encontrarme con este lugar ha sido la mejor experiencia que he tenido. Llevo 1 mes y por suerte tome la excelente decisión de pagar el plan anual, Omnia se ha convertido en mi momento favorito del día." ,
 
     "source": { "littleSnippets": "LittleSnippets.net" }
+  },
+  "Activities":{
+    "Title":"CRONOGRAMA ACTIVIDADES"
   },
 
   "COUNTER": {
@@ -65,7 +64,9 @@
     "NUTRITION": {
       "TITLE": "Alimentación",
       "SUBTITLE": "Aliméntate bien",
-      "TEXT": "Contamos con servicio de Nutricionista y Antropometrista para asesorarte con un plan de alimentación acorde a tus objetivos y plan de entrenamiento."
+      "TEXT": "Comé real → priorizá alimentos frescos y naturales",
+      "TEXT2":"Hidratate siempre → el agua es tu mejor aliado para rendir",
+      "TEXT3": "Balance, no restricciones → aprender a combinar, no a prohibir"
     },
     "ENERGY": {
       "TITLE": "Energía",

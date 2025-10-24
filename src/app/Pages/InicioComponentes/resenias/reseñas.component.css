@@ -117,7 +117,7 @@ figure.snip1157 .author h5 span { font-weight: 400; text-transform: none; paddin
 }
 .reseñas.reviews-grid figure.snip1157{
   flex: 1 1 300px;
-  max-width: 310px;
+  max-width: 360px;
 }
 
 /* ====== Estrellas (Font Awesome) ====== */
@@ -128,9 +128,10 @@ figure.snip1157 .author h5 span { font-weight: 400; text-transform: none; paddin
   margin-top: 10px;
 }
 
+figure.snip1157 blockquote { height: 310px; }
+
 /* (opcional) responsive: un poco más de alto en pantallas grandes */
 @media (min-width: 768px){
-  figure.snip1157 blockquote { height: 200px; }
   figure.snip1157 .quote-text {
     -webkit-line-clamp: 5;
     line-clamp: 5;

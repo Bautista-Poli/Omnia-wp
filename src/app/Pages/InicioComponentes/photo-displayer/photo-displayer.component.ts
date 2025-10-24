@@ -23,9 +23,9 @@ export class PhotoDisplayerComponent implements OnInit, OnDestroy {
       'assets/Inicio/OMNIA-SLIDER1-1.png',
     ],
     en: [
-      'assets/Clientes.jpg',
-      'assets/Maquinas.jpg',
-      'assets/Indoor.jpg',
+      'assets/Inicio/OMNIA-SLIDER2-1.png',
+      'assets/Inicio/OMNIA-SLIDER3-1.png',
+      'assets/Inicio/OMNIA-SLIDER1-1.png',
     ],
   };
 

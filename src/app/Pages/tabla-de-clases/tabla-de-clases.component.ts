@@ -4,13 +4,14 @@ import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { TableService } from '../service/table.service';
 import { ClassCell } from '../service/hour.class';
+import { TranslateModule} from '@ngx-translate/core';
 
 type ExpandedRow = { hora: string; clases: (ClassCell | null)[] };
 
 @Component({
   selector: 'tabla-de-clases',
   standalone: true,
-  imports: [RouterModule, NgFor, NgIf],
+  imports: [RouterModule, NgFor, NgIf,TranslateModule],
   templateUrl: './tabla-de-clases.component.html',
   styleUrls: ['./tabla-de-clases.component.css'],
 })

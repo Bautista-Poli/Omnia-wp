@@ -31,6 +31,16 @@
       "P2": "Impeccable facilities, well-maintained and varied equipment"
     }
   },
+  "reviews": {
+    "q1": "The best gym. Tidy, clean, good music, machines that work, 2 large studios, comfortable bathrooms and showers. The coaches, the reception girls, and the people are always friendly/have good vibes. They offer discounts at nearby shops for being a member." ,
+    "q2": "Excellent gym. The cleanliness of the facilities. Machines in optimal condition, all working, unlike other gyms that put up 'under repair' signs. The coaches are always there to support you. You tell them what you want to achieve, and they design the routines for you, guiding you every step of the way during your process. Good vibes and a very good atmosphere!! I highly recommend it." ,
+    "q3": "The best gym. As soon as I saw the place, I was enchanted by the tidiness, the cleanliness, the spaces, the lighting, but what truly stands out is the staff, from the receptionists who are lovely, to the excellent trainers, always ready to explain the routine and correct your technique. Finding this place has been the best experience I've had. I've been here for 1 month, and luckily, I made the excellent decision to pay for the annual plan. Omnia has become my favorite part of the day." ,
+
+    "source": { "littleSnippets": "LittleSnippets.net" }
+  },
+  "Activities":{
+    "Title":"ACTIVITY SCHEDULE"
+  },
   "COUNTER": {
     "MEMBERS": {
       "TITLE": "Members",
@@ -51,8 +61,9 @@
     "BUTTON": "How to get here"
   },
   "WELCOME": {
-    "P1": "Fill yourself with energy and vitality by training in a different and cheerful environment,",
-    "P4": "We’ve prepared some tips to help you get started:"
+    "P1_PART1": "THE KEY TO SUCCESS IS ",
+    "P1_PART2": "PERSEVERANCE",
+    "P1_PART3": "THAT'S WHY WE HAVE PREPARED SOME TIPS SO YOU KNOW HOW TO START:"
   },
   "CARDS": {
     "COMFORT": {
@@ -72,16 +83,19 @@
       "TITLE": "Medical clearance",
       "TEXT": "It’s mandatory, and you have one month to get it done. You can do it through our DOC, who comes to the gym to perform basic check-ups."
     },
-    "NUTRITION": {
-      "TITLE": "Nutrition",
-      "SUBTITLE": "Eat well",
-      "TEXT": "We offer Nutritionist and Anthropometrist services to guide you with a meal plan tailored to your goals and training program."
+    "NUTRITION": { 
+      "TITLE": "Nutrition", 
+      "SUBTITLE": "Eat Well", 
+      "TEXT": "Eat real food → prioritize fresh and natural foods", 
+      "TEXT2": "Stay hydrated always → water is your best ally for performance", 
+      "TEXT3": "Balance, not restrictions → learn to combine, not to prohibit" 
     },
     "ENERGY": {
       "TITLE": "Energy",
       "TEXT": "The most important thing is the desire, enthusiasm, and determination to exercise. Remember: perseverance achieves everything."
     }
   },
+  
 
 
   "opening_hours": {

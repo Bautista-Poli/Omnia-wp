@@ -24,7 +24,7 @@
   text-align: center;
   line-height: 1;
   padding: .4em .6em;
-  font-size: clamp(2rem, 7vw, 4rem);   /* responsivo */
+  font-size: clamp(2rem, 6vw, 3rem);   /* responsivo */
 }
 
 /* Tu tabla tal cual, solo sin borde exterior extra */
@@ -77,7 +77,7 @@ tbody td.has-class{ background: transparent; color:  var(--c-text) }
   overflow:hidden; text-overflow:ellipsis; word-break:break-word;
   display:-webkit-box; -webkit-box-orient:vertical;
   line-height:1.25;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 110%;
   color: white;
 }
