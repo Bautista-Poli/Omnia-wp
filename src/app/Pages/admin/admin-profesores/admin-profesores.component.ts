@@ -62,7 +62,7 @@ export class AdminProfesoresComponent {
     }
     try {
     await this.profesorService.addProfesor(fd)
-    alert('Clase agregada correctamente ✅');
+    alert('Profesor agregado correctamente ✅');
     } catch (err) {
       alert('Error al conectar con el servidor');
       console.error(err);

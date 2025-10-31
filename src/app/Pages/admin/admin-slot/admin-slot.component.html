@@ -1,42 +1,83 @@
-
 <menu-admin></menu-admin>
+
 <div class="gym-class-management">
-    
-    <div id="titulo">
-        <h2>Gestion de horarios de clases</h2>
-        <mat-icon id="mat-icon">calendar_today</mat-icon>
+  <div id="titulo">
+    <h2>Gestión de horarios de clases</h2>
+    <mat-icon id="mat-icon">calendar_today</mat-icon>
+  </div>
+
+  <form>
+    <!-- Clase -->
+    <label for="name">Elegir clase</label>
+    <select id="name" name="name" [(ngModel)]="newClassName">
+      <option *ngFor="let clase of clases" [value]="clase">{{ clase }}</option>
+    </select>
+
+    <!-- Día principal -->
+    <label for="dia1">Elegir día principal</label>
+    <select id="dia1" name="dia1" [(ngModel)]="newClassDate">
+      <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
+    </select>
+
+    <!-- Horario principal -->
+    <label for="hora1">Elegir horario principal</label>
+    <input
+      type="text"
+      id="hora1"
+      name="hora1"
+      [(ngModel)]="newClassTime"
+      placeholder="HH:mm:ss"
+      required
+    />
+
+    <!-- Segundo horario (mismo día) -->
+    <label for="hora2">Segundo horario (opcional, mismo día)</label>
+    <input
+      type="text"
+      id="hora2"
+      name="hora2"
+      [(ngModel)]="newClassTime2"
+      placeholder="HH:mm:ss"
+    />
+
+    <p class="comment">*Formato recomendado: HH:mm:ss</p>
+    <p class="comment">*Arrancar con HH:00:00</p>
+
+    <!-- Segundo día (para crear la misma clase otro día) -->
+    <label for="dia2">Elegir segundo día (opcional)</label>
+    <select id="dia2" name="dia2" [(ngModel)]="newClassDate2">
+      <option value="">(ninguno)</option>
+      <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
+    </select>
+
+    <!-- Profesor -->
+    <label for="prof1">Profesor principal</label>
+    <select id="prof1" name="prof1" [(ngModel)]="profesorName">
+      <option *ngFor="let profesor of profesores" [value]="profesor">
+        {{ profesor }}
+      </option>
+    </select>
+
+    <!-- Segundo profesor -->
+    <label for="prof2">Segundo profesor (opcional)</label>
+    <select id="prof2" name="prof2" [(ngModel)]="secondProfesorName">
+      <option value="">(mismo profesor)</option>
+      <option *ngFor="let profesor of profesores" [value]="profesor">
+        {{ profesor }}
+      </option>
+    </select>
+
+    <!-- Botones -->
+    <div class="buttons">
+      <button type="button" (click)="addSlot()" class="buttonSend">
+        ➕ Agregar slot
+      </button>
+      <button type="button" (click)="removeSlot()" class="buttonSend">
+        ❌ Remover slot
+      </button>
     </div>
-    <form>
-        <label for="username">Elegir clase</label>
-        <select id="name" name="name" [(ngModel)]="newClassName">
-            <option *ngFor="let clase of clases" [value]="clase">{{ clase }}</option>
-        </select>
-        <label for="username">Elegir dia para la clase</label>
-        <select id="dia" name="dia" [(ngModel)]="newClassDate">
-            <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
-        </select>
-        <label for="username">Elegir horario para la clase</label>
-        <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime" required>
-        <label for="username">Especificar un segundo horario (solo para agregar el mismo dia)</label>
-        <input type="text" id="hours" name="hours" [(ngModel)]="newClassTime2" required>
-        <p class="comment">*Recordar de especificar en formato HH:mm:ss </p>
-        <p class="comment">*Siempre empezar por HH:00:00 </p>
-        <label for="username">Elegir un profesor</label>
-        <select id="dia" name="dia" [(ngModel)]="profesorName">
-            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
-        </select>
-        <label for="username">Elegir un segundo profesor</label>
-        <select id="dia" name="dia" [(ngModel)]="secondProfesorName">
-            <option *ngFor="let profesor of profesores" [value]="profesor">{{ profesor }}</option>
-        </select>
-        <button (click)="addSlot()" class="buttonSend">Agregar slot</button>
-        
-        <br>
-        <br>
-        <button (click)="removeSlot()" class="buttonSend">Remover slot</button>
-    </form>
-    
-    
-    <br>
-    <button (click)="logOut()" class="buttonLogOut">Logout</button>
+  </form>
+
+  <button (click)="logOut()" class="buttonLogOut">Logout</button>
 </div>
+
