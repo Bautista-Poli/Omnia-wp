@@ -1,17 +1,28 @@
-<div class="nav">
-  <div class="container">
-    <button class="btn" routerLink="/admin-clases">Nueva clase</button>
-    <button class="btn" routerLink="/admin-profesores">Nuevo profesor</button>
-    <button class="btn" routerLink="/admin">Nuevo slot</button>
-    <button class="btn" routerLink="/admin-setear-profesor">Setear profesor a slot</button>
-    <button class="btn" routerLink="/revisar-tabla">Revisar la tabla</button>
-    <div class="hover"></div>
+<nav class="nav">
+  <div class="container" #container (mouseleave)="snapToActive()">
+    <button
+      *ngFor="let item of items; let i = index"
+      class="btn"
+      #btnRef
+      [routerLink]="item.link"
+      routerLinkActive="active"
+      (mouseenter)="moveIndicator(i)"
+      (focus)="moveIndicator(i)"
+      (click)="setActive(i)"
+    >
+      {{ item.label }}
+    </button>
 
-    <svg viewBox="0 0 400 60" class="outline" width="100%" height="60" preserveAspectRatio="none">
+    <!-- Indicador -->
+    <div class="indicator" #indicator></div>
+
+    <!-- Borde exterior opcional -->
+    <svg viewBox="0 0 400 60" class="outline" width="100%" height="60" preserveAspectRatio="none" aria-hidden="true">
       <rect stroke-width="5" fill="transparent" height="60" width="400" y="0" x="0" class="rect"></rect>
     </svg>
   </div>
-</div>
+</nav>
+
 
 
 

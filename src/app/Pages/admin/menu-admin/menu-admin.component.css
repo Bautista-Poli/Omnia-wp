@@ -1,65 +1,67 @@
-/* Layout a 5 columnas */
+.nav { width: 100%; }
+
+/* Contenedor responsivo */
 .container{
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  height: 130px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 70px;
+}
+
+/* Desktop: una fila */
+@media (min-width: 768px) {
+  .container { justify-content: space-between; }
 }
 
 /* Botones */
 .btn{
   padding: 1em 2em;
-  font-size: 120%;
-  color:#fff;
+  font-size: 1rem;
+  color: #fff;
   background: transparent;
   border: 0;
   cursor: pointer;
   position: relative;
-  z-index: 1;                 
-  transition: color .2s ease;
+  z-index: 1;
+  transition: color .2s ease, transform .1s ease;
   white-space: nowrap;
+  border-radius: 10px;
+  outline: none;
 }
 
-/* Marco */
-.hover{
-  --pad: 6px;
+.btn:hover,
+.btn:focus-visible { color: #000; }
+
+/* Activo por ruta */
+.btn.active {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Indicador móvil y persistente */
+.indicator{
   position: absolute;
-  top: var(--pad);
-  bottom: var(--pad);
-  left: var(--pad);
-  width: calc(100% / 5 - var(--pad) * 2);
+  top: 0; left: 0;
+  width: 0; height: 0;
   border: 5px solid #e47f0b;
   background-color: #e47f0b;
   border-radius: 10px;
   pointer-events: none;
-  transform: translateX(0%);
-  transition: transform .35s ease;
-  z-index: 0;                
+  transform: translate(0,0);
+  transition: transform .30s ease, width .20s ease, height .20s ease;
+  z-index: 0;
 }
 
-/* Mover marco según hover */
-.container:has(.btn:nth-of-type(1):hover) .hover { transform: translateX(0%);   }
-.container:has(.btn:nth-of-type(2):hover) .hover { transform: translateX(100%); }
-.container:has(.btn:nth-of-type(3):hover) .hover { transform: translateX(200%); }
-.container:has(.btn:nth-of-type(4):hover) .hover { transform: translateX(300%); }
-.container:has(.btn:nth-of-type(5):hover) .hover { transform: translateX(400%); }
-
-/* También con foco teclado */
-.container:has(.btn:nth-of-type(1):focus-visible) .hover { transform: translateX(0%);   }
-.container:has(.btn:nth-of-type(2):focus-visible) .hover { transform: translateX(100%); }
-.container:has(.btn:nth-of-type(3):focus-visible) .hover { transform: translateX(200%); }
-.container:has(.btn:nth-of-type(4):focus-visible) .hover { transform: translateX(300%); }
-.container:has(.btn:nth-of-type(5):focus-visible) .hover { transform: translateX(400%); }
-
-/* Color de texto al pasar hover o foco */
-.container:has(.btn:hover) .btn:hover,
-.container:has(.btn:focus-visible) .btn:focus-visible { 
-  color: #000; 
+/* Mobile: botones a ancho completo */
+@media (max-width: 767px) {
+  .btn {
+    flex: 1 1 100%;
+    text-align: left;
+  }
 }
-
-.outline { position: absolute; inset: 0; pointer-events: none; }
-.rect { fill:transparent; }
 
 

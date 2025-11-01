@@ -26,6 +26,7 @@ export class AdminComponent implements OnInit {
   newClassName: string = '';
   newClassDate: string = '';   // Día 1 (texto: 'Lunes', etc.)
   newClassDate2: string = '';  // Día 2 (opcional)
+  newClassDate3: string = '';  // Día 3 (opcional)
   newClassTime: string = '';   // Horario 1 (requerido)
   newClassTime2: string = '';  // Horario 2 (opcional)
   profesorName: string = '';
@@ -66,9 +67,10 @@ export class AdminComponent implements OnInit {
   async addClassInSpecificTime(clase: string, hora: string, dia: number, profesorName: string) {
     const existente = await this.hourService.checkSlot(hora, dia);
     if (existente) {
-      alert(`Ya existe "${existente.nombre_clase}" el ${this.newClassDate} a las ${existente.horario}.`);
+      alert(`Ya existe "${existente.nombre_clase}" el ${this.dias[dia - 1]} a las ${existente.horario}.`);
       return;
     }
+
     try {
       await this.hourService.addSchedule(clase, hora, dia, profesorName);
       alert(`Clase "${clase}" agregada correctamente el día ${this.dias[dia - 1]} a las ${hora} ✅`);
@@ -80,65 +82,138 @@ export class AdminComponent implements OnInit {
 
   async addSlot() {
     const dia1 = this.dayToNumber(this.newClassDate);
+
     if (!this.newClassName || !dia1 || !this.newClassTime) {
       alert('Completá al menos: Clase, Día 1 y Horario 1.');
       return;
     }
 
-    const haySegundoDia = !!this.newClassDate2?.trim();
-    const haySegundoHorario = !!this.newClassTime2?.trim();
+    const haySegundoDia   = !!this.newClassDate2?.trim();
+    const hayTercerDia    = !!this.newClassDate3?.trim();
+    const haySegundaHora  = !!this.newClassTime2?.trim();
 
-    const dia2 = haySegundoDia ? this.dayToNumber(this.newClassDate2) : dia1;
+    const dia2 = haySegundoDia ? this.dayToNumber(this.newClassDate2) : 0;
+    const dia3 = hayTercerDia  ? this.dayToNumber(this.newClassDate3) : 0;
+
     if (haySegundoDia && !dia2) {
       alert('El segundo día no es válido.');
       return;
     }
+    if (hayTercerDia && !dia3) {
+      alert('El tercer día no es válido.');
+      return;
+    }
+
+    // Días seleccionados (únicos, válidos)
+    const diasSeleccionados = [dia1, dia2, dia3].filter(d => d > 0);
+    const diasUnicos = Array.from(new Set(diasSeleccionados)); // evita duplicados
 
     const prof1 = this.profesorName;
-    const prof2 = this.getProfessorForSecond();
+    const prof2 = this.getProfessorForSecond(); // para días que no son el primero
 
-    // Construyo las combinaciones según el caso
     type Slot = { dia: number; hora: string; prof: string };
     const slots: Slot[] = [];
 
-    if (haySegundoDia && haySegundoHorario) {
-      // Caso 3: 2º día y 2º horario
-      slots.push({ dia: dia1, hora: this.newClassTime, prof: prof1 });
-      slots.push({ dia: dia2, hora: this.newClassTime2, prof: prof2 });
-    } else if (haySegundoDia && !haySegundoHorario) {
-      // Caso 2: 2º día, mismo horario
-      slots.push({ dia: dia1, hora: this.newClassTime, prof: prof1 });
-      slots.push({ dia: dia2, hora: this.newClassTime, prof: prof2 });
-    } else if (!haySegundoDia && haySegundoHorario) {
-      // Caso 1: mismo día, 2º horario
-      slots.push({ dia: dia1, hora: this.newClassTime, prof: prof1 });
-      slots.push({ dia: dia1, hora: this.newClassTime2, prof: prof1 });
-    } else {
-      // Solo un slot
-      slots.push({ dia: dia1, hora: this.newClassTime, prof: prof1 });
-    }
+    diasUnicos.forEach((d, idx) => {
+      const prof = idx === 0 ? prof1 : prof2;
+      // Hora obligatoria
+      slots.push({ dia: d, hora: this.newClassTime,  prof });
+      // Hora opcional: si viene, la agregamos también para cada día
+      if (haySegundaHora) {
+        slots.push({ dia: d, hora: this.newClassTime2, prof });
+      }
+    });
 
-    // Creo los slots en serie (con await) para respetar validaciones de checkSlot
+    // Crear en serie para respetar checkSlot
     for (const s of slots) {
       await this.addClassInSpecificTime(this.newClassName, s.hora, s.dia, s.prof);
     }
   }
 
   async removeSlot() {
-    const dia = this.dayToNumber(this.newClassDate);
-    const existente = await this.hourService.checkSlot(this.newClassTime, dia);
+    const dia1 = this.dayToNumber(this.newClassDate);
 
-    if (!existente) {
-      alert('No existe la clase especificada en ese horario');
+    // Validaciones mínimas
+    if (!this.newClassName || !dia1 || !this.newClassTime) {
+      alert('Completá al menos: Clase, Día 1 y Horario 1 para eliminar.');
       return;
     }
-    try {
-      await this.hourService.deleteSchedule(this.newClassName, this.newClassTime, dia);
-      alert('Se realizó exitosamente la eliminación ✅');
-    } catch (err) {
-      console.error('Error eliminando una clase', err);
+
+    // Parseo días opcionales
+    const dias: number[] = [dia1];
+
+    if (this.newClassDate2?.trim()) {
+      const d2 = this.dayToNumber(this.newClassDate2);
+      if (!d2) {
+        alert('El segundo día no es válido.');
+        return;
+      }
+      dias.push(d2);
     }
+
+    if (this.newClassDate3?.trim()) {
+      const d3 = this.dayToNumber(this.newClassDate3);
+      if (!d3) {
+        alert('El tercer día no es válido.');
+        return;
+      }
+      dias.push(d3);
+    }
+
+    const diasUnicos = Array.from(new Set(dias));
+
+    // Horas: obligatoria y opcional
+    const horas: string[] = [this.newClassTime];
+    if (this.newClassTime2?.trim()) {
+      horas.push(this.newClassTime2.trim());
+    }
+
+    type Target = { dia: number; hora: string };
+    const objetivos: Target[] = [];
+    for (const d of diasUnicos) {
+      for (const h of horas) {
+        objetivos.push({ dia: d, hora: h });
+      }
+    }
+
+    let ok = 0;
+    const notFound: Target[] = [];
+    const errors: Target[] = [];
+
+    for (const obj of objetivos) {
+      try {
+        const existente = await this.hourService.checkSlot(obj.hora, obj.dia);
+
+        // Si no hay slot, o es de otra clase, lo marcamos como "no encontrado"
+        if (!existente || existente.nombre_clase !== this.newClassName) {
+          notFound.push(obj);
+          continue;
+        }
+
+        await this.hourService.deleteSchedule(this.newClassName, obj.hora, obj.dia);
+        ok++;
+      } catch (e) {
+        console.error('Error eliminando slot', obj, e);
+        errors.push(obj);
+      }
+    }
+
+    // Mensaje consolidado
+    const fmt = (t: Target) => `${this.dias[t.dia - 1]} ${t.hora}`;
+    let msg = '';
+
+    if (ok > 0) msg += `✅ Eliminados ${ok} slot(s).\n`;
+    if (notFound.length) {
+      msg += `⚠️ No se encontró(n) (o la clase no coincide) en:\n- ` + notFound.map(fmt).join('\n- ') + '\n';
+    }
+    if (errors.length) {
+      msg += `❌ Errores al eliminar en:\n- ` + errors.map(fmt).join('\n- ') + '\n';
+    }
+    if (!msg) msg = 'No hubo acciones.';
+
+    alert(msg.trim());
   }
+
 }
 
   

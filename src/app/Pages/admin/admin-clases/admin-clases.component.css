@@ -4,7 +4,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #c5ffa3;
+  background-color: #43851c;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,7 +22,8 @@ label {
 }
 
 #aclaracion{
-  font-size: 70%;
+  font-size: 100%;
+  font-weight: 500;
 }
 
 .input{
