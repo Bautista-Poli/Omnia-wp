@@ -25,12 +25,30 @@
   background-color: white;
 }
 
+/* --- NUEVOS ESTILOS PARA ALINEAR EL '+' Y EL NÚMERO --- */
+.counter-display {
+  display: flex; /* Usa Flexbox para alinear el '+' y el número horizontalmente */
+  justify-content: center; /* Centra el grupo horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  margin: 10px 0; /* Mantiene el espacio vertical que antes tenía .counter */
+}
+
+.plus-sign {
+  font-size: 32px; /* Mismo tamaño que .counter */
+  font-weight: bold; /* Mismo peso que .counter */
+  color: #fff; /* Mismo color que .counter */
+  margin-right: 5px; /* Pequeño espacio entre el '+' y el número */
+}
+/* ---------------------------------------------------- */
+
 .counter {
   font-size: 32px;
   font-weight: bold;
   color: #fff;
-  display: block;
-  margin: 10px 0;
+  /* Cambios: Se usa inline-block y se quita el margin,
+     ya que el alineamiento y margen vertical los maneja .counter-display */
+  display: inline-block; 
+  margin: 0; 
 }
 
 .counter-label {
