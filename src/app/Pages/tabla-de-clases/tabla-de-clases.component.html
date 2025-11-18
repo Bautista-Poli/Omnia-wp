@@ -1,11 +1,12 @@
-<!-- CONTENEDOR -->
-<div class="schedule-wrap">
+<div class="loading-overlay" *ngIf="isLoading">
+  <animacion-carga/>
+</div>
 
-  <!-- Título -->
+<div class="schedule-wrap" *ngIf="!isLoading">
+
   <div class="schedule-box">
     <div class="schedule-title">{{ 'Activities.Title' | translate }}</div>
 
-    <!-- Tabla -->
     <table #tableEl class="schedule">
       <colgroup>
         <col class="col-hora">

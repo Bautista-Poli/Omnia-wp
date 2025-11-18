@@ -1,0 +1,28 @@
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px; /* Aumentamos el padding para hacerlo visualmente más grande */
+}
+
+.spinner-icon {
+  border: 10px solid #f3f3f3; /* Hacemos el borde más grueso */
+  border-top: 10px solid rgb(253, 91, 16); /* Color Naranja */
+  border-radius: 50%;
+  width: 90px; /* Aumentamos el tamaño */
+  height: 90px; /* Aumentamos el tamaño */
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+.loading-text {
+  color: rgb(253, 91, 16); /* Color Naranja para el texto */
+  font-size: 1.5em; /* Hacemos el texto más grande */
+  margin: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

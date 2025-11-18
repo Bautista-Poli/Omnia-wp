@@ -5,13 +5,15 @@ import { NgFor, NgIf } from '@angular/common';
 import { TableService } from '../service/table.service';
 import { ClassCell } from '../service/hour.class';
 import { TranslateModule} from '@ngx-translate/core';
+import { AnimacionCargaComponent } from './animacion-carga/animacion-carga.component';
+
 
 type ExpandedRow = { hora: string; clases: (ClassCell | null)[] };
 
 @Component({
   selector: 'tabla-de-clases',
   standalone: true,
-  imports: [RouterModule, NgFor, NgIf,TranslateModule],
+  imports: [RouterModule, NgFor, NgIf, TranslateModule, AnimacionCargaComponent],
   templateUrl: './tabla-de-clases.component.html',
   styleUrls: ['./tabla-de-clases.component.css'],
 })
@@ -19,7 +21,8 @@ type ExpandedRow = { hora: string; clases: (ClassCell | null)[] };
 export class TablaDeClasesComponent implements OnInit {
   programa = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sabado'];
 
-  // filas base: cada celda (día) puede tener 0..N clases
+  isLoading: boolean = true; 
+
   rows: Array<{ hora: string; clases: ClassCell[][] }> = [];
 
   availableClasses: string[] = [];
@@ -32,8 +35,15 @@ export class TablaDeClasesComponent implements OnInit {
 
   async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.rows = await this.tableService.getRows();
-      this.availableClasses = this.extractClassNames(this.rows);
+      this.isLoading = true; // Inicia la carga
+      try {
+        this.rows = await this.tableService.getRows();
+        this.availableClasses = this.extractClassNames(this.rows);
+      } catch (error) {
+        console.error('Error al cargar las clases:', error);
+      } finally {
+        this.isLoading = false; // Finaliza la carga
+      }
     }
   }
 
@@ -52,8 +62,8 @@ export class TablaDeClasesComponent implements OnInit {
 
   /**
    * Expande cada hora en tantas subfilas como clases paralelas haya.
-   *  - Cada celda contiene como máximo 1 clase (o null si no hay).
-   *  - Si a las 19:00 hay GAP y YOGA en algún día, esa hora aparece 2 veces.
+   * - Cada celda contiene como máximo 1 clase (o null si no hay).
+   * - Si a las 19:00 hay GAP y YOGA en algún día, esa hora aparece 2 veces.
    */
   get expandedRows(): ExpandedRow[] {
     const base = this.displayedRows;
@@ -69,18 +79,13 @@ export class TablaDeClasesComponent implements OnInit {
       }
     }
 
-    // Si querés ocultar filas 100% vacías tras un filtro, descomentá:
-    // return out.filter(row => row.clases.some(c => !!c));
-
     return out;
   }
 
-  /** Alterna el filtro; si volvés a tocar el mismo, se desactiva */
   toggleFilter(name: string | null) {
     this.selectedClass = (name === this.selectedClass) ? null : name;
   }
 
-  /** Lista única de nombres de clase (ordenada) */
   private extractClassNames(rows: Array<{ hora: string; clases: ClassCell[][] }>): string[] {
     const set = new Set<string>();
     for (const r of rows) {
@@ -98,9 +103,8 @@ export class TablaDeClasesComponent implements OnInit {
   // trackBys
   trackByRow = (i: number) => i;     // para expandedRows
   trackByIdx = (i: number) => i;     // para columnas (días)
+  
   //PDF
-
-
   @ViewChild('tableEl', { static: false }) private tableEl!: ElementRef<HTMLTableElement>;
   creatingPdf = false;
 
@@ -117,24 +121,8 @@ export class TablaDeClasesComponent implements OnInit {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
-      
     } finally {
       this.creatingPdf = false;
     }
   }
-
-
 }
-
-// --- Opción B (alternativa, por si querés forzar "attachment"): ---
-      // const res = await fetch(url);
-      // const blob = await res.blob();
-      // const objectUrl = URL.createObjectURL(blob);
-      // const a = document.createElement('a');
-      // a.href = objectUrl;
-      // a.download = 'horariosOmnia.pdf';
-      // document.body.appendChild(a);
-      // a.click();
-      // document.body.removeChild(a);
-      // URL.revokeObjectURL(objectUrl);

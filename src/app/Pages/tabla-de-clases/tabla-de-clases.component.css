@@ -109,6 +109,18 @@ tbody td.has-class{ background: transparent; color:  var(--c-text) }
   font-weight:700;
 }
 
+
+
+.loading-overlay {
+  /* Estas propiedades ya centran el contenido */
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  
+  min-height: 90vh; /* Usa una porción de la altura de la vista */
+  width: 100%;
+}
+
 /*-------------------------*/
 /* Mobile */
 /*-------------------------*/
