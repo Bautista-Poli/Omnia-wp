@@ -1,20 +1,24 @@
-/* Contenedor general, centra y limita ancho */
-.schedule-wrap{
+/* =========================================
+   SCHEDULE WRAP
+   ========================================= */
+.schedule-wrap {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-/* Caja que une título + tabla con bordes redondeados */
-.schedule-box{
+/* =========================================
+   SCHEDULE BOX
+   ========================================= */
+.schedule-box {
   border: 2px solid var(--c-accent);
   border-radius: 26px;
-  overflow: hidden;               /* redondea esquinas de la tabla */
+  overflow: hidden;
   background: var(--c-bg);
   margin-top: 10px;
 }
 
-/* Título grande estilo banner */
-.schedule-title{
+.schedule-title {
   background: var(--c-accent);
   color: var(--c-bg);
   text-transform: uppercase;
@@ -24,154 +28,217 @@
   text-align: center;
   line-height: 1;
   padding: .4em .6em;
-  font-size: clamp(2rem, 6vw, 3rem);   /* responsivo */
+  font-size: clamp(1.6rem, 6vw, 3rem);
 }
 
-/* Tu tabla tal cual, solo sin borde exterior extra */
-table.schedule{
+/* =========================================
+   SCROLL HORIZONTAL
+   ========================================= */
+.table-scroll {
   width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-hint {
+  display: none;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--c-accent);
+  padding: .4rem 0 .2rem;
+  opacity: .8;
+  letter-spacing: .04em;
+}
+
+/* =========================================
+   TABLA
+   ========================================= */
+table.schedule {
+  width: 100%;
+  min-width: 560px;
   border-collapse: collapse;
-  table-layout: fixed;
+  /* ✅ auto: cada columna toma el ancho que necesita su contenido */
+  table-layout: auto;
   background: var(--c-bg);
 }
 
+.col-hora { width: 64px; }
+.col-dia  { width: auto; }
 
-
-/* Encabezados y celdas (ya usando variables) */
-thead th{
+/* Encabezados */
+thead th {
   border: 2px solid var(--c-accent);
-  background-color: white !important;
+  background-color: white;
   color: var(--c-bg);
-  text-align:center;
-  padding: 6px;
+  text-align: center;
+  padding: 8px 6px;
+  font-size: .9rem;
+  font-weight: 700;
+  white-space: nowrap; /* ✅ días en una línea */
 }
 
-tbody td{
+thead th:first-child {
+  background: transparent;
+}
+
+/* Celdas */
+tbody td {
   border: 2px solid var(--c-accent);
   color: var(--c-text);
-  text-align:center; vertical-align: middle;
-  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 15px 6px;
+  font-size: .9rem;
+  /* ✅ salto entre palabras OK, nunca parte una palabra */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
-tbody td.hora, thead th:first-child{
+tbody td.hora,
+thead th:first-child {
   background: transparent;
   color: var(--c-accent);
-  font-weight:700;
-  font-size: 150%;
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
-tbody td.has-class{ background: transparent; color:  var(--c-text) }
-
-/* Link rellena la celda */
-.cell-link{
-  display:flex; align-items:center; justify-content:center;
-  width:100%; height:100%;
-  text-decoration:none; color:inherit; background:transparent; border:0;
-
-  color: transparent;
+tbody td.has-class {
+  background: transparent;
+  color: var(--c-text);
 }
 
-/* Texto: 1–2 líneas */
-.cell-link .txt{
-  max-width:120%;
-  overflow:hidden; text-overflow:ellipsis; word-break:break-word;
-  display:-webkit-box; -webkit-box-orient:vertical;
-  line-height:1.25;
-  font-weight: 400;
-  font-size: 110%;
+/* Links */
+.cell-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: 0;
+}
+
+.cell-link .txt {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: 500;
+  font-size: .95rem;
   color: white;
 }
 
-/*-------------------------*/
-/* FILTROS (abajo) */
-/*-------------------------*/
-
-.filters{
-  display:flex; flex-wrap:wrap; gap:.5rem;
-  justify-content:center;
-  margin-top: 1rem;         /* estaba margin-bottom en tu versión */
+/* =========================================
+   FILTROS
+   ========================================= */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-.filter-btn{
-  padding:.4rem .8rem;
-  border-radius:99px;
-  border:2px solid var(--c-bg);
+.filter-btn {
+  padding: .4rem .9rem;
+  border-radius: 99px;
+  border: 2px solid var(--c-bg);
   background: var(--c-accent);
-  cursor:pointer;
-  font-size:.9rem;
-  font-weight:600;
+  cursor: pointer;
+  font-size: .9rem;
+  font-weight: 600;
   color: var(--c-bg);
+  transition: box-shadow .15s ease;
 }
 
-.filter-btn.active{
+.filter-btn.active {
   border-color: var(--c-white);
   box-shadow: 0 0 0 2px rgba(255 255 255 / 0.15);
-  font-weight:700;
+  font-weight: 700;
 }
 
-
-
+/* =========================================
+   LOADING
+   ========================================= */
 .loading-overlay {
-  /* Estas propiedades ya centran el contenido */
   display: flex;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
-  
-  min-height: 90vh; /* Usa una porción de la altura de la vista */
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
   width: 100%;
 }
 
-/*-------------------------*/
-/* Mobile */
-/*-------------------------*/
-@media (max-width: 768px){
+/* =========================================
+   MOBILE (≤ 600px)
+   ========================================= */
+@media (max-width: 600px) {
 
-  .schedule-title{
-    letter-spacing: .06em;
-    padding: .5em .6em;
-  }
-  
-
-  table{ width: 50vh; }
-
-  th, td{
-    border: 0.5px solid var(--c-accent);
-    padding: 1px;
-    color: var(--c-text);
-    text-align: center;
+  .schedule-wrap {
+    padding: 0 .25rem;
   }
 
-  tbody td{
-    border: 2px solid var(--c-accent);
-    color: var(--c-text);
-    text-align:center; vertical-align: middle;
-    width: 140%;
-    padding: 1px;
+  .scroll-hint {
+    display: block;
   }
 
-  th{ font-size: 50%; }
-  td{ padding: 0; }
-
-  .hora{ padding:5px; font-size: 60%; }
-  tbody td.hora, thead th:first-child{
-    font-size: 60%;
+  table.schedule {
+    min-width: 620px;
   }
 
-  .cell-link{ font-weight:500; font-size:50%; }
+  .col-hora { width: 52px; }
 
-  .filters{
-    justify-content:center;
-    margin: 12px 0 0;
+  thead th {
+    font-size: .8rem;
+    padding: 6px 4px;
   }
 
-  .filter-btn{
-    font-size:.7rem;
+  tbody td {
+    padding: 7px 4px;
+    font-size: .82rem;
   }
 
-  .cell-link{
-    display:block; width:100%; height:100%;
-    margin:-20px; padding-left:20px; padding-top:27px; padding-bottom:25px;
-    text-decoration:none; color:inherit; font-weight:600; border:0; background:transparent;
+  tbody td.hora,
+  thead th:first-child {
+    font-size: .82rem;
+  }
+
+  .cell-link .txt {
+    font-size: .82rem;
+  }
+
+  .filters {
+    margin: .75rem 0 0;
+    gap: .35rem;
+  }
+
+  .filter-btn {
+    font-size: .75rem;
+    padding: .35rem .7rem;
+  }
+}
+
+/* =========================================
+   TABLET (601px – 768px)
+   ========================================= */
+@media (min-width: 601px) and (max-width: 768px) {
+
+  .col-hora { width: 62px; }
+
+  thead th {
+    font-size: .85rem;
+    padding: 7px 4px;
+  }
+
+  tbody td {
+    padding: 8px 4px;
+    font-size: .87rem;
   }
 }
 

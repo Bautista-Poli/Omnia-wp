@@ -35,21 +35,21 @@ export class ReseñasComponent {
       quoteKeys: [
         'reviews.q1'
       ],
-      imgUrl: '../../assets/Inicio/usuario1.png'
+      imgUrl: '../../assets/Inicio/usuario1.webp'
     },
     {
       nameKey: 'Any Clari',
       quoteKeys: [
         'reviews.q2'
       ],
-      imgUrl: '../../assets/Inicio/usuario2.png'
+      imgUrl: '../../assets/Inicio/usuario2.webp'
     },
     {
       nameKey: 'Alejandro León',
       quoteKeys: [
         'reviews.q3'
       ],
-      imgUrl: '../../assets/Inicio/usuario3.png'
+      imgUrl: '../../assets/Inicio/usuario3.webp'
     }
   ];
 }

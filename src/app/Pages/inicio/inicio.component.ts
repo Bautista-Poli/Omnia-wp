@@ -1,7 +1,6 @@
 // inicio.component.ts
 import { Component } from '@angular/core';
 import {CantidadUsuariosComponent} from '../InicioComponentes/cantidad-usuarios/cantidad-usuarios.component';
-import { LinksToAppComponent } from '../InicioComponentes/LinksToApp/install-links-to-app.component';
 import { PhotoDisplayerComponent } from '../InicioComponentes/photo-displayer/photo-displayer.component';
 import { HeaderComponent } from '../Components/header/header.component';
 import { CommonModule } from '@angular/common';
@@ -18,7 +17,6 @@ import { TranslateModule} from '@ngx-translate/core';
     HeaderComponent,
     FooterComponent,
     CantidadUsuariosComponent,
-    LinksToAppComponent,
     TablaDeClasesComponent,
     PhotoDisplayerComponent,
     CommonModule,

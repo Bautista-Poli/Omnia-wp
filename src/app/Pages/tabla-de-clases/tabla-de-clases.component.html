@@ -7,45 +7,53 @@
   <div class="schedule-box">
     <div class="schedule-title">{{ 'Activities.Title' | translate }}</div>
 
-    <table #tableEl class="schedule">
-      <colgroup>
-        <col class="col-hora">
-        <ng-container *ngFor="let _ of programa">
-          <col class="col-dia">
-        </ng-container>
-      </colgroup>
+    <!-- Hint visible solo en mobile -->
+    <p class="scroll-hint">← deslizá para ver todos los días →</p>
 
-      <thead>
-        <tr>
-          <th></th>
-          <th *ngFor="let day of programa">{{ day }}</th>
-        </tr>
-      </thead>
+    <!-- ✅ Wrapper que habilita el scroll horizontal -->
+    <div class="table-scroll">
+      <table #tableEl class="schedule">
+        <colgroup>
+          <col class="col-hora">
+          <ng-container *ngFor="let _ of programa">
+            <col class="col-dia">
+          </ng-container>
+        </colgroup>
 
-      <tbody>
-        <tr *ngFor="let row of expandedRows; trackBy: trackByRow">
-          <td class="hora">{{ row.hora }}</td>
+        <thead>
+          <tr>
+            <th></th>
+            <th *ngFor="let day of programa">{{ day }}</th>
+          </tr>
+        </thead>
 
-          <td *ngFor="let c of row.clases; trackBy: trackByIdx"
-              [class.has-class]="!!c">
+        <tbody>
+          <tr *ngFor="let row of expandedRows; trackBy: trackByRow">
+            <td class="hora">{{ row.hora }}</td>
 
-            <ng-container *ngIf="c as cls; else emptyCell">
-              <a class="cell-link"
-                 [routerLink]="['/class', cls.name!]"
-                 [queryParams]="{ profesorId: cls.profesorId }"
-                 [attr.aria-label]="'Abrir ' + cls.name">
-                <span class="txt">{{ cls.name }}</span>
-              </a>
-            </ng-container>
+            <td *ngFor="let c of row.clases; trackBy: trackByIdx"
+                [class.has-class]="!!c">
 
-            <ng-template #emptyCell></ng-template>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <ng-container *ngIf="c as cls; else emptyCell">
+                <a class="cell-link"
+                   [routerLink]="['/class', cls.name!]"
+                   [queryParams]="{ profesorId: cls.profesorId }"
+                   [attr.aria-label]="'Abrir ' + cls.name">
+                  <span class="txt">{{ cls.name }}</span>
+                </a>
+              </ng-container>
+
+              <ng-template #emptyCell></ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /table-scroll -->
+
   </div>
 
-  <!-- Filtros (ahora ABAJO) -->
+  <!-- Filtros -->
   <div class="filters">
     <button type="button"
             class="filter-btn"
@@ -62,4 +70,5 @@
       {{ name }}
     </button>
   </div>
+
 </div>
