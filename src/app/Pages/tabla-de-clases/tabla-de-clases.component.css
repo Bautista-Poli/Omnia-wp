@@ -1,21 +1,53 @@
-/* =========================================
-   SCHEDULE WRAP
-   ========================================= */
+
 .schedule-wrap {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* =========================================
-   SCHEDULE BOX
-   ========================================= */
 .schedule-box {
   border: 2px solid var(--c-accent);
   border-radius: 26px;
   overflow: hidden;
   background: var(--c-bg);
   margin-top: 10px;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative; /* Importante para el contexto de sticky */
+}
+
+/* 1. Celda superior izquierda vacía (la esquina) */
+thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3; /* Por encima de los otros headers */
+  background: var(--c-bg) !important; /* Evita que se vea lo de abajo al scrollear */
+  border-right: 2px solid var(--c-accent);
+}
+
+/* 2. Columna de Horas en el cuerpo */
+tbody td.hora {
+  position: sticky;
+  left: 0;
+  z-index: 2; /* Por encima de las celdas de clases */
+  background: var(--c-bg); /* Fondo sólido para tapar el contenido que pasa por detrás */
+  border-right: 2px solid var(--c-accent);
+  font-weight: 700;
+}
+
+/* 3. Ajuste para evitar que el borde desaparezca */
+table.schedule {
+  border-collapse: separate; /* Cambiar a separate para que sticky funcione mejor con bordes */
+  border-spacing: 0;
+}
+
+/* Si usas border-collapse: separate, hay que replicar los bordes manualmente */
+thead th, tbody td {
+  border: 1px solid var(--c-accent);
 }
 
 .schedule-title {
@@ -29,15 +61,6 @@
   line-height: 1;
   padding: .4em .6em;
   font-size: clamp(1.6rem, 6vw, 3rem);
-}
-
-/* =========================================
-   SCROLL HORIZONTAL
-   ========================================= */
-.table-scroll {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .scroll-hint {
@@ -56,8 +79,8 @@
 table.schedule {
   width: 100%;
   min-width: 560px;
-  border-collapse: collapse;
-  /* ✅ auto: cada columna toma el ancho que necesita su contenido */
+  border-collapse: separate; /* Cambiar de collapse a separate es vital para sticky */
+  border-spacing: 0;
   table-layout: auto;
   background: var(--c-bg);
 }
@@ -98,11 +121,15 @@ tbody td {
 
 tbody td.hora,
 thead th:first-child {
-  background: transparent;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: var(--c-bg) !important; /* Cambiado de transparent a fondo sólido */
   color: var(--c-accent);
   font-weight: 700;
   font-size: 1rem;
   white-space: nowrap;
+  border-right: 2px solid var(--c-accent);
 }
 
 tbody td.has-class {
