@@ -1,25 +1,27 @@
-<nav class="nav">
-  <div class="container" #container (mouseleave)="snapToActive()">
-    <button
-      *ngFor="let item of items; let i = index"
-      class="btn"
-      #btnRef
-      [routerLink]="item.link"
-      routerLinkActive="active"
-      (mouseenter)="moveIndicator(i)"
-      (focus)="moveIndicator(i)"
-      (click)="setActive(i)"
-    >
-      {{ item.label }}
-    </button>
+<nav class="admin-nav">
+  <div class="nav-container">
+    <div *ngFor="let item of items; let i = index" class="nav-group">
+      <button
+        class="nav-btn"
+        [routerLink]="item.link"
+        routerLinkActive="active-link"
+        (click)="setActive(i)"
+      >
+        <span class="icon">{{ item.icon }}</span>
+        <span class="label">{{ item.label }}</span>
+      </button>
+    </div>
+  </div>
 
-    <!-- Indicador -->
-    <div class="indicator" #indicator></div>
-
-    <!-- Borde exterior opcional -->
-    <svg viewBox="0 0 400 60" class="outline" width="100%" height="60" preserveAspectRatio="none" aria-hidden="true">
-      <rect stroke-width="5" fill="transparent" height="60" width="400" y="0" x="0" class="rect"></rect>
-    </svg>
+  <div class="sub-nav-container" *ngIf="items[activeIndex]?.children">
+    <div class="sub-nav-content">
+      <a *ngFor="let child of items[activeIndex].children"
+         [routerLink]="child.link"
+         routerLinkActive="sub-active"
+         class="sub-btn">
+        {{ child.icon }} {{ child.label }}
+      </a>
+    </div>
   </div>
 </nav>
 

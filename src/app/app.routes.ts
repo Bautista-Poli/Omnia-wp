@@ -3,16 +3,18 @@ import { InicioComponent } from './Pages/inicio/inicio.component';
 import {ReseñasComponent} from './Pages/InicioComponentes/resenias/reseñas.component';
 import { AdminComponent } from './Pages/admin/admin-slot/admin-slot.component'; 
 import { AdminClaseComponent } from './Pages/admin/admin-clases/admin-clases.component'; 
-import { AdminProfesoresComponent } from './Pages/admin/admin-profesores/admin-profesores.component'; 
+import { AdminProfesoresEliminarComponent } from './Pages/admin/admin-profesores/admin-profesor-eliminar/admin-profesor-agregar.component'; 
 import {ComoComenzarComponent} from './Pages/como-comenzar/como-comenzar.component';
 import { NovedadesComponent} from './Pages/Novedades/Novedades.component';
 import {ClassComponent} from './Pages/class/class.component';
 import { UbicacionComponent } from './Pages/ubicacion/ubicacion.component';
 import { IniciarSesionComponent } from './Pages/iniciar-sesion/iniciar-sesion.component';
 import { authGuard } from '../auth.guard';
-import { AdminSetearProfesorComponent } from './Pages/admin/admin-setear-profesor/admin-setear-profesor.component';
 import { RevisarTablaComponent } from './Pages/admin/revisar-tabla/revisar-tabla.component';
 import { MostrarTablaComponent } from './Pages/mostrar-tabla/mostrar-tabla.component';
+import { AdminSlotGridComponent } from './Pages/admin/admin-slot/admin-slot-grid/admin-slot-grid.component';
+import { AdminProfesoresAgregarComponent } from './Pages/admin/admin-profesores/admin-profesor-agregar/admin-profesores-grid.component';
+import { AdminClaseAgregarComponent } from './Pages/admin/admin-clases/admin-clases-agregar/admin-clases-agregar.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent
@@ -23,9 +25,11 @@ export const routes: Routes = [
     },{ path: 'iniciar-sesion', component: IniciarSesionComponent 
     },{ path: 'admin', component: AdminComponent, canActivate: [authGuard] 
     },{ path: 'admin-clases', component: AdminClaseComponent, canActivate: [authGuard] 
+    },{ path: 'admin-clases-agregar', component: AdminClaseAgregarComponent, canActivate: [authGuard] 
+    },{path: 'admin-profesor-eliminar', component: AdminProfesoresEliminarComponent, canActivate: [authGuard]
+    },{path: 'admin-profesor-agregar', component: AdminProfesoresAgregarComponent, canActivate: [authGuard]
+    },{path: 'admin-slot-grid', component: AdminSlotGridComponent, canActivate: [authGuard]
     },{path: 'ubicacion', component: UbicacionComponent
-    },{path: 'admin-profesores', component: AdminProfesoresComponent, canActivate: [authGuard]
-    },{path: 'admin-setear-profesor', component: AdminSetearProfesorComponent, canActivate: [authGuard]   
     },{ path: 'revisar-tabla', component: RevisarTablaComponent, canActivate: [authGuard] 
     }
     ,{

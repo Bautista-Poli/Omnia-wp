@@ -1,102 +1,73 @@
-import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
-import { NgFor } from '@angular/common'; 
-import { AuthService } from '../../service/auth.service';
-import { ClassService } from '../../service/Adds/addClass.service';
-import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
+import { Component, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { ProfesorService } from '../../service/Adds/addProfesor.service';
+import { ClaseListItem, ClassService } from '../../service/Adds/addClass.service';
+import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 
 @Component({
-  selector: 'app-admin',
+  selector: 'admin-clases-eliminar',
   standalone: true,
-  imports: [
-    FormsModule,
-    NgFor,
-    MenuAdminComponent,
-    MatIconModule
-  ],
+  imports: [NgFor, NgIf, MatIconModule, MenuAdminComponent],
   templateUrl: './admin-clases.component.html',
-  styleUrl: './admin-clases.component.css'
+  styleUrl: './admin-clases.component.css',
 })
-export class AdminClaseComponent {
-  selectedFile?: File;
-  newClassName: string = "";
-  newClassDescription: string = "";
-  eliminateClass: string = "";
-  classes: string[] = []
-  constructor(
-        private router: Router,
-        private auth: AuthService,
-        private classService: ClassService,
-      ) {}
+
+export class AdminClaseComponent implements OnInit {
+  clases: ClaseListItem[] = [];
+  loadingList = false;
+  deletingId: number | null = null;
+
+  successMsg = '';
+  errorMsg = '';
+
+  constructor(private classService: ClassService) {}
 
   async ngOnInit(): Promise<void> {
-    try {
-      this.classes = await this.classService.getAllClasesNames(); 
-    } catch (err) {
-      console.error('Error cargando nombres de clases:', err);
-      this.classes = [];
-    }
-  }
-  
- 
-    onFile(e: Event) {
-      const input = e.target as HTMLInputElement;
-      if (input.files?.length) {
-        this.selectedFile = input.files[0];
-      }
-    }
-
-  async addClass() {
-    if (!this.newClassName || !this.newClassDescription || !this.selectedFile) {
-      alert('Faltan datos');
-      return;
-    }
-
-    const fd = new FormData();
-    fd.append('name', this.newClassName);
-    fd.append('description', this.newClassDescription);
-    fd.append('photo', this.selectedFile);
-
-    try {
-      await this.classService.addClass(fd);
-      alert('Clase agregada correctamente ✅');
-
-      this.newClassName = '';
-      this.newClassDescription = '';
-      this.selectedFile = undefined;
-    } catch (err) {
-      alert('Error al conectar con el servidor');
-      console.error(err);
-    }
-  }
-      
-    async logOut() {
-      await this.auth.logout().catch(() => {});
-      this.router.navigate(['/inicio']);
-    }
-  
-  
-    async removeClass(){
-    
-    try {
-      const resp = await this.classService.deleteClass(this.eliminateClass)
-      if (resp?.ok) {
-        alert('Se realizó exitosamente la eliminación');
-        // Actualizá la lista local (si la tenés en memoria)
-        this.classes = this.classes.filter(n => n !== this.eliminateClass);
-        this.eliminateClass = '';
-      } else {
-        alert('No se pudo eliminar (respuesta inesperada)');
-      }
-    } catch (err) {
-      console.error('Error eliminando una clase', err);
-    }
-      
+    await this.reloadClases();
   }
 
-  
+  async reloadClases() {
+    this.loadingList = true;
+    this.successMsg = '';
+    this.errorMsg = '';
+    try {
+      this.clases = await this.classService.getAllClases();
+    } catch {
+      this.errorMsg = 'Error cargando clases.';
+      setTimeout(() => (this.errorMsg = ''), 3000);
+    } finally {
+      this.loadingList = false;
+    }
+  }
 
+  async removeClase(c: ClaseListItem) {
+    if (!confirm(`¿Eliminar "${c.name}"?`)) return;
+
+    this.deletingId = c.id;
+    this.successMsg = '';
+    this.errorMsg = '';
+
+    try {
+      // ✅ si ya agregaste DELETE /classes/:id (ideal)
+      await this.classService.deleteClassById(c.id);
+
+      // Si todavía no lo tenés, usá temporalmente:
+      // await this.classService.deleteClassByName(c.nombre);
+
+      this.clases = this.clases.filter(x => x.id !== c.id);
+      this.successMsg = `"${c.name}" eliminada.`;
+      setTimeout(() => (this.successMsg = ''), 3000);
+    } catch {
+      this.errorMsg = 'Error al eliminar la clase.';
+      setTimeout(() => (this.errorMsg = ''), 3000);
+    } finally {
+      this.deletingId = null;
+    }
+  }
+
+  onImgError(e: Event) {
+    const img = e.target as HTMLImageElement;
+    img.src = 'assets/class-placeholder.png';
+  }
 }
+

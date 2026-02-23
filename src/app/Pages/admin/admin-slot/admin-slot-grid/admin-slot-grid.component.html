@@ -1,0 +1,49 @@
+<menu-admin></menu-admin>
+
+<div class="admin-grid-box">
+
+  @if (isGridLoading) {
+    <div class="grid-loading">
+      Cargando grilla...
+    </div>
+  } @else {
+
+    <div class="table-scroll">
+      <table class="admin-schedule">
+        <thead>
+          <tr>
+            <th></th>
+            <th *ngFor="let dia of scheduleDias">{{ dia }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let hora of scheduleHoras; let hIdx = index">
+            <td class="hora">{{ hora }}</td>
+
+            <td *ngFor="let cell of adminGrid[hIdx]; let dIdx = index"
+                class="cell"
+                [class.has-class]="cell">
+
+              @if (cell) {
+                <div class="cell-content">
+                  {{ cell.nombre_clase }}
+
+                  <button class="delete-slot"
+                          (click)="onDeleteFromGrid($event, cell)">
+                    ✕
+                  </button>
+                </div>
+              }
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  }
+
+</div>
+
+

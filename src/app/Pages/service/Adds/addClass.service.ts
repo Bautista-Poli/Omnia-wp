@@ -1,35 +1,60 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { Class } from '../../interface/data.interface';
+import { environment } from '../../../../environments/environment.prod';
+
+export type ClaseListItem = { id: number; name: string; src: string };
 
 @Injectable({ providedIn: 'root' })
 export class ClassService {
-constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private http: HttpClient) {}
 
-    async getAllClasesNames(): Promise<string[]> {
-        const url = `${environment.apiUrl}/classes/names`;
-        const res = await fetch(url, { credentials: 'include' }); // quitalo si no usás cookies
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        return Array.isArray(data) ? data as string[] : [];
+  async findClassByName(className: string): Promise<Class | null> {
+    const name = encodeURIComponent(className.trim());
+    const url = `${environment.apiUrl}/classes/${name}`;
+
+    try {
+      return await firstValueFrom(this.http.get<Class>(url));
+    } catch (err) {
+      if (err instanceof HttpErrorResponse && err.status === 404) return null;
+      throw err;
     }
+  }
 
-    async addClass(fd: any): Promise<any> {
-        await fetch(`${environment.apiUrl}/upload-class`, {
-            method: 'POST',
-            body: fd
-        });
-        
-    }
+  async getAllClasesNames(): Promise<string[]> {
+    return await firstValueFrom(
+      this.http.get<string[]>(`${environment.apiUrl}/classes/names`, { withCredentials: true })
+    );
+  }
 
-    async deleteClass(nombre:string): Promise<any> {
-        console.log(nombre)
-        const res = await fetch(`${environment.apiUrl}/class`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre })
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-    }
+  // ✅ NUEVO: lista para cards (id, nombre, src)
+  async getAllClases(): Promise<ClaseListItem[]> {
+    return await firstValueFrom(
+      this.http.get<ClaseListItem[]>(`${environment.apiUrl}/classes`, { withCredentials: true })
+    );
+  }
 
+  async addClass(fd: FormData): Promise<any> {
+    return await firstValueFrom(
+      this.http.post(`${environment.apiUrl}/upload-class`, fd, { withCredentials: true })
+    );
+  }
+
+  // ⚠️ Mantengo tu delete actual (si tu backend realmente usa /class)
+  async deleteClassByName(nombre: string): Promise<any> {
+    return await firstValueFrom(
+      this.http.delete(`${environment.apiUrl}/class`, {
+        withCredentials: true,
+        body: { nombre }
+      })
+    );
+  }
+
+  // ✅ Recomendado: delete por id (si agregás la ruta)
+  async deleteClassById(id: number): Promise<any> {
+    return await firstValueFrom(
+      this.http.delete(`${environment.apiUrl}/classes/${id}`, { withCredentials: true })
+    );
+  }
 }

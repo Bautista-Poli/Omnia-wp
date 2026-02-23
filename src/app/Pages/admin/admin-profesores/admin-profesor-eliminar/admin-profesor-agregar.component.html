@@ -1,0 +1,42 @@
+<menu-admin></menu-admin>
+
+<div class="gym-class-management">
+  <div id="titulo">
+    <h2>Eliminar Profesores</h2>
+    <mat-icon>assignment_ind</mat-icon>
+  </div>
+
+  @if (successMsg) { <div class="alert success">✓ {{ successMsg }}</div> }
+  @if (errorMsg) { <div class="alert error">✕ {{ errorMsg }}</div> }
+
+  <button type="button" class="btn-secondary" (click)="reloadProfesores()" [disabled]="loadingList || deletingId !== null">
+    ↻ Refrescar lista
+  </button>
+
+  @if (loadingList) {
+    <div class="loading">Cargando profesores...</div>
+  } @else {
+    <div class="prof-grid">
+      <div class="prof-card" *ngFor="let p of profesores">
+        <img class="prof-img" [src]="p.src" [alt]="p.nombre" (error)="onImgError($event)" />
+
+        <div class="prof-info">
+          <div class="prof-name">{{ p.nombre }}</div>
+        </div>
+
+        <button
+          type="button"
+          class="btn-danger prof-del"
+          (click)="removeProfesor(p)"
+          [disabled]="deletingId === p.id">
+          {{ deletingId === p.id ? 'Eliminando...' : 'Eliminar' }}
+        </button>
+      </div>
+    </div>
+
+    @if (!profesores.length) {
+      <div class="empty">No hay profesores cargados.</div>
+    }
+  }
+</div>
+

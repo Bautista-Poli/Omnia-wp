@@ -13,72 +13,54 @@ import { filter } from 'rxjs';
   templateUrl: './menu-admin.component.html',
   styleUrls: ['./menu-admin.component.css'],
 })
-export class MenuAdminComponent implements AfterViewInit {
+export class MenuAdminComponent {
   items = [
-    { label: 'Nueva clase',            link: '/admin-clases' },
-    { label: 'Nuevo profesor',         link: '/admin-profesores' },
-    { label: 'Nuevo slot',             link: '/admin' },
-    { label: 'Setear profesor a slot', link: '/admin-setear-profesor' },
-    { label: 'Revisar la tabla',       link: '/revisar-tabla' },
+    { 
+      label: 'Clases', 
+      icon: '🏫',
+      children: [
+        { label: 'Nueva clase', link: '/admin-clases-agregar', icon: '⚙️' },
+        { label: 'Eliminar clase', link: '/admin-clases', icon: '❌' },
+      ]
+    },
+    { 
+      label: 'Profesores', 
+      icon: '👨‍🏫',
+      children: [
+        { label: 'Nuevo profesor', link: '/admin-profesor-agregar', icon: '⚙️' },
+        { label: 'Eliminar profesor', link: '/admin-profesor-eliminar', icon: '❌' },
+      ]
+    },
+    { 
+      label: 'Gestión Slots', 
+      icon: '⚙️',
+      children: [
+        { label: 'Nuevo slot', link: '/admin', icon: '🕒' },
+        { label: 'Eliminar slot', link: '/admin-slot-grid', icon: '❌' },
+      ]
+    },
+    { label: 'Revisar grilla', link: '/revisar-tabla', icon: '📊' },
   ];
 
   activeIndex = 0;
 
-  @ViewChildren('btnRef') btnRefs!: QueryList<ElementRef<HTMLButtonElement>>;
-  @ViewChild('indicator') indicatorRef!: ElementRef<HTMLDivElement>;
-  @ViewChild('container') containerRef!: ElementRef<HTMLDivElement>;
-
   constructor(private router: Router) {
+    // Solo actualizamos el índice para saber si mostrar el submenú
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => {
-        this.updateActiveByUrl();
-        setTimeout(() => this.snapToActive());
-      });
+      .subscribe(() => this.updateActiveIndex());
   }
 
-  ngAfterViewInit(): void {
-    this.updateActiveByUrl();
-    setTimeout(() => this.snapToActive());
-  }
-
-  private updateActiveByUrl() {
-    const url = this.router.url.split('?')[0];
-    const idx = this.items.findIndex(it => url.startsWith(it.link));
+  private updateActiveIndex() {
+    const url = this.router.url;
+    const idx = this.items.findIndex(it => 
+      (it.link && url.includes(it.link)) || 
+      (it.children?.some(c => url.includes(c.link)))
+    );
     if (idx >= 0) this.activeIndex = idx;
-  }
-
-  moveIndicator(i: number) {
-    this.positionIndicator(i);
   }
 
   setActive(i: number) {
     this.activeIndex = i;
-  }
-
-  snapToActive() {
-    this.positionIndicator(this.activeIndex);
-  }
-
-  @HostListener('window:resize')
-  onResize() {
-    this.snapToActive();
-  }
-
-  private positionIndicator(i: number) {
-    const container = this.containerRef?.nativeElement;
-    const indicator = this.indicatorRef?.nativeElement;
-    const btn = this.btnRefs?.get(i)?.nativeElement;
-    if (!container || !indicator || !btn) return;
-
-    const cRect = container.getBoundingClientRect();
-    const bRect = btn.getBoundingClientRect();
-
-    const left = bRect.left - cRect.left + container.scrollLeft;
-    const top = bRect.top - cRect.top + container.scrollTop;
-
-    indicator.style.transform = `translate(${left}px, ${top}px)`;
-    indicator.style.width = `${bRect.width}px`;
-    indicator.style.height = `${bRect.height}px`;
   }
 }

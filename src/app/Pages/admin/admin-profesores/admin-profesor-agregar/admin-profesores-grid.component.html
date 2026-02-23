@@ -1,0 +1,34 @@
+<menu-admin></menu-admin>
+
+<div class="gym-class-management">
+  <div id="titulo">
+    <h2>Agregar Profesor</h2>
+    <mat-icon>assignment_ind</mat-icon>
+  </div>
+
+  @if (successMsg) { <div class="alert success">✓ {{ successMsg }}</div> }
+  @if (errorMsg) { <div class="alert error">✕ {{ errorMsg }}</div> }
+
+  <div class="card">
+    <label>Nombre</label>
+    <input type="text" [(ngModel)]="newProfesorName" placeholder="Nombre del profesor" />
+
+    <label>Foto</label>
+    <div class="file-area">
+      <label class="file-btn">
+        {{ selectedFile ? selectedFile.name : 'Seleccionar imagen' }}
+        <input type="file" accept="image/*" (change)="onFile($event)" hidden />
+      </label>
+
+      @if (previewUrl) {
+        <img [src]="previewUrl" class="preview" alt="preview" />
+      }
+    </div>
+
+    <button (click)="addProfesor()" [disabled]="loading" class="btn-primary">
+      {{ loading ? 'Guardando...' : 'Agregar Profesor' }}
+    </button>
+  </div>
+</div>
+
+

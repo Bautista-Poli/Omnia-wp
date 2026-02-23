@@ -8,8 +8,8 @@ import { FooterComponent } from '../Components/footer/footer.component';
 import {MatCardModule} from '@angular/material/card';
 import { ClassService } from '../service/class.service';
 import { Class } from '../interface/class.interface';
-import { ProfesorService } from '../service/profesor.service';
 import { VideoReproductorComponent } from './video-reproductor/video-reproductor.component';
+import { ProfesorService } from '../service/Adds/addProfesor.service';
 
 @Component({
   selector: 'app-class',

@@ -1,0 +1,108 @@
+.admin-grid-box{
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 12px;
+  border-radius: 14px;
+  background: #31fbf4;
+  border: 1px solid #ddd;
+}
+
+.admin-grid-title{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.refresh-btn{
+  width: auto;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+/* ✅ No uses .table-scroll porque ya existe en tu grilla original */
+.admin-table-scroll{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ✅ Tabla admin con clase propia */
+table.admin-schedule{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+  table-layout: fixed;
+}
+
+/* ✅ “Reset” por si tu CSS global mete sticky/colores */
+table.admin-schedule thead th,
+table.admin-schedule tbody td{
+  position: static ;
+  left: auto ;
+  z-index: auto ;
+  background: #ffffff ;
+  color: #111 ;
+  border: 1px solid #ddd !important;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Hora (primera columna) */
+table.admin-schedule td.hora,
+table.admin-schedule thead th:first-child{
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Celdas con clase */
+table.admin-schedule td.cell{
+  position: relative !important;
+  min-height: 56px;
+}
+
+table.admin-schedule .cell-content{
+  position: relative;
+  padding-right: 28px;
+}
+
+table.admin-schedule .delete-slot{
+  position: absolute;
+  top: 0px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  line-height: 24px;
+  padding: 0;
+}
+
+table.admin-schedule td.cell .delete-slot{
+  opacity: 0;
+  pointer-events: none;
+}
+
+table.admin-schedule td.cell.has-class:hover .delete-slot{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  table.admin-schedule td.cell .delete-slot{
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.grid-loading{
+  margin-top: 10px;
+  font-size: 34px;
+  color: black;
+}
+

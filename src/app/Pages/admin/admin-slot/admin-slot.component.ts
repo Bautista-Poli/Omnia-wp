@@ -7,12 +7,13 @@ import { HourService } from '../../service/Adds/addHour.service';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../service/auth.service';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
+import { AdminSlotGridComponent } from './admin-slot-grid/admin-slot-grid.component';
 import { ProfesorService } from '../../service/Adds/addProfesor.service';
 
 @Component({
   selector: 'admin-slot',
   standalone: true,
-  imports: [FormsModule, NgFor, MatIconModule, MenuAdminComponent],
+  imports: [FormsModule, NgFor, MatIconModule, MenuAdminComponent,AdminSlotGridComponent],
   templateUrl: './admin-slot.component.html',
   styleUrl: './admin-slot.component.css'
 })
@@ -128,90 +129,6 @@ export class AdminComponent implements OnInit {
     for (const s of slots) {
       await this.addClassInSpecificTime(this.newClassName, s.hora, s.dia, s.prof);
     }
-  }
-
-  async removeSlot() {
-    const dia1 = this.dayToNumber(this.newClassDate);
-
-    // Validaciones mínimas
-    if (!this.newClassName || !dia1 || !this.newClassTime) {
-      alert('Completá al menos: Clase, Día 1 y Horario 1 para eliminar.');
-      return;
-    }
-
-    // Parseo días opcionales
-    const dias: number[] = [dia1];
-
-    if (this.newClassDate2?.trim()) {
-      const d2 = this.dayToNumber(this.newClassDate2);
-      if (!d2) {
-        alert('El segundo día no es válido.');
-        return;
-      }
-      dias.push(d2);
-    }
-
-    if (this.newClassDate3?.trim()) {
-      const d3 = this.dayToNumber(this.newClassDate3);
-      if (!d3) {
-        alert('El tercer día no es válido.');
-        return;
-      }
-      dias.push(d3);
-    }
-
-    const diasUnicos = Array.from(new Set(dias));
-
-    // Horas: obligatoria y opcional
-    const horas: string[] = [this.newClassTime];
-    if (this.newClassTime2?.trim()) {
-      horas.push(this.newClassTime2.trim());
-    }
-
-    type Target = { dia: number; hora: string };
-    const objetivos: Target[] = [];
-    for (const d of diasUnicos) {
-      for (const h of horas) {
-        objetivos.push({ dia: d, hora: h });
-      }
-    }
-
-    let ok = 0;
-    const notFound: Target[] = [];
-    const errors: Target[] = [];
-
-    for (const obj of objetivos) {
-      try {
-        const existente = await this.hourService.checkSlot(obj.hora, obj.dia);
-
-        // Si no hay slot, o es de otra clase, lo marcamos como "no encontrado"
-        if (!existente || existente.nombre_clase !== this.newClassName) {
-          notFound.push(obj);
-          continue;
-        }
-
-        await this.hourService.deleteSchedule(this.newClassName, obj.hora, obj.dia);
-        ok++;
-      } catch (e) {
-        console.error('Error eliminando slot', obj, e);
-        errors.push(obj);
-      }
-    }
-
-    // Mensaje consolidado
-    const fmt = (t: Target) => `${this.dias[t.dia - 1]} ${t.hora}`;
-    let msg = '';
-
-    if (ok > 0) msg += `✅ Eliminados ${ok} slot(s).\n`;
-    if (notFound.length) {
-      msg += `⚠️ No se encontró(n) (o la clase no coincide) en:\n- ` + notFound.map(fmt).join('\n- ') + '\n';
-    }
-    if (errors.length) {
-      msg += `❌ Errores al eliminar en:\n- ` + errors.map(fmt).join('\n- ') + '\n';
-    }
-    if (!msg) msg = 'No hubo acciones.';
-
-    alert(msg.trim());
   }
 
 }

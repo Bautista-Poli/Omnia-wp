@@ -1,80 +1,184 @@
-.gym-class-management {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #43851c;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Contenedor principal */
+.gym-class-management{
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(46, 85, 1, 0.75);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 14px 35px rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
 }
 
-h2 {
-  text-align: center;
+/* Header */
+#titulo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
-form {
-  margin-bottom: 20px;
+#titulo h2{
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: #fff;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-#aclaracion{
-  font-size: 100%;
-  font-weight: 500;
-}
-
-.input{
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #007bff;
+/* Botón refrescar */
+.btn-secondary{
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform .08s ease, background .15s ease;
+  margin-bottom: 14px;
 }
 
-
-.buttonLogOut {
-  background-color: #c90808;
-  border:none;
-}
-.buttonLogOut:hover {
-  background-color: #db0f0f;
-}
-.buttonSend {
-  background-color: #02468f;
-  border:none;
+.btn-secondary:hover{
+  background: rgba(255,255,255,.16);
 }
 
-.buttonSend:hover {
-  background-color: #0056b3;
+.btn-secondary:active{
+  transform: translateY(1px);
 }
 
-.buttonOther {
-background-color: #ffffff;
-color:black;
-
-}
-.comment{
-  font-size: 90%;
+.btn-secondary:disabled{
+  opacity: .55;
+  cursor: not-allowed;
 }
 
-#titulo{
-  display:flex;
+/* Alerts */
+.alert{
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 10px 0 14px;
+  font-weight: 650;
+  line-height: 1.25;
 }
 
-#mat-icon{
-  margin-top: 20px;
-  margin-left:5px;
+.alert.success{
+  background: rgba(46, 204, 113, .14);
+  border: 1px solid rgba(46, 204, 113, .35);
+  color: #eafff2;
+}
+
+.alert.error{
+  background: rgba(231, 76, 60, .14);
+  border: 1px solid rgba(231, 76, 60, .35);
+  color: #ffecec;
+}
+
+/* Loading / Empty */
+.loading,
+.empty{
+  color: rgba(255,255,255,.85);
+  font-weight: 600;
+  padding: 12px 6px;
+}
+
+/* Grid */
+.class-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (min-width: 720px){
+  .class-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px){
+  .class-grid{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Card */
+.class-card{
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(142, 255, 12, 0.06);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform .10s ease, background .15s ease;
+}
+
+.class-card:hover{
+  background: rgba(255,255,255,.08);
+  transform: translateY(-1px);
+}
+
+/* Imagen: chica y prolija */
+.class-img{
+  width: 72px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+/* Info */
+.class-info{
+  min-width: 0; /* para que funcione ellipsis */
+}
+
+.class-name{
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: .01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Botón eliminar */
+.btn-danger.class-del{
+  width: auto;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: none;
+  background: #c90808;
+  color: #fff;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform .08s ease, background .15s ease;
+}
+
+.btn-danger.class-del:hover{
+  background: #db0f0f;
+}
+
+.btn-danger.class-del:active{
+  transform: translateY(1px);
+}
+
+.btn-danger.class-del:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+/* En mobile, que el botón no quede gigante */
+@media (max-width: 420px){
+  #titulo h2{ font-size: 22px; }
+  .class-card{ grid-template-columns: 64px 1fr auto; }
+  .class-img{ width: 64px; height: 52px; }
+  .btn-danger.class-del{ padding: 9px 10px; }
 }

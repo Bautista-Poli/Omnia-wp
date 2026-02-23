@@ -1,67 +1,75 @@
-.nav { width: 100%; }
+.admin-nav {
+  background: #111;
+  width: 100%;
+  font-family: sans-serif;
+}
 
-/* Contenedor responsivo */
-.container{
-  position: relative;
+.nav-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
   justify-content: center;
-  padding: 10px;
-  min-height: 70px;
+  gap: 10px;
+  padding: 5px 20px;
+  border-bottom: 1px solid #222;
 }
 
-/* Desktop: una fila */
-@media (min-width: 768px) {
-  .container { justify-content: space-between; }
-}
-
-/* Botones */
-.btn{
-  padding: 1em 2em;
-  font-size: 1rem;
-  color: #fff;
+.nav-btn {
   background: transparent;
-  border: 0;
+  border: none;
+  padding: 15px 20px;
+  color: #777;
   cursor: pointer;
-  position: relative;
-  z-index: 1;
-  transition: color .2s ease, transform .1s ease;
-  white-space: nowrap;
-  border-radius: 10px;
-  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent; /* Espacio reservado para el borde */
 }
 
-.btn:hover,
-.btn:focus-visible { color: #000; }
+/* Estado al pasar el mouse */
+.nav-btn:hover {
+  color: #bbb;
+  background: rgba(255, 255, 255, 0.03);
+}
 
-/* Activo por ruta */
-.btn.active {
+/* Estado Activo (Cuando la ruta coincide) */
+.nav-btn.active-link {
+  color: #fff;
+  border-bottom: 3px solid #e47f0b; /* Línea naranja fina y fija */
+  background: linear-gradient(to bottom, transparent, rgba(228, 127, 11, 0.05));
+}
+
+/* --- Submenú --- */
+.sub-nav-container {
+  background: #181818;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.sub-btn {
+  color: #888;
+  text-decoration: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.sub-btn:hover {
+  background: #222;
+  color: #fff;
+}
+
+.sub-btn.sub-active {
+  background: #e47f0b;
   color: #000;
   font-weight: 600;
 }
 
-/* Indicador móvil y persistente */
-.indicator{
-  position: absolute;
-  top: 0; left: 0;
-  width: 0; height: 0;
-  border: 5px solid #e47f0b;
-  background-color: #e47f0b;
-  border-radius: 10px;
-  pointer-events: none;
-  transform: translate(0,0);
-  transition: transform .30s ease, width .20s ease, height .20s ease;
-  z-index: 0;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-/* Mobile: botones a ancho completo */
-@media (max-width: 767px) {
-  .btn {
-    flex: 1 1 100%;
-    text-align: left;
-  }
-}
-
-

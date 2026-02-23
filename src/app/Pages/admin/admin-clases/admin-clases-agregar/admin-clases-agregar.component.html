@@ -1,0 +1,52 @@
+<menu-admin></menu-admin>
+
+<div class="gym-class-management">
+  <div id="titulo">
+    <h2>Nueva clase</h2>
+    <mat-icon>add_photo_alternate</mat-icon>
+  </div>
+
+  @if (successMsg) { <div class="alert success">✓ {{ successMsg }}</div> }
+  @if (errorMsg) { <div class="alert error">✕ {{ errorMsg }}</div> }
+
+  <div class="card">
+    <label>Nombre</label>
+    <input
+      type="text"
+      [(ngModel)]="newClassName"
+      placeholder="Ej: CROSS TRAINING"
+    />
+    <p class="comment">*Recomendado: nombre en mayúsculas</p>
+
+    <label>Descripción</label>
+    <textarea
+      rows="4"
+      [(ngModel)]="newClassDescription"
+      placeholder="Descripción de la clase"
+    ></textarea>
+
+    <label>Imagen</label>
+
+    <div class="file-area">
+      <label class="file-btn">
+        {{ selectedFile ? selectedFile.name : 'Seleccionar imagen' }}
+        <input type="file" accept="image/*" (change)="onFile($event)" hidden />
+      </label>
+
+      @if (previewUrl) {
+        <img class="preview" [src]="previewUrl" alt="preview" />
+      }
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" (click)="addClass()" [disabled]="loading">
+        {{ loading ? 'Guardando...' : 'Agregar Clase' }}
+      </button>
+
+      <button class="btn-secondary" type="button" (click)="clearImage()" [disabled]="loading || !selectedFile">
+        Quitar imagen
+      </button>
+    </div>
+  </div>
+</div>
+
