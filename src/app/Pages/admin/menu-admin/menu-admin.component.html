@@ -1,5 +1,7 @@
 <nav class="admin-nav">
   <div class="nav-container">
+
+    <!-- Links principales -->
     <div *ngFor="let item of items; let i = index" class="nav-group">
       <button
         class="nav-btn"
@@ -11,6 +13,15 @@
         <span class="label">{{ item.label }}</span>
       </button>
     </div>
+
+    <!-- Logout separado -->
+    <div class="nav-group logout-group">
+      <button class="nav-btn logout-btn" (click)="logout()">
+        <span class="icon">🚪</span>
+        <span class="label">Logout</span>
+      </button>
+    </div>
+
   </div>
 
   <div class="sub-nav-container" *ngIf="items[activeIndex]?.children">

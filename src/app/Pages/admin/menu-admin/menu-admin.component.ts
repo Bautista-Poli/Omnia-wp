@@ -1,10 +1,8 @@
-import {
-  AfterViewInit, Component, ElementRef, HostListener,
-  QueryList, ViewChild, ViewChildren
-} from '@angular/core';
+import {Component} from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'menu-admin',
@@ -44,7 +42,7 @@ export class MenuAdminComponent {
 
   activeIndex = 0;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
     // Solo actualizamos el índice para saber si mostrar el submenú
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
@@ -62,5 +60,12 @@ export class MenuAdminComponent {
 
   setActive(i: number) {
     this.activeIndex = i;
+  }
+  async logout() {
+    try {
+      await this.auth.logout();
+    } catch {}
+
+    this.router.navigate(['/inicio']);
   }
 }
