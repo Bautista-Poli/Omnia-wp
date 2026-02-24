@@ -1,49 +1,46 @@
 <menu-admin></menu-admin>
 
 <div class="admin-grid-box">
-
   @if (isGridLoading) {
-    <div class="grid-loading">
-      Cargando grilla...
-    </div>
+    <div class="grid-loading">Cargando grilla...</div>
   } @else {
-
     <div class="table-scroll">
       <table class="admin-schedule">
         <thead>
           <tr>
-            <th></th>
+            <th>Hora</th>
             <th *ngFor="let dia of scheduleDias">{{ dia }}</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr *ngFor="let hora of scheduleHoras; let hIdx = index">
-            <td class="hora">{{ hora }}</td>
+          <ng-container *ngFor="let row of rows">
+            <tr *ngFor="let subRow of getExpandedRows(row); let first = first">
+              
+              <td class="hora">
+                <span *ngIf="first">{{ row.hora }}</span>
+              </td>
 
-            <td *ngFor="let cell of adminGrid[hIdx]; let dIdx = index"
-                class="cell"
-                [class.has-class]="cell">
+              <td *ngFor="let cell of subRow" 
+                  class="cell" 
+                  [class.has-class]="cell">
+                
+                @if (cell) {
+                  <div class="cell-content">
+                    {{ cell.name }}
+                    <button class="delete-slot" (click)="onDeleteFromGrid($event, cell)">
+                      ✕
+                    </button>
+                  </div>
+                }
+              </td>
 
-              @if (cell) {
-                <div class="cell-content">
-                  {{ cell.nombre_clase }}
-
-                  <button class="delete-slot"
-                          (click)="onDeleteFromGrid($event, cell)">
-                    ✕
-                  </button>
-                </div>
-              }
-
-            </td>
-          </tr>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
-
   }
-
 </div>
 
 
