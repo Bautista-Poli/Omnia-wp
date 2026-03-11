@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
-import { ClassCell } from '../../service/hour.class';
-import { TableService } from '../../service/table.service';
-import { HourService } from '../../service/Adds/addHour.service';
-import { ProfesorService } from '../../service/Adds/addProfesor.service';
-import { AuthService } from '../../service/auth.service';
+import { MenuAdminComponent } from '../../menu-admin/menu-admin.component';
+import { ClassCell } from '../../../service/hour.class';
+import { TableService } from '../../../service/table.service';
+import { HourService } from '../../../service/Adds/addHour.service';
+import { ProfesorService } from '../../../service/Adds/addProfesor.service';
+import { AuthService } from '../../../service/auth.service';
 
 type AdminRow = { hora: string; clases: ClassCell[][] };
 
