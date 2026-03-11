@@ -1,0 +1,128 @@
+/* ── Contenedor Principal ───────────────────────────────────────── */
+.change-profesor-box {
+  padding: 1rem;
+  background-color: #000; /* Fondo negro profundo */
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Arial Black', 'Inter', sans-serif; /* Tipografía más fuerte */
+}
+
+.page-title {
+  background-color: #e65100; /* Naranja fuerte */
+  color: #000;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 0;
+  letter-spacing: 2px;
+}
+
+/* ── Tabla Estilo "Cronograma" ──────────────────────────────────── */
+.table-scroll {
+  border: 4px solid #e65100;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.admin-schedule {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #000;
+}
+
+/* Cabeceras de Días */
+.admin-schedule th {
+  background-color: #ffffff;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 1rem;
+  border: 2px solid #e65100;
+}
+
+/* Celdas de Hora (Columna Izquierda) */
+.hora {
+  background-color: #000 !important;
+  color: #e65100 !important; /* Texto naranja para las horas */
+  font-size: 1.1rem;
+  font-weight: 800;
+  border: 2px solid #e65100 !important;
+  width: 100px;
+}
+
+/* Celdas de Clase */
+.admin-schedule td {
+  border: 2px solid #e65100; /* Bordes naranjas constantes */
+  padding: 0.5rem;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.cell.has-class {
+  background: #000; /* Fondo negro como la original */
+}
+
+/* ── Contenido de la Celda ─────────────────────────────────────── */
+.cell-name {
+  font-weight: 900;
+  font-size: 1rem;
+  color: #ffffff; /* Texto blanco para la actividad */
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cell-prof {
+  font-size: 0.85rem;
+  color: #e65100; /* El nombre del profesor en naranja */
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* ── Botón de Edición (Lápiz) ─────────────────────────────────── */
+.edit-btn {
+  color: #e65100;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,1));
+  opacity: 0.8;
+}
+
+.edit-btn:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* ── Estado de Edición (Formulario) ───────────────────────────── */
+/* Para que no rompa la estética cuando editas */
+.cell.is-editing {
+  background: #1a1a1a; 
+  outline: 2px solid #ffffff;
+}
+
+.select-label {
+  color: #fff;
+  font-size: 0.65rem;
+  margin-bottom: 2px;
+}
+
+.prof-select {
+  background: #000;
+  color: #fff;
+  border: 1px solid #e65100;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.confirm-btn {
+  background: #e65100; /* Botón naranja */
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.cancel-btn {
+  background: #333;
+  color: #fff;
+}

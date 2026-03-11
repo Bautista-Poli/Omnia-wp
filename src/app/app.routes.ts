@@ -15,6 +15,7 @@ import { MostrarTablaComponent } from './Pages/mostrar-tabla/mostrar-tabla.compo
 import { AdminSlotGridComponent } from './Pages/admin/admin-slot/admin-slot-grid/admin-slot-grid.component';
 import { AdminProfesoresAgregarComponent } from './Pages/admin/admin-profesores/admin-profesor-agregar/admin-profesores-grid.component';
 import { AdminClaseAgregarComponent } from './Pages/admin/admin-clases/admin-clases-agregar/admin-clases-agregar.component';
+import { AdminSlotChangeProfesorComponent } from './Pages/admin/admin-slot/admin-slot-change-profesor/admin-slot-change-profesor.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent
@@ -29,6 +30,7 @@ export const routes: Routes = [
     },{path: 'admin-profesor-eliminar', component: AdminProfesoresEliminarComponent, canActivate: [authGuard]
     },{path: 'admin-profesor-agregar', component: AdminProfesoresAgregarComponent, canActivate: [authGuard]
     },{path: 'admin-slot-grid', component: AdminSlotGridComponent, canActivate: [authGuard]
+    },{ path: 'admin-slot-change-profesor', component: AdminSlotChangeProfesorComponent, canActivate: [authGuard] 
     },{path: 'ubicacion', component: UbicacionComponent
     },{ path: 'revisar-tabla', component: RevisarTablaComponent, canActivate: [authGuard] 
     }

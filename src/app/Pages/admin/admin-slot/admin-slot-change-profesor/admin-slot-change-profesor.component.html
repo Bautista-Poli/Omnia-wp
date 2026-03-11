@@ -1,0 +1,91 @@
+<menu-admin></menu-admin>
+
+<div class="change-profesor-box">
+  <h2 class="page-title">Cambiar profesor por horario</h2>
+
+  @if (isGridLoading) {
+    <div class="grid-loading">Cargando grilla…</div>
+  } @else {
+    <div class="table-scroll">
+      <table class="admin-schedule">
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th *ngFor="let dia of scheduleDias">{{ dia }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let row of rows; let rowIdx = index">
+            <tr *ngFor="let subRow of expandedRows.get(rowIdx) ?? []; let first = first">
+
+              <td class="hora">
+                <span *ngIf="first">{{ row.hora }}</span>
+              </td>
+
+              <td *ngFor="let cell of subRow"
+                  class="cell"
+                  [class.has-class]="cell"
+                  [class.is-editing]="cell !== null && editingCell === cell">
+
+                @if (cell) {
+
+                  <!-- ── Vista normal ── -->
+                  @if (editingCell !== cell) {
+                    <div class="cell-content">
+                      <span class="cell-name">{{ cell.name }}</span>
+                      <span class="cell-prof">{{ getProfesorNombre(cell.profesorId) }}</span>
+                      <button class="edit-btn" (click)="openEdit(cell)" title="Editar profesores">
+                        ✏️
+                      </button>
+                    </div>
+
+                  <!-- ── Vista edición ── -->
+                  } @else {
+                    <div class="cell-edit">
+                      <span class="cell-name">{{ cell.name }}</span>
+
+                      <label class="select-label">Profesor 1</label>
+                      <select class="prof-select"
+                              [(ngModel)]="selectedProfesorId"
+                              [disabled]="isSaving">
+                        <option [ngValue]="null">— Ninguno —</option>
+                        <option *ngFor="let p of profesores" [ngValue]="p.id">
+                          {{ p.nombre }}
+                        </option>
+                      </select>
+
+                      <label class="select-label">Profesor 2</label>
+                      <select class="prof-select"
+                              [(ngModel)]="selectedProfesor2Id"
+                              [disabled]="isSaving">
+                        <option [ngValue]="null">— Ninguno —</option>
+                        <option *ngFor="let p of profesores" [ngValue]="p.id">
+                          {{ p.nombre }}
+                        </option>
+                      </select>
+
+                      <div class="edit-actions">
+                        <button class="confirm-btn"
+                                (click)="confirmChange()"
+                                [disabled]="isSaving">
+                          {{ isSaving ? '…' : '✔' }}
+                        </button>
+                        <button class="cancel-btn"
+                                (click)="cancelEdit()"
+                                [disabled]="isSaving">✕
+                        </button>
+                      </div>
+                    </div>
+                  }
+
+                }
+              </td>
+
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

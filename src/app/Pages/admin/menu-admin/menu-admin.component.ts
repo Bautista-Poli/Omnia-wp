@@ -33,8 +33,9 @@ export class MenuAdminComponent {
       label: 'Gestión Slots', 
       icon: '⚙️',
       children: [
-        { label: 'Nuevo slot', link: '/admin', icon: '🕒' },
-        { label: 'Eliminar slot', link: '/admin-slot-grid', icon: '❌' },
+        { label: 'Nuevo slot',           link: '/admin',                       icon: '🕒' },
+        { label: 'Eliminar slot',        link: '/admin-slot-grid',             icon: '❌' },
+        { label: 'Cambiar profesor',     link: '/admin-slot-change-profesor',  icon: '👨‍🏫' }, // 👈
       ]
     },
     { label: 'Revisar grilla', link: '/revisar-tabla', icon: '📊' },

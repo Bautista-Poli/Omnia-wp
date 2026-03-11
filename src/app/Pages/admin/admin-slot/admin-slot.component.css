@@ -1,76 +1,395 @@
-.gym-class-management {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #4faefc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* ── Layout ───────────────────────────────────────────── */
+.slot-manager {
+  display: flex;
+  gap: 0;
+  min-height: 100vh;
+  background: #09090f;
+  color: #e0e2f0;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  transition: gap 0.3s ease;
 }
 
-h2 {
-  text-align: center;
+.slot-manager.panel-open .grid-area {
+  flex: 1;
+  min-width: 0;
 }
 
-form {
-  margin-bottom: 20px;
+.grid-area {
+  flex: 1;
+  padding: 28px 24px;
+  min-width: 0;
+  transition: flex 0.3s ease;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+/* ── Header de grilla ─────────────────────────────────── */
+.grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
 }
 
-input[type="text"],
-select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #007bff;
+.grid-title {
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #fff;
+  margin: 0;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid #ffffff22;
+  color: #a0a8c8;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-ghost:hover {
+  border-color: #4f8ef7;
+  color: #4f8ef7;
 }
 
-
-.buttonLogOut {
-  background-color: #c90808;
-  border:none;
-}
-.buttonLogOut:hover {
-  background-color: #db0f0f;
-}
-.buttonSend {
-  background-color: #02468f;
-  border:none;
-}
-
-.buttonSend:hover {
-  background-color: #0056b3;
+/* ── Nueva hora bar ───────────────────────────────────── */
+.new-hora-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: #13131f;
+  border: 1px solid #ffffff14;
+  border-radius: 10px;
 }
 
-.buttonOther {
-background-color: #ffffff;
-color:black;
+.hora-input {
+  flex: 1;
+  background: #1e1e2e;
+  border: 1px solid #ffffff1a;
+  border-radius: 7px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 0.85rem;
+}
+.hora-input:focus { outline: none; border-color: #4f8ef7; }
 
+.btn-confirm {
+  background: #4f8ef7;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
 }
-.comment{
-  font-size: 90%;
+.btn-cancel {
+  background: transparent;
+  border: 1px solid #ffffff18;
+  color: #888;
+  border-radius: 7px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
 }
 
-#titulo{
-  display:flex;
+/* ── Loading ──────────────────────────────────────────── */
+.grid-loading {
+  color: #555;
+  padding: 60px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-#mat-icon{
-  margin-top: 20px;
-  margin-left:5px;
+/* ── Tabla ────────────────────────────────────────────── */
+.table-scroll {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid #ffffff10;
+  background: #111118;
+  box-shadow: 0 20px 50px #00000050;
 }
+
+.schedule-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 860px;
+  table-layout: fixed;
+}
+
+.schedule-table thead tr {
+  background: #16161f;
+  border-bottom: 1px solid #ffffff0d;
+}
+
+.schedule-table th {
+  padding: 14px 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4a4c68;
+  text-align: center;
+  border: none;
+}
+
+.th-hora { width: 80px; }
+
+/* ── Celdas ───────────────────────────────────────────── */
+.schedule-table tbody td {
+  border-top: 1px solid #ffffff08;
+  border-left: 1px solid #ffffff08;
+  padding: 0;
+  height: 62px;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+}
+
+.td-hora {
+  background: #14141c;
+  border-left: none !important;
+  border-right: 1px solid #ffffff0f !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #44475a;
+  width: 80px;
+}
+
+/* Celda vacía: clicable */
+.td-cell.empty {
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.12s;
+}
+
+.td-cell.empty:hover {
+  background: #4f8ef710;
+}
+
+.td-cell.empty:hover .cell-add-hint {
+  opacity: 1;
+}
+
+/* Celda ocupada */
+.td-cell.occupied {
+  background: #1a2340;
+  cursor: default;
+}
+
+.td-cell.occupied:hover {
+  background: #1e2a4e;
+}
+
+/* ── Hint "+" en vacías ───────────────────────────────── */
+.cell-add-hint {
+  font-size: 1.1rem;
+  color: #4f8ef755;
+  opacity: 0;
+  transition: opacity 0.15s;
+  user-select: none;
+}
+
+/* ── Cuerpo celda ocupada ─────────────────────────────── */
+.cell-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 26px 8px 8px;
+  height: 100%;
+  position: relative;
+}
+
+.cell-class {
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6ba3ff;
+  line-height: 1.2;
+}
+
+.cell-prof {
+  font-size: 0.72rem;
+  color: #8890b0;
+}
+
+.btn-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid #f74f4f50;
+  background: #f74f4f12;
+  color: #f74f4f;
+  font-size: 0.6rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.td-cell.occupied:hover .btn-delete { opacity: 1; }
+.btn-delete:hover { background: #f74f4f; color: #fff; }
+
+@media (max-width: 768px) {
+  .btn-delete { opacity: 1; }
+}
+
+/* ══════════════════════════════════════════════
+   PANEL LATERAL
+══════════════════════════════════════════════ */
+.side-panel {
+  width: 300px;
+  min-width: 300px;
+  background: #111118;
+  border-left: 1px solid #ffffff10;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(40px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid #ffffff0d;
+}
+
+.panel-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.panel-dia {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4f8ef7;
+}
+
+.panel-hora {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.panel-close {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  border-radius: 5px;
+  transition: color 0.15s;
+}
+.panel-close:hover { color: #fff; }
+
+/* ── Campos del panel ─────────────────────────────────── */
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #44475a;
+}
+
+.optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #33354a;
+}
+
+.field select,
+.field input[type="text"] {
+  background: #1a1a28;
+  border: 1px solid #ffffff12;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #e0e2f0;
+  font-size: 0.85rem;
+  width: 100%;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+
+.field select:focus,
+.field input[type="text"]:focus {
+  outline: none;
+  border-color: #4f8ef7;
+}
+
+.field select option { background: #1a1a28; }
+
+/* ── Footer del panel ─────────────────────────────────── */
+.panel-footer {
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #ffffff0d;
+}
+
+.btn-add {
+  background: #4f8ef7;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-add:hover:not(:disabled) { background: #3a7de8; }
+.btn-add:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-cancel-panel {
+  background: transparent;
+  border: 1px solid #ffffff12;
+  color: #666;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.83rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-cancel-panel:hover { color: #aaa; border-color: #ffffff25; }

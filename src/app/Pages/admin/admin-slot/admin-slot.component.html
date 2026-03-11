@@ -1,86 +1,145 @@
 <menu-admin></menu-admin>
-<div class="gym-class-management">
-  <div id="titulo">
-    <h2>Gestión de horarios de clases</h2>
-    <mat-icon id="mat-icon">calendar_today</mat-icon>
+
+<div class="slot-manager" [class.panel-open]="draft !== null">
+
+  <div class="grid-area">
+
+    <div class="grid-header">
+      <h2 class="grid-title">Gestión de Slots</h2>
+      <div class="grid-actions">
+        <button class="btn-ghost" (click)="showNewHoraInput = !showNewHoraInput">
+          ＋ Nueva hora
+        </button>
+      </div>
+    </div>
+
+    @if (showNewHoraInput) {
+      <div class="new-hora-bar">
+        <input class="hora-input"
+               [(ngModel)]="newHoraValue"
+               placeholder="ej: 21:00:00"
+               (keydown.enter)="addNewHoraRow()" />
+        <button class="btn-confirm" (click)="addNewHoraRow()">Agregar hora</button>
+        <button class="btn-cancel" (click)="showNewHoraInput = false">✕</button>
+      </div>
+    }
+
+    @if (isGridLoading) {
+      <div class="grid-loading">Cargando grilla…</div>
+    } @else {
+      <div class="table-scroll">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th class="th-hora">Hora</th>
+              <th *ngFor="let dia of scheduleDias">{{ dia }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let row of rows; let rowIdx = index">
+              <tr *ngFor="let subRow of getExpandedRows(rowIdx); let first = first">
+
+                <!-- Sin botón "+" en la columna hora -->
+                <td class="td-hora">
+                  <span *ngIf="first">{{ row.hora }}</span>
+                </td>
+
+                <td *ngFor="let cell of subRow; let diaIdx = index"
+                    class="td-cell"
+                    [class.occupied]="!!cell"
+                    [class.empty]="!cell"
+                    (click)="!cell && openAddPanel(rowIdx, diaIdx)">
+
+                  @if (cell) {
+                    <!-- Celda ocupada: ✕ eliminar + ＋ agregar sibling -->
+                    <div class="cell-body">
+                      <span class="cell-class">{{ cell.name }}</span>
+                      <button class="btn-delete"
+                              (click)="deleteCell($event, cell)"
+                              title="Eliminar">✕
+                      </button>
+                      <button class="btn-add-sibling"
+                              (click)="addSibling($event, cell)"
+                              title="Agregar otra clase en este día y horario">＋
+                      </button>
+                    </div>
+                  } @else {
+                    <!-- Celda vacía: clic abre panel -->
+                    <div class="cell-add-hint">＋</div>
+                  }
+
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    }
   </div>
 
-  <form>
-    <!-- Clase -->
-    <label for="name">Elegir clase</label>
-    <select id="name" name="name" [(ngModel)]="newClassName">
-      <option *ngFor="let clase of clases" [value]="clase">{{ clase }}</option>
-    </select>
+  @if (draft) {
+    <aside class="side-panel">
 
-    <!-- Día principal -->
-    <label for="dia1">Elegir día principal</label>
-    <select id="dia1" name="dia1" [(ngModel)]="newClassDate">
-      <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
-    </select>
+      <div class="panel-header">
+        <div class="panel-meta">
+          <span class="panel-dia">{{ draft.diaNombre }}</span>
+          <span class="panel-hora">{{ draft.hora }}</span>
+        </div>
+        <button class="panel-close" (click)="closeDraft()">✕</button>
+      </div>
 
-    <!-- Horario principal -->
-    <label for="hora1">Elegir horario principal</label>
-    <input
-      type="text"
-      id="hora1"
-      name="hora1"
-      [(ngModel)]="newClassTime"
-      placeholder="HH:mm:ss"
-      required
-    />
-    
-    <p class="comment">*Formato recomendado: HH:mm:ss</p>
-    <p class="comment">*Arrancar con HH:00:00</p>
+      <div class="panel-body">
 
-    
-    <!-- Segundo día (para crear la misma clase otro día) -->
-    <label for="dia2">Elegir segundo día (opcional)</label>
-    <select id="dia2" name="dia2" [(ngModel)]="newClassDate2">
-      <option value="">(ninguno)</option>
-      <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
-    </select>
-    
-    <!-- Tercer día (opcional) -->
-    <label for="dia3">Elegir tercer día (opcional)</label>
-    <select id="dia3" name="dia3" [(ngModel)]="newClassDate3">
-      <option value="">(ninguno)</option>
-      <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
-    </select>
+        <div class="field">
+          <label>Día</label>
+          <select [(ngModel)]="draft.dia"
+                  (ngModelChange)="draft!.diaNombre = scheduleDias[$event - 1]">
+            <option *ngFor="let d of scheduleDias; let i = index" [ngValue]="i + 1">
+              {{ d }}
+            </option>
+          </select>
+        </div>
 
-    <!-- Segundo horario (mismo día) -->
-    <label for="hora2">Segundo horario (opcional, mismo día)</label>
-    <input
-      type="text"
-      id="hora2"
-      name="hora2"
-      [(ngModel)]="newClassTime2"
-      placeholder="HH:mm:ss"
-    />
-    <!-- Profesor -->
-    <label for="prof1">Profesor principal</label>
-    <select id="prof1" name="prof1" [(ngModel)]="profesorName">
-      <option *ngFor="let profesor of profesores" [value]="profesor">
-        {{ profesor }}
-      </option>
-    </select>
+        <div class="field">
+          <label>Horario</label>
+          <input type="text" [(ngModel)]="draft.hora" placeholder="HH:mm:ss" />
+        </div>
 
-    <!-- Segundo profesor -->
-    <label for="prof2">Segundo profesor (opcional)</label>
-    <select id="prof2" name="prof2" [(ngModel)]="secondProfesorName">
-      <option value="">(mismo profesor)</option>
-      <option *ngFor="let profesor of profesores" [value]="profesor">
-        {{ profesor }}
-      </option>
-    </select>
+        <div class="field">
+          <label>Clase</label>
+          <select [(ngModel)]="draft.className">
+            <option *ngFor="let c of clases" [value]="c">{{ c }}</option>
+          </select>
+        </div>
 
-    <!-- Botones -->
-    <div class="buttons">
-      <button type="button" (click)="addSlot()" class="buttonSend">
-        ➕ Agregar slot
-      </button>
-    </div>
-  </form>
+        <div class="field">
+          <label>Profesor principal</label>
+          <select [(ngModel)]="draft.profesorName">
+            <option *ngFor="let p of profesores" [value]="p">{{ p }}</option>
+          </select>
+        </div>
 
-  <button (click)="logOut()" class="buttonLogOut">Logout</button>
+        <div class="field">
+          <label>Segundo profesor <span class="optional">(opcional)</span></label>
+          <select [(ngModel)]="draft.profesorName2">
+            <option value="">(ninguno)</option>
+            <option *ngFor="let p of profesores" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-add" (click)="confirmAdd()" [disabled]="isSaving">
+          {{ isSaving ? 'Guardando…' : '＋ Agregar slot' }}
+        </button>
+        <button class="btn-cancel-panel" (click)="closeDraft()" [disabled]="isSaving">
+          Cancelar
+        </button>
+      </div>
+
+    </aside>
+  }
+
 </div>
 
