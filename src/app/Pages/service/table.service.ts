@@ -24,7 +24,7 @@ export class TableService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  private minuteKey(t: string): string { return t.slice(0, 5); }           // "HH:mm"
+  private minuteKey(t: string): string { return t.slice(0, 8); }           // "HH:mm"
   private timeToSeconds(t: string): number {
     const [hh, mm, ss = '00'] = t.split(':'); return (+hh)*3600 + (+mm)*60 + (+ss);
   }
@@ -89,7 +89,10 @@ export class TableService {
   // filas para la tabla: en cada celda hay 0..n ClassCell
   async getRows(): Promise<Array<{ hora: string; clases: ClassCell[][] }>> {
     if (!this.hydrated) await this.fetchSchedule();
-    return this.minutes.map(m => ({ hora: m, clases: this.grid.get(m)! }));
+    return this.minutes.map(m => ({
+      hora: m.slice(0, 5),   // 👈 muestra "19:00" aunque la clave sea "19:00:01"
+      clases: this.grid.get(m)!
+    }));
   }
 
   async refresh(): Promise<void> {

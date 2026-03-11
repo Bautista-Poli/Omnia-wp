@@ -65,21 +65,12 @@ export class TablaDeClasesComponent implements OnInit {
    * - Cada celda contiene como máximo 1 clase (o null si no hay).
    * - Si a las 19:00 hay GAP y YOGA en algún día, esa hora aparece 2 veces.
    */
+
   get expandedRows(): ExpandedRow[] {
-    const base = this.displayedRows;
-    const out: ExpandedRow[] = [];
-
-    for (const r of base) {
-      const height = Math.max(1, ...r.clases.map(cell => cell.length || 0));
-      for (let i = 0; i < height; i++) {
-        out.push({
-          hora: r.hora,
-          clases: r.clases.map(cell => cell[i] ?? null)
-        });
-      }
-    }
-
-    return out;
+    return this.displayedRows.map(r => ({
+      hora: r.hora,
+      clases: r.clases.map(cell => cell[0] ?? null)
+    }));
   }
 
   toggleFilter(name: string | null) {
