@@ -1,13 +1,13 @@
 // inicio.component.ts
-import { Component } from '@angular/core';
-import {CantidadUsuariosComponent} from '../InicioComponentes/cantidad-usuarios/cantidad-usuarios.component';
-import { PhotoDisplayerComponent } from '../InicioComponentes/photo-displayer/photo-displayer.component';
-import { HeaderComponent } from '../Components/header/header.component';
-import { CommonModule } from '@angular/common';
-import { FooterComponent } from '../Components/footer/footer.component';
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { FooterComponent } from '../footer/footer.component';
 import { TablaDeClasesComponent } from '../tabla-de-clases/tabla-de-clases.component';
-import { ReseñasComponent } from '../InicioComponentes/resenias/reseñas.component';
 import { TranslateModule} from '@ngx-translate/core';
+import { CantidadUsuariosComponent } from './cantidad-usuarios/cantidad-usuarios.component';
+import { PhotoDisplayerComponent } from './photo-displayer/photo-displayer.component';
+import { ReseñasComponent } from './resenias/reseñas.component';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
@@ -26,8 +26,23 @@ import { TranslateModule} from '@ngx-translate/core';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
-export class InicioComponent {
-  
+export class InicioComponent implements AfterViewInit {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
 }
 
 

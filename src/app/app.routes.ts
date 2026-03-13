@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { InicioComponent } from './Pages/inicio/inicio.component';
-import {ReseñasComponent} from './Pages/InicioComponentes/resenias/reseñas.component';
 import { AdminComponent } from './Pages/admin/admin-slot/admin-slot-grid/admin-slot.component'; 
 import { AdminClaseComponent } from './Pages/admin/admin-clases/admin-clases.component'; 
 import { AdminProfesoresEliminarComponent } from './Pages/admin/admin-profesores/admin-profesor-eliminar/admin-profesor-agregar.component'; 

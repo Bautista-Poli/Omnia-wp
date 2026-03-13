@@ -64,25 +64,51 @@ a {
   background-color: transparent !important; /* Asegura que el fondo del <a> sea transparente */
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ELIMINAR LOS COLORES DE FONDO DE LAS CLASES ESPECÍFICAS */
-.float.whatsapp { background-color: transparent; }
-.float.instagram { background-color: transparent; margin-right: 7%; }
+.float.whatsapp { background-color: transparent; margin-right: 2%;}
+.float.instagram { background-color: transparent; margin-right: 9%; }
 
 /* ELIMINAR EL EFECTO HOVER EN EL FONDO DEL BOTÓN */
 .float.whatsapp:hover { background-color: transparent; }
 .float.instagram:hover { background-color: transparent; }
 .my-float-img {      
     object-fit: contain; 
-    transition: filter 0.3s ease; /* Transición suave para el efecto hover */
-    /* Elimina el padding si el PNG ya tiene el espacio interno que quieres */
+    transition: filter 0.3s ease;
 }
 
-/* Efecto Hover: Oscurecer la imagen al pasar el ratón */
 .float:hover .my-float-img {
-    /* Oscurece la imagen (0% es negro, 100% es normal). 70% la hace más oscura. */
     filter: brightness(70%); 
 }
-/* Responsivo */
+
+.float.whatsapp::before {
+  content: '';
+  position: absolute;
+  margin-left: 5px;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(37, 211, 102, 0.4);
+  animation: pulse 2s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+
 @media screen and (max-width: 768px) {
   .header { margin-top: -42%; }
 

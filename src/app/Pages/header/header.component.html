@@ -1,0 +1,28 @@
+<header>
+  <div class="middle-header">
+    <!-- Logo -->
+    <div class="logo">
+      <a routerLink="/inicio"><img [src]="logoSrc" alt="logo"/></a>
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <button class="hamburguesa" (click)="toggleMenu()">&#9776;</button>
+
+    <!-- Menú -->
+    <div class="fila2" [class.abierto]="menuAbierto">
+      <a class="nav-items" routerLink="/como-comenzar" (click)="cerrarMenu()">
+        {{ 'HEADER.HOW_TO_START' | translate }}
+      </a>
+      <a class="nav-items" routerLink="/ubicacion" (click)="cerrarMenu()">
+        {{ 'HEADER.WHERE_WE_ARE' | translate }}
+      </a>
+      <a class="nav-items" routerLink="/mostrar-tabla" (click)="cerrarMenu()">
+        {{ 'HEADER.SCHEDULES' | translate }}
+      </a>
+      <control-idioma></control-idioma>
+    </div>
+  </div>
+</header>
+
+
+

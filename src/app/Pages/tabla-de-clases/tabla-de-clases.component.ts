@@ -1,12 +1,11 @@
-import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { TableService } from '../service/table.service';
 import { ClassCell } from '../service/hour.class';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { AnimacionCargaComponent } from './animacion-carga/animacion-carga.component';
-
 
 type ExpandedRow = { hora: string; clases: (ClassCell | null)[] };
 
@@ -17,14 +16,10 @@ type ExpandedRow = { hora: string; clases: (ClassCell | null)[] };
   templateUrl: './tabla-de-clases.component.html',
   styleUrls: ['./tabla-de-clases.component.css'],
 })
-
 export class TablaDeClasesComponent implements OnInit {
   programa = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sabado'];
-
-  isLoading: boolean = true; 
-
+  isLoading = true;
   rows: Array<{ hora: string; clases: ClassCell[][] }> = [];
-
   availableClasses: string[] = [];
   selectedClass: string | null = null;
 
@@ -33,24 +28,23 @@ export class TablaDeClasesComponent implements OnInit {
     private tableService: TableService
   ) {}
 
-  async ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isLoading = true; // Inicia la carga
-      try {
-        this.rows = await this.tableService.getRows();
-        this.availableClasses = this.extractClassNames(this.rows);
-      } catch (error) {
-        console.error('Error al cargar las clases:', error);
-      } finally {
-        this.isLoading = false; // Finaliza la carga
-      }
+  async ngOnInit(): Promise<void> {
+    // isPlatformBrowser evita que corra en SSR, pero sí corre en cada navegación
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    this.isLoading = true;
+    try {
+      this.rows = await this.tableService.getRows();
+      this.availableClasses = this.extractClassNames(this.rows);
+    } catch (error) {
+      console.error('Error al cargar las clases:', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 
-  /** Aplica el filtro sin mutar los datos originales */
   get displayedRows(): Array<{ hora: string; clases: ClassCell[][] }> {
     if (!this.selectedClass) return this.rows;
-
     const sel = this.selectedClass.trim().toLowerCase();
     return this.rows.map(r => ({
       hora: r.hora,
@@ -59,12 +53,6 @@ export class TablaDeClasesComponent implements OnInit {
       )
     }));
   }
-
-  /**
-   * Expande cada hora en tantas subfilas como clases paralelas haya.
-   * - Cada celda contiene como máximo 1 clase (o null si no hay).
-   * - Si a las 19:00 hay GAP y YOGA en algún día, esa hora aparece 2 veces.
-   */
 
   get expandedRows(): ExpandedRow[] {
     return this.displayedRows.map(r => ({
@@ -79,41 +67,13 @@ export class TablaDeClasesComponent implements OnInit {
 
   private extractClassNames(rows: Array<{ hora: string; clases: ClassCell[][] }>): string[] {
     const set = new Set<string>();
-    for (const r of rows) {
-      for (const cell of r.clases) {
-        for (const c of cell) {
+    for (const r of rows)
+      for (const cell of r.clases)
+        for (const c of cell)
           if (c?.name) set.add(c.name.trim());
-        }
-      }
-    }
-    return Array.from(set).sort((a, b) =>
-      a.localeCompare(b, 'es', { sensitivity: 'base' })
-    );
+    return Array.from(set).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
   }
 
-  // trackBys
-  trackByRow = (i: number) => i;     // para expandedRows
-  trackByIdx = (i: number) => i;     // para columnas (días)
-  
-  //PDF
-  @ViewChild('tableEl', { static: false }) private tableEl!: ElementRef<HTMLTableElement>;
-  creatingPdf = false;
-
-  async exportToPdf(): Promise<void> {
-    if (!isPlatformBrowser(this.platformId) || this.creatingPdf) return;
-    this.creatingPdf = true;
-    try {
-      // Ruta dentro de /assets (mismo origen, no hay CORS)
-      const url = 'assets/HorariosOmnia.pdf';
-      // Opción A: disparar descarga directa (rápida y simple)
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'horariosOmnia.pdf';  // nombre del archivo al guardar
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } finally {
-      this.creatingPdf = false;
-    }
-  }
+  trackByRow = (i: number) => i;
+  trackByIdx = (i: number) => i;
 }

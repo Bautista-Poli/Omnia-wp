@@ -1,0 +1,76 @@
+#counter-section-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 60px;
+  padding: 50px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.counter-box {
+  width: 350px;
+  color: #ccc;
+  font-family: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.counter-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #333;
+  background-color: white;
+}
+
+/* --- NUEVOS ESTILOS PARA ALINEAR EL '+' Y EL NÚMERO --- */
+.counter-display {
+  display: flex; /* Usa Flexbox para alinear el '+' y el número horizontalmente */
+  justify-content: center; /* Centra el grupo horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  margin: 10px 0; /* Mantiene el espacio vertical que antes tenía .counter */
+}
+
+.plus-sign {
+  font-size: 32px; /* Mismo tamaño que .counter */
+  font-weight: bold; /* Mismo peso que .counter */
+  color: #fff; /* Mismo color que .counter */
+  margin-right: 5px; /* Pequeño espacio entre el '+' y el número */
+}
+/* ---------------------------------------------------- */
+
+.counter {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  /* Cambios: Se usa inline-block y se quita el margin,
+     ya que el alineamiento y margen vertical los maneja .counter-display */
+  display: inline-block; 
+  margin: 0; 
+}
+
+.counter-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Opcional: colores de fondo distintos */
+.counter-icon.yellow {
+  background-color: #ffcc00;
+}
+
+.counter-icon.purple {
+  background-color: #8000ff;
+}
+
+.counter-icon.green {
+  background-color: #00cc99;
+}
+
+@media screen and (max-width: 768px) {
+  #counter-section-container{
+    margin-top: 70vw;
+  }
+}

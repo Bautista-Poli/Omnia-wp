@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../Components/header/header.component';
-import { FooterComponent } from '../Components/footer/footer.component';
+import { FooterComponent } from '../footer/footer.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-como-comenzar',

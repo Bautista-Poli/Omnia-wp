@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NgFor, NgIf } from '@angular/common'; 
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../Components/header/header.component';
-import { FooterComponent } from '../Components/footer/footer.component';
+import { FooterComponent } from '../footer/footer.component';
 import {MatCardModule} from '@angular/material/card';
 import { ClassService } from '../service/class.service';
 import { Class } from '../interface/class.interface';
 import { VideoReproductorComponent } from './video-reproductor/video-reproductor.component';
 import { ProfesorService } from '../service/Adds/addProfesor.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-class',

@@ -1,0 +1,142 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+/* === Fuente única para todo el módulo === */
+:root{
+  --font-ui: var(--font-heading, "Quatro"), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.reseñas.reviews-grid,
+.reseñas.reviews-grid *{
+  font-family: var(--font-ui);
+}
+
+/* Mantener Font Awesome donde corresponde */
+.fa, .fa-star, .fa:before, .fa:after{
+  font-family: "FontAwesome" !important;
+}
+
+/* ====== Tarjeta ====== */
+figure.snip1157 {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 360px;
+  width: 100%;
+  color: #333;
+  text-align: left;
+  box-shadow: none !important;
+}
+figure.snip1157 * {
+  box-sizing: border-box;
+  transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+
+/* ====== Globo (marco blanco) ====== */
+figure.snip1157 blockquote {
+  display: block;
+  position: relative;
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 20px 25px 20px 25px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.8em;
+  line-height: 1.6em;
+  overflow: hidden;
+}
+
+/* ====== Header: foto + nombre ====== */
+figure.snip1157 .card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+figure.snip1157 img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+figure.snip1157 .author {
+  position: static;
+  transform: none;
+  padding: 0;
+  color: #333;
+  text-transform: uppercase;
+}
+figure.snip1157 .author h5 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 0.9em;
+}
+figure.snip1157 .author h5 span {
+  font-weight: 400;
+  text-transform: none;
+  padding-left: 5px;
+}
+
+/* ====== Texto de la reseña ====== */
+figure.snip1157 .quote-text > span { display: block; }
+
+figure.snip1157 .quote-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+/* comillas decorativas */
+figure.snip1157 blockquote:before,
+figure.snip1157 blockquote:after {
+  font-family: var(--font-ui);
+  content: "\201C";
+  position: absolute;
+  font-size: 50px;
+  opacity: 0.15;
+  font-style: normal;
+}
+figure.snip1157 blockquote:before { top: 10px; left: 10px; }
+figure.snip1157 blockquote:after  { content: "\201D"; right: 10px; bottom: 0; }
+
+/* flecha del globo */
+figure.snip1157 .arrow {
+  position: absolute;
+  top: 100%;
+  width: 0; height: 0;
+  border-left: 0 solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 25px solid #fafafa;
+  margin: 0;
+}
+
+/* ====== Estrellas ====== */
+.stars {
+  margin-top: 10px;
+}
+.stars .fa-star {
+  font-size: 1.1rem;
+  color: #ffd000;
+  font-family: "FontAwesome";
+}
+
+/* ====== Grid ====== */
+.reseñas.reviews-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+.reseñas.reviews-grid figure.snip1157 {
+  flex: 1 1 300px;
+  max-width: 360px;
+}
