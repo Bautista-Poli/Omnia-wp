@@ -1,3 +1,121 @@
-.prueba{
-    color:white;
+.novedades-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.titulo {
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--c-accent);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  letter-spacing: 0.05em;
+}
+
+/* Grid igual al de Instagram: 3 columnas */
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.ig-item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background: #111;
+  padding: 0;
+}
+
+.ig-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.ig-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay con caption al hacer hover */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ig-item:hover .overlay {
+  opacity: 1;
+}
+
+.caption {
+  color: #fff;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255,255,255,0.1);
+  border-top-color: var(--c-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Badges de video/carrusel */
+.video-badge,
+.carousel-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 1.1rem;
+  z-index: 2;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  pointer-events: none;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+/* Error */
+.error-msg {
+  text-align: center;
+  color: var(--c-accent);
+  font-size: 1.1rem;
+  padding: 60px 20px;
+}
+
+/* Mobile: 2 columnas */
+@media (max-width: 600px) {
+  .ig-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

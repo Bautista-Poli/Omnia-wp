@@ -28,10 +28,9 @@ export const routes: Routes = [
     },{path: 'admin-profesor-eliminar', component: AdminProfesoresEliminarComponent, canActivate: [authGuard]
     },{path: 'admin-profesor-agregar', component: AdminProfesoresAgregarComponent, canActivate: [authGuard]
     },{ path: 'admin-slot-change-profesor', component: AdminSlotChangeProfesorComponent, canActivate: [authGuard] 
-    },{path: 'ubicacion', component: UbicacionComponent
     },{ path: 'revisar-tabla', component: RevisarTablaComponent, canActivate: [authGuard] 
-    }
-    ,{
+    },{path: 'ubicacion', component: UbicacionComponent
+    },{
         path: '',
         redirectTo: 'inicio',
         pathMatch: 'full'

@@ -1,3 +1,39 @@
 <app-header></app-header>
-<p>Entro</p>
+
+<section class="novedades-wrap">
+  <h1 class="titulo">NOVEDADES</h1>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Error -->
+  <div class="error-msg" *ngIf="error">
+    No se pudo cargar el feed. Revisá más tarde.
+  </div>
+
+  <!-- Grid de posts -->
+  <div class="ig-grid" *ngIf="!isLoading && !error">
+    <a class="ig-item"
+       *ngFor="let post of posts"
+       target="_blank"
+       rel="noopener">
+
+      <!-- Ícono video -->
+      <span class="video-badge" *ngIf="post.mediaType === 'VIDEO'">▶</span>
+      <!-- Ícono carrusel -->
+      <span class="carousel-badge" *ngIf="post.mediaType === 'CAROUSEL_ALBUM'">⧉</span>
+
+      <img [src]="getThumb(post)" [alt]="post.caption || 'Post de Instagram'" loading="lazy" />
+
+      <!-- Overlay con caption -->
+      <div class="overlay">
+        <p class="caption">{{ post.caption }}</p>
+      </div>
+
+    </a>
+  </div>
+</section>
+
 <app-footer></app-footer>
